@@ -2,6 +2,7 @@
 #include "error_handler.h"
 #include "operations.h"
 #include "figure.h"
+#include <qdebug.h>
 
 int task_manager(request req)
 {

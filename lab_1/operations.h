@@ -15,6 +15,9 @@ struct scale
     double kx;
     double ky;
     double kz;
+    double cx;
+    double cy;
+    double cz;
 };
 
 struct turn
@@ -22,6 +25,9 @@ struct turn
     int ox;
     int oy;
     int oz;
+    double cx;
+    double cy;
+    double cz;
 };
 
 void move_point(point& dot, move coeff);

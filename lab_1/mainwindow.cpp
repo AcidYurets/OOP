@@ -3,7 +3,8 @@
 #include "task_manager.h"
 #include "error_handler.h"
 #include "operations.h"
-// изменяемые вначале, неизм в конце
+#include "defines.h"
+
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
@@ -47,7 +48,7 @@ errors transform_and_show(request req, Ui::MainWindow* ui)
 }
 
 // Load figure
-void MainWindow::on_actionOpen_triggered()
+void MainWindow::on_openFile_triggered()
 {
     request req;
     req.t = LOAD_FILE;
@@ -59,42 +60,171 @@ void MainWindow::on_actionOpen_triggered()
 }
 
 // Transformation
-void MainWindow::on_button_Move_clicked()
+void MainWindow::on_downButton_clicked()
 {
     request req;
     req.t = MOVE;
 
-    req.mo.dx = ui->lineEdit_MoveX->text().toInt();
-    req.mo.dy = ui->lineEdit_MoveY->text().toInt();
-    req.mo.dz = ui->lineEdit_MoveZ->text().toInt();
+    req.mo.dx = 0;
+    req.mo.dy = MOVE_VALUE;
+    req.mo.dz = 0;
 
     errors err = transform_and_show(req, ui);
     if (err)
         error_message(err);
 }
 
-void MainWindow::on_button_Scale_clicked()
+void MainWindow::on_rightButton_clicked()
+{
+    request req;
+    req.t = MOVE;
+
+    req.mo.dx = MOVE_VALUE;
+    req.mo.dy = 0;
+    req.mo.dz = 0;
+
+    errors err = transform_and_show(req, ui);
+    if (err)
+        error_message(err);
+}
+
+void MainWindow::on_leftButton_clicked()
+{
+    request req;
+    req.t = MOVE;
+
+    req.mo.dx = -MOVE_VALUE;
+    req.mo.dy = 0;
+    req.mo.dz = 0;
+
+    errors err = transform_and_show(req, ui);
+    if (err)
+        error_message(err);
+}
+
+void MainWindow::on_upButton_clicked()
+{
+    request req;
+    req.t = MOVE;
+
+    req.mo.dx = 0;
+    req.mo.dy = -MOVE_VALUE;
+    req.mo.dz = 0;
+
+    errors err = transform_and_show(req, ui);
+    if (err)
+        error_message(err);
+}
+
+void MainWindow::on_plusButton_clicked()
 {
     request req;
     req.t = SCALE;
 
-    req.sc.kx = ui->lineEdit_ScaleX->text().toFloat();
-    req.sc.ky = ui->lineEdit_ScaleY->text().toFloat();
-    req.sc.kz = ui->lineEdit_ScaleZ->text().toFloat();
+    req.sc.kx = SCALE_VALUE;
+    req.sc.ky = SCALE_VALUE;
+    req.sc.kz = SCALE_VALUE;
+    req.sc.cx = ui->graphicsView->width() / 2;
+    req.sc.cy = ui->graphicsView->height() / 2;
+    req.sc.cz = 0;
 
     errors err = transform_and_show(req, ui);
     if (err)
         error_message(err);
 }
 
-void MainWindow::on_button_Turn_clicked()
+void MainWindow::on_minusButton_clicked()
+{
+    request req;
+    req.t = SCALE;
+
+    req.sc.kx = 1 / SCALE_VALUE;
+    req.sc.ky = 1 / SCALE_VALUE;
+    req.sc.kz = 1 / SCALE_VALUE;
+
+    errors err = transform_and_show(req, ui);
+    if (err)
+        error_message(err);
+}
+
+void MainWindow::on_rotateXLeftButton_clicked()
 {
     request req;
     req.t = TURN;
 
-    req.tu.ox = ui->lineEdit_TurnX->text().toFloat();
-    req.tu.oy = ui->lineEdit_TurnY->text().toFloat();
-    req.tu.oz = ui->lineEdit_TurnZ->text().toFloat();
+    req.tu.ox = -ROTATE_VALUE;
+    req.tu.oy = 0;
+    req.tu.oz = 0;
+
+    errors err = transform_and_show(req, ui);
+    if (err)
+        error_message(err);
+}
+
+void MainWindow::on_rotateXRightButton_clicked()
+{
+    request req;
+    req.t = TURN;
+
+    req.tu.ox = ROTATE_VALUE;
+    req.tu.oy = 0;
+    req.tu.oz = 0;
+
+    errors err = transform_and_show(req, ui);
+    if (err)
+        error_message(err);
+}
+
+void MainWindow::on_rotateYLeftButton_clicked()
+{
+    request req;
+    req.t = TURN;
+
+    req.tu.ox = 0;
+    req.tu.oy = -ROTATE_VALUE;
+    req.tu.oz = 0;
+
+    errors err = transform_and_show(req, ui);
+    if (err)
+        error_message(err);
+}
+
+void MainWindow::on_rotateYRightButton_clicked()
+{
+    request req;
+    req.t = TURN;
+
+    req.tu.ox = 0;
+    req.tu.oy = ROTATE_VALUE;
+    req.tu.oz = 0;
+
+    errors err = transform_and_show(req, ui);
+    if (err)
+        error_message(err);
+}
+
+void MainWindow::on_rotateZLeftButton_clicked()
+{
+    request req;
+    req.t = TURN;
+
+    req.tu.ox = 0;
+    req.tu.oy = 0;
+    req.tu.oz = ROTATE_VALUE;
+
+    errors err = transform_and_show(req, ui);
+    if (err)
+        error_message(err);
+}
+
+void MainWindow::on_rotateZRightButton_clicked()
+{
+    request req;
+    req.t = TURN;
+
+    req.tu.ox = 0;
+    req.tu.oy = 0;
+    req.tu.oz = -ROTATE_VALUE;
 
     errors err = transform_and_show(req, ui);
     if (err)

@@ -252,7 +252,7 @@
         <number>10</number>
        </property>
       </widget>
-      <widget class="QPushButton" name="toratateZLeftButton">
+      <widget class="QPushButton" name="rotateZLeftButton">
        <property name="geometry">
         <rect>
          <x>110</x>

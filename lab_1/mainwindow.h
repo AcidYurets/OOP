@@ -18,13 +18,22 @@ public:
     ~MainWindow();
 
 private slots:
-    void on_button_Move_clicked();
+    void on_downButton_clicked();
+    void on_leftButton_clicked();
+    void on_rightButton_clicked();
+    void on_upButton_clicked();
 
-    void on_button_Scale_clicked();
+    void on_plusButton_clicked();
+    void on_minusButton_clicked();
 
-    void on_button_Turn_clicked();
+    void on_rotateXLeftButton_clicked();
+    void on_rotateXRightButton_clicked();
+    void on_rotateYLeftButton_clicked();
+    void on_rotateYRightButton_clicked();
+    void on_rotateZLeftButton_clicked();
+    void on_rotateZRightButton_clicked();
 
-    void on_actionOpen_triggered();
+    void on_openFile_triggered();
 
 private:
     Ui::MainWindow *ui;

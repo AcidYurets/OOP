@@ -13,13 +13,13 @@
 #include <QtGui/QAction>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QGraphicsView>
+#include <QtWidgets/QGridLayout>
 #include <QtWidgets/QGroupBox>
-#include <QtWidgets/QLabel>
-#include <QtWidgets/QLineEdit>
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QMenu>
 #include <QtWidgets/QMenuBar>
 #include <QtWidgets/QPushButton>
+#include <QtWidgets/QSpacerItem>
 #include <QtWidgets/QStatusBar>
 #include <QtWidgets/QWidget>
 
@@ -29,145 +29,149 @@ class Ui_MainWindow
 {
 public:
     QAction *actionOpen;
+    QAction *openFile;
     QWidget *centralWidget;
+    QGridLayout *gridLayout;
+    QGroupBox *groupBox;
+    QPushButton *upButton;
+    QPushButton *leftButton;
+    QPushButton *downButton;
+    QPushButton *rightButton;
+    QGroupBox *groupBox_2;
+    QPushButton *rotateYRightButton;
+    QPushButton *rotateYLeftButton;
+    QPushButton *rotateXRightButton;
+    QPushButton *rotateXLeftButton;
+    QPushButton *rotateZRightButton;
+    QPushButton *rotateZLeftButton;
+    QGroupBox *groupBox_3;
+    QPushButton *plusButton;
+    QPushButton *minusButton;
+    QSpacerItem *verticalSpacer;
     QGraphicsView *graphicsView;
-    QGroupBox *group_Move;
-    QLineEdit *lineEdit_MoveX;
-    QLineEdit *lineEdit_MoveY;
-    QLineEdit *lineEdit_MoveZ;
-    QPushButton *button_Move;
-    QLabel *label_MoveX;
-    QLabel *label_MoveY;
-    QLabel *label_MoveZ;
-    QGroupBox *group_Move_2;
-    QLineEdit *lineEdit_ScaleX;
-    QLineEdit *lineEdit_ScaleY;
-    QLineEdit *lineEdit_ScaleZ;
-    QPushButton *button_Scale;
-    QLabel *label_ScaleX;
-    QLabel *label_ScaleY;
-    QLabel *label_ScaleZ;
-    QGroupBox *group_Move_3;
-    QLineEdit *lineEdit_TurnX;
-    QLineEdit *lineEdit_TurnY;
-    QLineEdit *lineEdit_TurnZ;
-    QPushButton *button_Turn;
-    QLabel *label_TurnX;
-    QLabel *label_TurnY;
-    QLabel *label_TurnZ;
     QMenuBar *menuBar;
-    QMenu *menuOOP_Lab1_Obergan;
+    QMenu *menuFile;
     QStatusBar *statusBar;
 
     void setupUi(QMainWindow *MainWindow)
     {
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName(QString::fromUtf8("MainWindow"));
-        MainWindow->resize(1000, 500);
+        MainWindow->resize(815, 661);
         actionOpen = new QAction(MainWindow);
         actionOpen->setObjectName(QString::fromUtf8("actionOpen"));
+        openFile = new QAction(MainWindow);
+        openFile->setObjectName(QString::fromUtf8("openFile"));
         centralWidget = new QWidget(MainWindow);
         centralWidget->setObjectName(QString::fromUtf8("centralWidget"));
+        gridLayout = new QGridLayout(centralWidget);
+        gridLayout->setSpacing(6);
+        gridLayout->setContentsMargins(11, 11, 11, 11);
+        gridLayout->setObjectName(QString::fromUtf8("gridLayout"));
+        groupBox = new QGroupBox(centralWidget);
+        groupBox->setObjectName(QString::fromUtf8("groupBox"));
+        groupBox->setMinimumSize(QSize(191, 91));
+        groupBox->setMaximumSize(QSize(191, 91));
+        upButton = new QPushButton(groupBox);
+        upButton->setObjectName(QString::fromUtf8("upButton"));
+        upButton->setGeometry(QRect(70, 20, 50, 31));
+        upButton->setAutoRepeatDelay(10);
+        upButton->setAutoRepeatInterval(0);
+        upButton->setAutoDefault(true);
+        upButton->setFlat(false);
+        leftButton = new QPushButton(groupBox);
+        leftButton->setObjectName(QString::fromUtf8("leftButton"));
+        leftButton->setGeometry(QRect(20, 50, 50, 31));
+        leftButton->setAutoExclusive(false);
+        leftButton->setAutoRepeatDelay(10);
+        leftButton->setAutoRepeatInterval(0);
+        leftButton->setAutoDefault(true);
+        downButton = new QPushButton(groupBox);
+        downButton->setObjectName(QString::fromUtf8("downButton"));
+        downButton->setGeometry(QRect(70, 50, 50, 31));
+        downButton->setAutoRepeatDelay(10);
+        downButton->setAutoRepeatInterval(0);
+        downButton->setAutoDefault(true);
+        rightButton = new QPushButton(groupBox);
+        rightButton->setObjectName(QString::fromUtf8("rightButton"));
+        rightButton->setGeometry(QRect(120, 50, 50, 31));
+        rightButton->setAutoRepeatDelay(10);
+        rightButton->setAutoRepeatInterval(0);
+        rightButton->setAutoDefault(true);
+
+        gridLayout->addWidget(groupBox, 0, 0, 1, 1);
+
+        groupBox_2 = new QGroupBox(centralWidget);
+        groupBox_2->setObjectName(QString::fromUtf8("groupBox_2"));
+        groupBox_2->setMinimumSize(QSize(191, 101));
+        groupBox_2->setMaximumSize(QSize(191, 101));
+        rotateYRightButton = new QPushButton(groupBox_2);
+        rotateYRightButton->setObjectName(QString::fromUtf8("rotateYRightButton"));
+        rotateYRightButton->setGeometry(QRect(50, 50, 31, 31));
+        rotateYRightButton->setAutoRepeatDelay(10);
+        rotateYLeftButton = new QPushButton(groupBox_2);
+        rotateYLeftButton->setObjectName(QString::fromUtf8("rotateYLeftButton"));
+        rotateYLeftButton->setGeometry(QRect(110, 50, 31, 31));
+        rotateYLeftButton->setAutoRepeatDelay(10);
+        rotateXRightButton = new QPushButton(groupBox_2);
+        rotateXRightButton->setObjectName(QString::fromUtf8("rotateXRightButton"));
+        rotateXRightButton->setGeometry(QRect(80, 30, 31, 31));
+        rotateXRightButton->setAutoRepeatDelay(10);
+        rotateXLeftButton = new QPushButton(groupBox_2);
+        rotateXLeftButton->setObjectName(QString::fromUtf8("rotateXLeftButton"));
+        rotateXLeftButton->setGeometry(QRect(80, 60, 31, 31));
+        rotateXLeftButton->setAutoRepeatDelay(10);
+        rotateZRightButton = new QPushButton(groupBox_2);
+        rotateZRightButton->setObjectName(QString::fromUtf8("rotateZRightButton"));
+        rotateZRightButton->setGeometry(QRect(40, 20, 41, 31));
+        rotateZRightButton->setAutoRepeatDelay(10);
+        rotateZLeftButton = new QPushButton(groupBox_2);
+        rotateZLeftButton->setObjectName(QString::fromUtf8("rotateZLeftButton"));
+        rotateZLeftButton->setGeometry(QRect(110, 20, 41, 31));
+        rotateZLeftButton->setAutoRepeatDelay(10);
+
+        gridLayout->addWidget(groupBox_2, 1, 0, 1, 1);
+
+        groupBox_3 = new QGroupBox(centralWidget);
+        groupBox_3->setObjectName(QString::fromUtf8("groupBox_3"));
+        groupBox_3->setMinimumSize(QSize(191, 71));
+        groupBox_3->setMaximumSize(QSize(191, 71));
+        plusButton = new QPushButton(groupBox_3);
+        plusButton->setObjectName(QString::fromUtf8("plusButton"));
+        plusButton->setGeometry(QRect(100, 20, 40, 40));
+        plusButton->setMaximumSize(QSize(40, 40));
+        plusButton->setAutoRepeatDelay(10);
+        minusButton = new QPushButton(groupBox_3);
+        minusButton->setObjectName(QString::fromUtf8("minusButton"));
+        minusButton->setGeometry(QRect(50, 20, 40, 40));
+        minusButton->setMaximumSize(QSize(40, 40));
+        minusButton->setAutoRepeatDelay(10);
+
+        gridLayout->addWidget(groupBox_3, 2, 0, 1, 1);
+
+        verticalSpacer = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
+
+        gridLayout->addItem(verticalSpacer, 3, 0, 1, 1);
+
         graphicsView = new QGraphicsView(centralWidget);
         graphicsView->setObjectName(QString::fromUtf8("graphicsView"));
-        graphicsView->setGeometry(QRect(20, 10, 600, 450));
-        group_Move = new QGroupBox(centralWidget);
-        group_Move->setObjectName(QString::fromUtf8("group_Move"));
-        group_Move->setGeometry(QRect(650, 30, 300, 120));
-        lineEdit_MoveX = new QLineEdit(group_Move);
-        lineEdit_MoveX->setObjectName(QString::fromUtf8("lineEdit_MoveX"));
-        lineEdit_MoveX->setGeometry(QRect(20, 60, 70, 20));
-        lineEdit_MoveY = new QLineEdit(group_Move);
-        lineEdit_MoveY->setObjectName(QString::fromUtf8("lineEdit_MoveY"));
-        lineEdit_MoveY->setGeometry(QRect(115, 60, 70, 20));
-        lineEdit_MoveZ = new QLineEdit(group_Move);
-        lineEdit_MoveZ->setObjectName(QString::fromUtf8("lineEdit_MoveZ"));
-        lineEdit_MoveZ->setGeometry(QRect(210, 60, 70, 20));
-        button_Move = new QPushButton(group_Move);
-        button_Move->setObjectName(QString::fromUtf8("button_Move"));
-        button_Move->setGeometry(QRect(20, 90, 260, 23));
-        label_MoveX = new QLabel(group_Move);
-        label_MoveX->setObjectName(QString::fromUtf8("label_MoveX"));
-        label_MoveX->setGeometry(QRect(20, 30, 45, 13));
-        QFont font;
-        font.setPointSize(10);
-        label_MoveX->setFont(font);
-        label_MoveY = new QLabel(group_Move);
-        label_MoveY->setObjectName(QString::fromUtf8("label_MoveY"));
-        label_MoveY->setGeometry(QRect(120, 30, 45, 13));
-        label_MoveY->setFont(font);
-        label_MoveZ = new QLabel(group_Move);
-        label_MoveZ->setObjectName(QString::fromUtf8("label_MoveZ"));
-        label_MoveZ->setGeometry(QRect(210, 30, 45, 13));
-        label_MoveZ->setFont(font);
-        group_Move_2 = new QGroupBox(centralWidget);
-        group_Move_2->setObjectName(QString::fromUtf8("group_Move_2"));
-        group_Move_2->setGeometry(QRect(650, 180, 300, 120));
-        lineEdit_ScaleX = new QLineEdit(group_Move_2);
-        lineEdit_ScaleX->setObjectName(QString::fromUtf8("lineEdit_ScaleX"));
-        lineEdit_ScaleX->setGeometry(QRect(20, 60, 70, 20));
-        lineEdit_ScaleY = new QLineEdit(group_Move_2);
-        lineEdit_ScaleY->setObjectName(QString::fromUtf8("lineEdit_ScaleY"));
-        lineEdit_ScaleY->setGeometry(QRect(115, 60, 70, 20));
-        lineEdit_ScaleZ = new QLineEdit(group_Move_2);
-        lineEdit_ScaleZ->setObjectName(QString::fromUtf8("lineEdit_ScaleZ"));
-        lineEdit_ScaleZ->setGeometry(QRect(210, 60, 70, 20));
-        button_Scale = new QPushButton(group_Move_2);
-        button_Scale->setObjectName(QString::fromUtf8("button_Scale"));
-        button_Scale->setGeometry(QRect(20, 90, 260, 23));
-        label_ScaleX = new QLabel(group_Move_2);
-        label_ScaleX->setObjectName(QString::fromUtf8("label_ScaleX"));
-        label_ScaleX->setGeometry(QRect(20, 30, 45, 13));
-        label_ScaleX->setFont(font);
-        label_ScaleY = new QLabel(group_Move_2);
-        label_ScaleY->setObjectName(QString::fromUtf8("label_ScaleY"));
-        label_ScaleY->setGeometry(QRect(120, 30, 45, 13));
-        label_ScaleY->setFont(font);
-        label_ScaleZ = new QLabel(group_Move_2);
-        label_ScaleZ->setObjectName(QString::fromUtf8("label_ScaleZ"));
-        label_ScaleZ->setGeometry(QRect(210, 30, 45, 13));
-        label_ScaleZ->setFont(font);
-        group_Move_3 = new QGroupBox(centralWidget);
-        group_Move_3->setObjectName(QString::fromUtf8("group_Move_3"));
-        group_Move_3->setGeometry(QRect(650, 330, 300, 120));
-        lineEdit_TurnX = new QLineEdit(group_Move_3);
-        lineEdit_TurnX->setObjectName(QString::fromUtf8("lineEdit_TurnX"));
-        lineEdit_TurnX->setGeometry(QRect(20, 60, 70, 20));
-        lineEdit_TurnY = new QLineEdit(group_Move_3);
-        lineEdit_TurnY->setObjectName(QString::fromUtf8("lineEdit_TurnY"));
-        lineEdit_TurnY->setGeometry(QRect(115, 60, 70, 20));
-        lineEdit_TurnZ = new QLineEdit(group_Move_3);
-        lineEdit_TurnZ->setObjectName(QString::fromUtf8("lineEdit_TurnZ"));
-        lineEdit_TurnZ->setGeometry(QRect(210, 60, 70, 20));
-        button_Turn = new QPushButton(group_Move_3);
-        button_Turn->setObjectName(QString::fromUtf8("button_Turn"));
-        button_Turn->setGeometry(QRect(20, 90, 260, 23));
-        label_TurnX = new QLabel(group_Move_3);
-        label_TurnX->setObjectName(QString::fromUtf8("label_TurnX"));
-        label_TurnX->setGeometry(QRect(20, 30, 45, 13));
-        label_TurnX->setFont(font);
-        label_TurnY = new QLabel(group_Move_3);
-        label_TurnY->setObjectName(QString::fromUtf8("label_TurnY"));
-        label_TurnY->setGeometry(QRect(120, 30, 45, 13));
-        label_TurnY->setFont(font);
-        label_TurnZ = new QLabel(group_Move_3);
-        label_TurnZ->setObjectName(QString::fromUtf8("label_TurnZ"));
-        label_TurnZ->setGeometry(QRect(210, 30, 45, 13));
-        label_TurnZ->setFont(font);
+        graphicsView->setMinimumSize(QSize(600, 600));
+
+        gridLayout->addWidget(graphicsView, 0, 1, 4, 1);
+
         MainWindow->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(MainWindow);
         menuBar->setObjectName(QString::fromUtf8("menuBar"));
-        menuBar->setGeometry(QRect(0, 0, 1000, 21));
-        menuOOP_Lab1_Obergan = new QMenu(menuBar);
-        menuOOP_Lab1_Obergan->setObjectName(QString::fromUtf8("menuOOP_Lab1_Obergan"));
+        menuBar->setGeometry(QRect(0, 0, 815, 22));
+        menuFile = new QMenu(menuBar);
+        menuFile->setObjectName(QString::fromUtf8("menuFile"));
         MainWindow->setMenuBar(menuBar);
         statusBar = new QStatusBar(MainWindow);
         statusBar->setObjectName(QString::fromUtf8("statusBar"));
         MainWindow->setStatusBar(statusBar);
 
-        menuBar->addAction(menuOOP_Lab1_Obergan->menuAction());
-        menuOOP_Lab1_Obergan->addSeparator();
-        menuOOP_Lab1_Obergan->addAction(actionOpen);
+        menuBar->addAction(menuFile->menuAction());
+        menuFile->addAction(openFile);
 
         retranslateUi(MainWindow);
 
@@ -176,36 +180,64 @@ public:
 
     void retranslateUi(QMainWindow *MainWindow)
     {
-        MainWindow->setWindowTitle(QCoreApplication::translate("MainWindow", "OOP Lab1 Winterpuma", nullptr));
+        MainWindow->setWindowTitle(QCoreApplication::translate("MainWindow", "lab_1", nullptr));
         actionOpen->setText(QCoreApplication::translate("MainWindow", "Open", nullptr));
 #if QT_CONFIG(shortcut)
         actionOpen->setShortcut(QCoreApplication::translate("MainWindow", "Ctrl+O", nullptr));
 #endif // QT_CONFIG(shortcut)
-        group_Move->setTitle(QCoreApplication::translate("MainWindow", "Move", nullptr));
-        lineEdit_MoveX->setText(QCoreApplication::translate("MainWindow", "0", nullptr));
-        lineEdit_MoveY->setText(QCoreApplication::translate("MainWindow", "0", nullptr));
-        lineEdit_MoveZ->setText(QCoreApplication::translate("MainWindow", "0", nullptr));
-        button_Move->setText(QCoreApplication::translate("MainWindow", "Move", nullptr));
-        label_MoveX->setText(QCoreApplication::translate("MainWindow", "dx:", nullptr));
-        label_MoveY->setText(QCoreApplication::translate("MainWindow", "dy:", nullptr));
-        label_MoveZ->setText(QCoreApplication::translate("MainWindow", "dz:", nullptr));
-        group_Move_2->setTitle(QCoreApplication::translate("MainWindow", "Scale", nullptr));
-        lineEdit_ScaleX->setText(QCoreApplication::translate("MainWindow", "1", nullptr));
-        lineEdit_ScaleY->setText(QCoreApplication::translate("MainWindow", "1", nullptr));
-        lineEdit_ScaleZ->setText(QCoreApplication::translate("MainWindow", "1", nullptr));
-        button_Scale->setText(QCoreApplication::translate("MainWindow", "Scale", nullptr));
-        label_ScaleX->setText(QCoreApplication::translate("MainWindow", "kx:", nullptr));
-        label_ScaleY->setText(QCoreApplication::translate("MainWindow", "ky:", nullptr));
-        label_ScaleZ->setText(QCoreApplication::translate("MainWindow", "kz:", nullptr));
-        group_Move_3->setTitle(QCoreApplication::translate("MainWindow", "Turn", nullptr));
-        lineEdit_TurnX->setText(QCoreApplication::translate("MainWindow", "0", nullptr));
-        lineEdit_TurnY->setText(QCoreApplication::translate("MainWindow", "0", nullptr));
-        lineEdit_TurnZ->setText(QCoreApplication::translate("MainWindow", "0", nullptr));
-        button_Turn->setText(QCoreApplication::translate("MainWindow", "Turn", nullptr));
-        label_TurnX->setText(QCoreApplication::translate("MainWindow", "ox:", nullptr));
-        label_TurnY->setText(QCoreApplication::translate("MainWindow", "oy:", nullptr));
-        label_TurnZ->setText(QCoreApplication::translate("MainWindow", "oz:", nullptr));
-        menuOOP_Lab1_Obergan->setTitle(QCoreApplication::translate("MainWindow", "File", nullptr));
+        openFile->setText(QCoreApplication::translate("MainWindow", "Open", nullptr));
+        groupBox->setTitle(QCoreApplication::translate("MainWindow", "\320\237\320\265\321\200\320\265\320\274\320\265\321\211\320\265\320\275\320\270\320\265", nullptr));
+        upButton->setText(QCoreApplication::translate("MainWindow", "\342\206\221", nullptr));
+#if QT_CONFIG(shortcut)
+        upButton->setShortcut(QCoreApplication::translate("MainWindow", "Up", nullptr));
+#endif // QT_CONFIG(shortcut)
+        leftButton->setText(QCoreApplication::translate("MainWindow", "\342\206\220", nullptr));
+#if QT_CONFIG(shortcut)
+        leftButton->setShortcut(QCoreApplication::translate("MainWindow", "Left", nullptr));
+#endif // QT_CONFIG(shortcut)
+        downButton->setText(QCoreApplication::translate("MainWindow", "\342\206\223", nullptr));
+#if QT_CONFIG(shortcut)
+        downButton->setShortcut(QCoreApplication::translate("MainWindow", "Down", nullptr));
+#endif // QT_CONFIG(shortcut)
+        rightButton->setText(QCoreApplication::translate("MainWindow", "\342\206\222", nullptr));
+#if QT_CONFIG(shortcut)
+        rightButton->setShortcut(QCoreApplication::translate("MainWindow", "Right", nullptr));
+#endif // QT_CONFIG(shortcut)
+        groupBox_2->setTitle(QCoreApplication::translate("MainWindow", "\320\237\320\276\320\262\320\276\321\200\320\276\321\202", nullptr));
+        rotateYRightButton->setText(QCoreApplication::translate("MainWindow", "\342\206\252", nullptr));
+#if QT_CONFIG(shortcut)
+        rotateYRightButton->setShortcut(QCoreApplication::translate("MainWindow", "6", nullptr));
+#endif // QT_CONFIG(shortcut)
+        rotateYLeftButton->setText(QCoreApplication::translate("MainWindow", "\342\206\251", nullptr));
+#if QT_CONFIG(shortcut)
+        rotateYLeftButton->setShortcut(QCoreApplication::translate("MainWindow", "4", nullptr));
+#endif // QT_CONFIG(shortcut)
+        rotateXRightButton->setText(QCoreApplication::translate("MainWindow", "\342\244\265", nullptr));
+#if QT_CONFIG(shortcut)
+        rotateXRightButton->setShortcut(QCoreApplication::translate("MainWindow", "5", nullptr));
+#endif // QT_CONFIG(shortcut)
+        rotateXLeftButton->setText(QCoreApplication::translate("MainWindow", "\342\244\264", nullptr));
+#if QT_CONFIG(shortcut)
+        rotateXLeftButton->setShortcut(QCoreApplication::translate("MainWindow", "8", nullptr));
+#endif // QT_CONFIG(shortcut)
+        rotateZRightButton->setText(QCoreApplication::translate("MainWindow", "\342\206\273", nullptr));
+#if QT_CONFIG(shortcut)
+        rotateZRightButton->setShortcut(QCoreApplication::translate("MainWindow", "7", nullptr));
+#endif // QT_CONFIG(shortcut)
+        rotateZLeftButton->setText(QCoreApplication::translate("MainWindow", "\342\206\272", nullptr));
+#if QT_CONFIG(shortcut)
+        rotateZLeftButton->setShortcut(QCoreApplication::translate("MainWindow", "9", nullptr));
+#endif // QT_CONFIG(shortcut)
+        groupBox_3->setTitle(QCoreApplication::translate("MainWindow", "\320\234\320\260\321\201\321\210\321\202\320\260\320\261", nullptr));
+        plusButton->setText(QCoreApplication::translate("MainWindow", "+", nullptr));
+#if QT_CONFIG(shortcut)
+        plusButton->setShortcut(QCoreApplication::translate("MainWindow", "1", nullptr));
+#endif // QT_CONFIG(shortcut)
+        minusButton->setText(QCoreApplication::translate("MainWindow", "-", nullptr));
+#if QT_CONFIG(shortcut)
+        minusButton->setShortcut(QCoreApplication::translate("MainWindow", "3", nullptr));
+#endif // QT_CONFIG(shortcut)
+        menuFile->setTitle(QCoreApplication::translate("MainWindow", "File", nullptr));
     } // retranslateUi
 
 };
