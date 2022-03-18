@@ -10,6 +10,7 @@ enum errors
     PTR_ALL_ERR,
     NO_DOTS,
     NO_LINKS,
+    INCORRECT_LINKS,
     UNKNOWN_COMMAND
 };
 

@@ -207,6 +207,7 @@
     <ClInclude Include="drawing.h" />
     <ClInclude Include="error_handler.h" />
     <ClInclude Include="figure.h" />
+    <ClInclude Include="fig_struct.h" />
     <ClInclude Include="graph.h" />
     <ClInclude Include="io.h" />
     <ClInclude Include="link.h" />

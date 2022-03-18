@@ -1,4 +1,5 @@
 #include "drawing.h"
+#include "fig_struct.h"
 #include "graph.h"
 
 coord_point get_dot(point* dots, int n)
@@ -19,14 +20,14 @@ coord_point point_transform(coord_point dot, draw arg)
 }
 
 
-void draw_links(points_data pts, links_data links, draw arg, graphics a)
+void draw_links(figure fig, draw arg, graphics a)
 {
     coord_point p1, p2;
 
-    for (int i = 0; i < links.n; i++)
+    for (int i = 0; i < fig.links.n; i++)
     {
-        p1 = get_dot(pts.arr, links.arr[i].p1);
-        p2 = get_dot(pts.arr, links.arr[i].p2);
+        p1 = get_dot(fig.points.arr, fig.links.arr[i].p1);
+        p2 = get_dot(fig.points.arr, fig.links.arr[i].p2);
         draw_line(p1, p2, a, arg);
     }
 }

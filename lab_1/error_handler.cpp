@@ -6,30 +6,30 @@ void error_message(errors err)
 {
     if (err == FILE_NOT_FOUND)
     {
-        QMessageBox::critical(NULL, "ERROR", "File is broken, or doesn't exist");
+        QMessageBox::critical(NULL, "ERROR", "Файл не найден");
     }
     else if (err == FILE_FORMAT_ERR)
     {
-        QMessageBox::critical(NULL, "ERROR", "File format error");
+        QMessageBox::critical(NULL, "ERROR", "Некорректный формат файла");
     }
     else if (err == FILE_CONTENT_ERR)
     {
-        QMessageBox::critical(NULL, "ERROR", "File has wrong content");
+        QMessageBox::critical(NULL, "ERROR", "Некорректное содержимое файла");
     }
     else if (err == PTR_ALL_ERR)
     {
-        QMessageBox::critical(NULL, "ERROR", "Error with memory allocation");
+        QMessageBox::critical(NULL, "ERROR", "Ошибка выделения памяти");
     }
     else if (err == NO_DOTS)
     {
-        QMessageBox::critical(NULL, "ERROR", "File is empty, or array is empty!");
+        QMessageBox::critical(NULL, "ERROR", "Файл не выбран");
     }
     else if (err == UNKNOWN_COMMAND)
     {
-        QMessageBox::critical(NULL, "ERROR", "Unknown command in enter point!");
+        QMessageBox::critical(NULL, "ERROR", "Неизвестная команда");
     }
     else
     {
-        QMessageBox::critical(NULL, "ERROR", "Unknown error");
+        QMessageBox::critical(NULL, "ERROR", "Неизвестная ошибка");
     }
 }

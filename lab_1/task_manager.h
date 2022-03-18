@@ -15,11 +15,6 @@ enum task
     QUIT
 };
 
-struct load_file
-{
-    const char* filename;
-};
-
 struct request
 {
     task t;

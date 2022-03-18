@@ -11,6 +11,6 @@ struct graphics
 
 int init_graph(graphics &a, QGraphicsView *gV);
 void del(graphics &a);
-void set(QGraphicsView *gV, graphics &a);
+void set(QGraphicsView *gV, graphics &a, int w, int h);
 
 #endif // GRAPH_H

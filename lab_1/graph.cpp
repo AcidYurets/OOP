@@ -17,8 +17,9 @@ void del(graphics &a)
     delete a.scene;
 }
 
-void set(QGraphicsView *gV, graphics &a)
+void set(QGraphicsView *gV, graphics &a, int w, int h)
 {
+    a.scene->setSceneRect(QRectF(QPointF(0, 0), QSizeF(w, h)));
     QGraphicsScene *prev = gV->scene();
     delete prev;
     gV->setScene(a.scene);

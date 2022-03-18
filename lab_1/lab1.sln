@@ -5,6 +5,8 @@ VisualStudioVersion = 17.0.32126.317
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "lab1", "lab1.vcxproj", "{BADCF127-CF77-3790-84B3-5960BF1339C0}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "oop1", "..\..\..\repos\OOP-oljakon\lab_01\oop1.vcxproj", "{2095B256-A29F-3817-85C7-4491D6E5EF73}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -15,12 +17,16 @@ Global
 		{BADCF127-CF77-3790-84B3-5960BF1339C0}.Debug|x64.Build.0 = Debug|x64
 		{BADCF127-CF77-3790-84B3-5960BF1339C0}.Release|x64.ActiveCfg = Release|x64
 		{BADCF127-CF77-3790-84B3-5960BF1339C0}.Release|x64.Build.0 = Release|x64
+		{2095B256-A29F-3817-85C7-4491D6E5EF73}.Debug|x64.ActiveCfg = Debug|x64
+		{2095B256-A29F-3817-85C7-4491D6E5EF73}.Debug|x64.Build.0 = Debug|x64
+		{2095B256-A29F-3817-85C7-4491D6E5EF73}.Release|x64.ActiveCfg = Release|x64
+		{2095B256-A29F-3817-85C7-4491D6E5EF73}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {8E17557E-7D66-4E03-B20D-68B6B954086C}
 		Qt5Version = 6.2.3_mingw_64
+		SolutionGuid = {8E17557E-7D66-4E03-B20D-68B6B954086C}
 	EndGlobalSection
 EndGlobal

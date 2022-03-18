@@ -30,18 +30,20 @@ struct turn
     double cz;
 };
 
+struct load_file
+{
+    const char* filename;
+};
+
 void move_point(point& dot, move coeff);
-int move_points_array(point* pts, int n, move coeff);
+int move_points_array(point* pts, int n, move coeff, point& center);
 
-void scale_point(point& dot, scale coeff);
-int scale_points_array(point* pts, int n, scale coeff);
+void scale_point(point& dot, scale coeff, point center);
+int scale_points_array(point* pts, int n, scale coeff, point center);
 
-double d_cos(double angle);
-double d_sin(double angle);
-
-void x_turn_point(point& dot, double angle);
-void y_turn_point(point& dot, double angle);
-void z_turn_point(point& dot, double angle);
-int turn_points_array(point* pts, int n, turn coeff);
+void x_turn_point(point& dot, double angle, point c);
+void y_turn_point(point& dot, double angle, point c);
+void z_turn_point(point& dot, double angle, point c);
+int turn_points_array(point* pts, int n, turn coeff, point center);
 
 #endif // OPERATIONS_H

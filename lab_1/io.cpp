@@ -13,3 +13,4 @@ int read_amount(int* n, FILE* f)
 
     return err;
 }
+

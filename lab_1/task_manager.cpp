@@ -14,7 +14,7 @@ int task_manager(request req)
     case INIT:
         break;
     case LOAD_FILE:
-        err = load_figure_from_file(fig, req.load_f.filename);
+        err = load_figure_from_file(fig, req.load_f);
         break;
     case DRAW:
         err = draw_figure(fig, req.dr);
