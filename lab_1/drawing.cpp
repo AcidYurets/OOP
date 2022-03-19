@@ -19,6 +19,11 @@ coord_point point_transform(coord_point dot, draw arg)
     return tmp;
 }
 
+void get_dots(coord_point& p1, coord_point& p2, figure fig, int ind)
+{
+    p1 = get_dot(fig.points.arr, fig.links.arr[ind].p1);
+    p2 = get_dot(fig.points.arr, fig.links.arr[ind].p2);
+}
 
 void draw_links(figure fig, draw arg, graphics a)
 {
@@ -26,8 +31,7 @@ void draw_links(figure fig, draw arg, graphics a)
 
     for (int i = 0; i < fig.links.n; i++)
     {
-        p1 = get_dot(fig.points.arr, fig.links.arr[i].p1);
-        p2 = get_dot(fig.points.arr, fig.links.arr[i].p2);
+        get_dots(p1, p2, fig, i);
         draw_line(p1, p2, a, arg);
     }
 }
@@ -45,4 +49,11 @@ void my_addLine(graphics a, int x1, int x2, int y1, int y2)
 {
     a.scene->addLine(x1, y1, x2, y2, a.pen);
 }
+
+void set_scene(draw arg, graphics& a)
+{
+    set(arg.gV, a, arg.w, arg.h);
+}
+
+
 

@@ -36,7 +36,7 @@ int read_link(link* joints, FILE* f)
 int read_n_links(link* joints, int n, FILE *f)
 {
     int err = 0;
-    for (int i = 0; i < n && !err; i++)
+    for (int i = 0; !err && i < n; i++)
     {
         if (read_link(&joints[i], f))
             err = FILE_FORMAT_ERR;

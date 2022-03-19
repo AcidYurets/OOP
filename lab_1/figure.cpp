@@ -43,6 +43,11 @@ void copy_figure(figure& fig, figure& tmp)
     fig.links.arr = tmp.links.arr;
 }
 
+void free_figure(figure fig)
+{
+    links_free(fig.links);
+    points_free(fig.points);
+}
 
 int read_figure_data(figure& fig_tmp, FILE* f)
 {
@@ -57,12 +62,12 @@ int read_figure_data(figure& fig_tmp, FILE* f)
     return err;
 }
 
-int links_to_points_check(links_data links, points_data points)
+int links_to_points_check(figure fig)
 {
     int err = NONE;
-    for (int i = 0; i < links.n; i++)
+    for (int i = 0; i < fig.links.n; i++)
     {
-        if (links.arr[i].p1 > points.n - 1 || links.arr[i].p2 > points.n - 1)
+        if (fig.links.arr[i].p1 > fig.points.n - 1 || fig.links.arr[i].p2 > fig.points.n - 1)
             err = INCORRECT_LINKS;
     }
 
@@ -81,13 +86,17 @@ int load_figure_from_file(figure& fig, load_file file)
     fclose(f);
 
     if (!err)
-        err = links_to_points_check(fig_tmp.links, fig_tmp.points);
+    {
+        err = links_to_points_check(fig_tmp);
+        if (err)
+            free_figure(fig_tmp);
+    }
 
     if (!err)
     {
         empty_figure(fig);
         copy_figure(fig, fig_tmp);
-        fig.center = get_center(fig.points);
+        get_center(fig);
     }
 
     return err;
@@ -104,33 +113,17 @@ int draw_figure(figure fig, draw arg)
 
     draw_links(fig, arg, a);
 
-    set(arg.gV, a, arg.w, arg.h);
+    set_scene(arg, a);
 
     return err;
 }
 
-point get_center(points_data p) 
+
+void get_center(figure& fig)
 {
-    double x_max = p.arr[0].x, x_min = p.arr[0].x, y_max = p.arr[0].y,
-        y_min = p.arr[0].y, z_max = p.arr[0].z, z_min = p.arr[0].z;
-    for (int i = 0; i < p.n; i++)
-    {
-        if (p.arr[i].x > x_max)
-            x_max = p.arr[i].x;
-        if (p.arr[i].x < x_min)
-            x_min = p.arr[i].x;
-        if (p.arr[i].y > y_max)
-            y_max = p.arr[i].y;
-        if (p.arr[i].y > y_max)
-            y_max = p.arr[i].y;
-        if (p.arr[i].z > z_max)
-            z_max = p.arr[i].z;
-        if (p.arr[i].z > z_max)
-            z_max = p.arr[i].z;
-    }
-    point center{ (x_max + x_min) / 2, (y_max + y_min) / 2, (z_max + z_min) / 2 };
-    
-    return center;
+    points_data p = fig.points;
+
+    fig.center = get_center_from_points(p);
 }
 
 int move_figure(figure& fig, move coeff)
