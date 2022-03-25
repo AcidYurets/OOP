@@ -12,7 +12,7 @@ int load_figure_from_file(figure &ob, load_file file);
 
 int draw_figure(figure fig, draw arg);
 
-void get_center(figure& fig);
+void get_figure_center(figure& fig);
 int move_figure(figure& fig, move coeff);
 int scale_figure(figure& fig, scale coeff);
 int turn_figure(figure& fig, turn coeff);

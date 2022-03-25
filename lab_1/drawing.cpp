@@ -19,10 +19,17 @@ coord_point point_transform(coord_point dot, draw arg)
     return tmp;
 }
 
-void get_dots(coord_point& p1, coord_point& p2, figure fig, int ind)
+void get_dots_to_link(coord_point& p1, coord_point& p2, points_data points, links_data links, int ind)
 {
-    p1 = get_dot(fig.points.arr, fig.links.arr[ind].p1);
-    p2 = get_dot(fig.points.arr, fig.links.arr[ind].p2);
+    link lnk = links.arr[ind];
+
+    p1 = get_dot(points.arr, lnk.p1);
+    p2 = get_dot(points.arr, lnk.p2);
+}
+
+void get_figure_dots(coord_point& p1, coord_point& p2, figure fig, int ind)
+{
+    get_dots_to_link(p1, p2, fig.points, fig.links, ind);
 }
 
 void draw_links(figure fig, draw arg, graphics a)
@@ -31,7 +38,7 @@ void draw_links(figure fig, draw arg, graphics a)
 
     for (int i = 0; i < fig.links.n; i++)
     {
-        get_dots(p1, p2, fig, i);
+        get_figure_dots(p1, p2, fig, i);
         draw_line(p1, p2, a, arg);
     }
 }

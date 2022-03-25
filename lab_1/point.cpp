@@ -72,11 +72,8 @@ point get_point(point* arr, int i)
     return arr[i];
 }
 
-point get_center_from_points(points_data p)
+point get_center_from_points(point* arr, int n)
 {
-    point* arr = p.arr;
-    int n = p.n;
-
     point first = get_point(arr, 0);
     double x_max = first.x, x_min = first.x, y_max = first.y,
         y_min = first.y, z_max = first.z, z_min = first.z;
@@ -98,6 +95,13 @@ point get_center_from_points(points_data p)
     }
 
     return point{ (x_max + x_min) / 2, (y_max + y_min) / 2, (z_max + z_min) / 2 };
+}
+
+point get_center(points_data p)
+{
+    point center = get_center_from_points(p.arr, p.n);
+
+    return center;
 }
 
 
