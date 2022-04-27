@@ -80,47 +80,31 @@ public:
 	void fill_zero();
 	void identity_matrix();
 
-	class MatrixRow
-	{
-		friend Matrix;
-	public:
-		const Type& operator [](size_t column) const
-		{
-			time_t err_time = time(nullptr);
-
-			if (column >= this->parent.get_m())
-			{
-				throw IndexException(__FILE__, typeid(*this).name(), __LINE__ - 4, err_time, "Index out of range");
-			}
-
-			return parent.data.get()[number * parent.get_m() + column];
-		}
-
-		Type& operator [](size_t column)
-		{
-			time_t err_time = time(nullptr);
-
-			if (column >= this->parent.get_m())
-			{
-				throw IndexException(__FILE__, typeid(*this).name(), __LINE__ - 4, err_time, "Index out of range");
-			}
-
-			return parent.data.get()[number * parent.get_m() + column];
-		}
-
+	class MatrixRow {
+		/*friend Iterator<Type>;
+		friend IteratorConst<Type>;*/
 	private:
-		MatrixRow(const Matrix<Type>& parent, size_t row) : parent(parent), number(row) {  }
-		const Matrix& parent;
-		size_t number;
+		std::shared_ptr<Type[]> _data = nullptr;
+		size_t _size = 0;
+	public:
+		MatrixRow(Type* data, const size_t size) : _data(data), _size(size) {}
+		MatrixRow() : _data(nullptr), _size(0) {}
+		Type& operator[](size_t index);
+		const Type& operator[](size_t index) const;
+		void reset(Type* data, const size_t size);
+		void reset();
+		Type* getAddr() { return _data.get(); }
+		const Type* getAddr() const { return _data.get(); }
 	};
 
 	const MatrixRow operator [](size_t row) const;
 	MatrixRow operator [](size_t row);
- 
+
 private:
 	size_t n;
 	size_t m;
-	std::shared_ptr<Type[]> data;
+	std::shared_ptr<MatrixRow[]> data;
+	std::shared_ptr<MatrixRow[]> allocateMemory(size_t n, size_t m);
 
 	void addition(const Matrix<Type>& mtrx) const;
 	void addition(const Type& value) const;

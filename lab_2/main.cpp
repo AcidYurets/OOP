@@ -77,6 +77,8 @@ int main()
 
         std::cout << "Testing get value func\n";
         std::cout << mtrx3.get_value(0, 0) << std::endl; 
+        std::cout << mtrx3[0][0] << std::endl;
+        std::cout << mtrx3[1][0] << std::endl;
 
 
         std::cout << "\nTesting set value func\n";

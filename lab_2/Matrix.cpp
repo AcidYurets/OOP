@@ -10,6 +10,25 @@
 
 #pragma region Constructor/Destructor
 
+template <typename T>
+std::shared_ptr <typename Matrix<T>::MatrixRow[]> Matrix<T>::allocateMemory(size_t rows, size_t cols) 
+{
+	time_t err_time = time(nullptr);
+
+	std::shared_ptr <MatrixRow[]> data = nullptr;
+	try {
+		data.reset(new MatrixRow[rows]);
+		for (size_t i = 0; i < rows; i++)
+			data[i].reset(new T[cols], cols);
+	}
+	catch (std::bad_alloc)
+	{
+		throw IsEmptyException(__FILE__, typeid(*this).name(), __LINE__ - 4, err_time, "Allocation error");
+	}
+
+	return data;
+}
+
 // Constructors
 template<typename Type>
 Matrix<Type>::Matrix()
@@ -37,7 +56,7 @@ Matrix<Type>::Matrix(size_t n, size_t m)
 
 	try
 	{
-		this->data = std::shared_ptr<Type[]>(new Type[element_numb]);
+		this->data = std::shared_ptr<MatrixRow[]>(allocateMemory(n, m));
 	}
 
 	catch (std::bad_alloc)
@@ -57,7 +76,7 @@ Matrix<Type>::Matrix(const Matrix<Type>& mtrx) : MatrixBase()
 
 	try
 	{
-		this->data = std::shared_ptr<Type[]>(new Type[element_numb]);
+		this->data = std::shared_ptr<MatrixRow[]>(allocateMemory(n, m));
 	}
 
 	catch (std::bad_alloc)
@@ -69,7 +88,7 @@ Matrix<Type>::Matrix(const Matrix<Type>& mtrx) : MatrixBase()
 	{
 		for (size_t j = 0; j < this->m; j++)
 		{
-			this->data.get()[i * m + j] = mtrx.data.get()[i * m + j];
+			this->data[i][j] = mtrx.data[i][j];
 		}
 	}
 }
@@ -85,7 +104,7 @@ Matrix<Type>::Matrix(Matrix<Type>&& mtrx) : MatrixBase()
 
 	try
 	{
-		this->data = std::shared_ptr<Type[]>(new Type[element_numb]);
+		this->data = std::shared_ptr<MatrixRow[]>(allocateMemory(n, m));
 	}
 
 	catch (std::bad_alloc)
@@ -97,7 +116,7 @@ Matrix<Type>::Matrix(Matrix<Type>&& mtrx) : MatrixBase()
 	{
 		for (size_t j = 0; j < this->m; j++)
 		{
-			this->data.get()[i * m + j] = mtrx.data.get()[i * m + j];
+			this->data[i][j] = mtrx.data[i][j];
 		}
 	}
 }
@@ -113,7 +132,7 @@ Matrix<Type>::Matrix(std::initializer_list<std::initializer_list<Type>> list)
 
 	try
 	{
-		this->data = std::shared_ptr<Type[]>(new Type[element_numb]);
+		this->data = std::shared_ptr<MatrixRow[]>(allocateMemory(n, m));
 	}
 
 	catch (std::bad_alloc)
@@ -135,7 +154,7 @@ Matrix<Type>::Matrix(std::initializer_list<std::initializer_list<Type>> list)
 
 			for (size_t j = 0; iter_j != iter_i->end(); j++, iter_j++)
 			{
-				this->data.get()[i * this->m + j] = *iter_j;
+				this->data[i][j] = *iter_j;
 			}
 		}
 	}
@@ -169,7 +188,7 @@ Matrix<Type>& Matrix<Type>::operator =(const Matrix<Type>& mtrx)
 
 	try
 	{
-		this->data = std::shared_ptr<Type[]>(new Type[element_numb]);
+		this->data = std::shared_ptr<MatrixRow[]>(new Type[element_numb]);
 	}
 
 	catch(std::bad_alloc)
@@ -183,7 +202,7 @@ Matrix<Type>& Matrix<Type>::operator =(const Matrix<Type>& mtrx)
 		{
 			for (size_t j = 0; j < m_mtrx; j++)
 			{
-				this->data.get()[i * m + j] = mtrx.data.get()[i * m + j];
+				this->data[i][j] = mtrx.data[i][j];
 			}
 		}
 	}
@@ -209,7 +228,7 @@ Matrix<Type>& Matrix<Type>::operator =(Matrix<Type>&& mtrx)
 
 	try
 	{
-		this->data = std::shared_ptr<Type[]>(new Type[element_numb]);
+		this->data = std::shared_ptr<MatrixRow[]>(allocateMemory(n, m));
 	}
 
 	catch (std::bad_alloc)
@@ -223,7 +242,7 @@ Matrix<Type>& Matrix<Type>::operator =(Matrix<Type>&& mtrx)
 		{
 			for (size_t j = 0; j < m_mtrx; j++)
 			{
-				this->data.get()[i * m + j] = mtrx.data.get()[i * m + j];
+				this->data[i][j] = mtrx.data[i][j];
 			}
 		}
 	}
@@ -246,7 +265,7 @@ Matrix<Type>& Matrix<Type>::operator =(std::initializer_list<std::initializer_li
 
 	try
 	{
-		this->data = std::shared_ptr<Type[]>(new Type[element_numb]);
+		this->data = std::shared_ptr<MatrixRow[]>(new Type[element_numb]);
 	}
 
 	catch (std::bad_alloc)
@@ -268,7 +287,7 @@ Matrix<Type>& Matrix<Type>::operator =(std::initializer_list<std::initializer_li
 
 			for (size_t j = 0; iter_j != iter_i->end(); j++, iter_j++)
 			{
-				this->data.get()[i * this->m + j] = *iter_j;
+				this->data[i][j] = *iter_j;
 			}
 		}
 	}
@@ -289,7 +308,7 @@ void Matrix<Type>::addition(const Matrix<Type>& mtrx) const
 	{
 		for (size_t j = 0; j < this->get_m(); j++)
 		{
-			this->data.get()[i * this->get_m() + j] += mtrx[i][j];
+			this->data[i][j] += mtrx[i][j];
 		}
 	}
 }
@@ -301,7 +320,7 @@ void Matrix<Type>::addition(const Type& value) const
 	{
 		for (size_t j = 0; j < this->get_m(); j++)
 		{
-			this->data.get()[i * this->get_m() + j] += value;
+			this->data[i][j] += value;
 		}
 	}
 }
@@ -429,7 +448,7 @@ void Matrix<Type>::subtraction(const Matrix<Type>& mtrx) const
 	{
 		for (size_t j = 0; j < this->get_m(); j++)
 		{
-			this->data.get()[i * this->get_m() + j] -= mtrx[i][j];
+			this->data[i][j] -= mtrx[i][j];
 		}
 	}
 }
@@ -441,7 +460,7 @@ void Matrix<Type>::subtraction(const Type& value) const
 	{
 		for (size_t j = 0; j < this->get_m(); j++)
 		{
-			this->data.get()[i * this->get_m() + j] -= value;
+			this->data[i][j] -= value;
 		}
 	}
 }
@@ -556,7 +575,7 @@ void Matrix<Type>::multiplicate(const Type& value) const
 	{
 		for (size_t j = 0; j < m; j++)
 		{
-			this->data.get()[i * m + j] *= value;
+			this->data[i][j] *= value;
 		}
 	}
 }
@@ -587,9 +606,9 @@ Matrix<Type> Matrix<Type>::operator *(const Matrix<Type>& mtrx1) const
 				double temp = 0;
 				for (size_t k = 0; k < l; k++)
 				{
-					temp += mtrx1.data.get()[i * m + j] * this->data.get()[k * m + j];
+					temp += mtrx1.data[i][j] * this->data[i][j];
 				}
-				result.data.get()[i * m + j] = temp;
+				result.data[i][j] = temp;
 			}
 		}
 
@@ -639,9 +658,9 @@ Matrix<Type>& Matrix<Type>::operator *=(const Matrix<Type>& mtrx)
 
 				for (size_t k = 0; k < l; k++)
 				{
-					element += mtrx.data.get()[i * m + k] * this->data.get()[k * m + j];
+					element += mtrx.data[i][j] * this->data[i][j];
 				}
-				result.data.get()[i * m + j] = element;
+				result.data[i][j] = element;
 			}
 		}
 
@@ -680,7 +699,7 @@ void Matrix<Type>::division(const Type& value) const
 	{
 		for (size_t j = 0; j < m; j++)
 		{
-			this->data.get()[i * m + j] /= value;
+			this->data[i][j] /= value;
 		}
 	}
 }
@@ -733,7 +752,7 @@ Type& Matrix<Type>::operator ()(size_t i, size_t j)
 		throw IndexException(__FILE__, typeid(*this).name(), __LINE__ - 4, err_time, "Index out of range");
 	}
 
-	return this->data.get()[i * this->m + j];
+	return this->data[i][j];
 }
 
 template<typename Type>
@@ -746,7 +765,7 @@ const Type& Matrix<Type>::operator ()(size_t i, size_t j) const
 		throw IndexException(__FILE__, typeid(*this).name(), __LINE__ - 4, err_time, "Index out of range");
 	}
 
-	return this->data.get()[i * this->m + j];
+	return this->data[i][j];
 }
 
 #pragma endregion
@@ -760,7 +779,7 @@ std::ostream& operator <<(std::ostream& ostream, const Matrix<_Type>& mtrx)
 	{
 		for (size_t j = 0; j < mtrx.get_m(); j++)
 		{
-			ostream << mtrx.data.get()[i * mtrx.get_m() + j] << "\t";
+			ostream << mtrx.data[i][j] << "\t";
 		}
 		ostream << std::endl;
 	}
@@ -804,6 +823,43 @@ IteratorConst<Type> Matrix<Type>::end() const
 
 #pragma endregion
 
+#pragma region Matrix Row
+
+template <typename T>
+T& Matrix<T>::MatrixRow::operator[](size_t index) {
+	time_t err_time = time(nullptr);
+
+	if (index >= _size) {
+		throw IndexException(__FILE__, typeid(*this).name(), __LINE__ - 4, err_time, "Index out of range");
+	}
+
+	return _data[index];
+}
+
+template <typename T>
+const T& Matrix<T>::MatrixRow::operator[](size_t index) const {
+	time_t err_time = time(nullptr);
+
+	if (index >= _size) {
+		throw IndexException(__FILE__, typeid(*this).name(), __LINE__ - 4, err_time, "Index out of range");
+	}
+
+	return _data[index];
+}
+
+template <typename T>
+void Matrix<T>::MatrixRow::reset(T* data, const size_t size) {
+	_size = size;
+	_data.reset(data);
+}
+
+template <typename T>
+void Matrix<T>::MatrixRow::reset() {
+	_size = 0;
+	_data.reset();
+}
+
+#pragma endregion
 
 #pragma region Other methods
 
@@ -832,8 +888,7 @@ const Type& Matrix<Type>::get_value(size_t i, size_t j) const
 	{
 		if (this->data)
 		{
-			//return data.get()[i * this->m + j];
-			return data[i * this->m + j];
+			return data[i][j];
 		}
 		else
 		{
@@ -855,7 +910,7 @@ void Matrix<Type>::set_value(size_t i, size_t j, const Type& value)
 	{
 		if (this->data)
 		{
-			this->data.get()[i * this->m + j] = value;
+			this->data[i][j] = value;
 		}
 		else
 		{
@@ -871,7 +926,7 @@ void Matrix<Type>::fill_zero()
 	{
 		for (size_t j = 0; j < this->m; j++)
 		{
-			this->data.get()[i * this->m + j] = 0;
+			this->data[i][j] = 0;
 		}
 	}
 }
@@ -885,11 +940,11 @@ void Matrix<Type>::identity_matrix()
 		{
 			if (i != j)
 			{
-				this->data.get()[i * this->m + j] = 0;
+				this->data[i][j] = 0;
 			}
 			else
 			{
-				this->data.get()[i * this->m + j] = 1;
+				this->data[i][j] = 1;
 			}
 		}
 	}
@@ -905,7 +960,7 @@ const typename Matrix<Type>::MatrixRow Matrix<Type>::operator [](size_t row) con
 		throw IndexException(__FILE__, typeid(*this).name(), __LINE__ - 4, err_time, "Index out of range");
 	}
 
-	return MatrixRow(*this, row);
+	return data[row];
 }
 
 template<typename Type>
@@ -918,7 +973,7 @@ typename Matrix<Type>::MatrixRow Matrix<Type>::operator [](size_t row)
 		throw IndexException(__FILE__, typeid(*this).name(), __LINE__ - 4, err_time, "Index out of range");
 	}
 
-	return MatrixRow(*this, row);
+	return data[row];
 }
 
 #pragma endregion
