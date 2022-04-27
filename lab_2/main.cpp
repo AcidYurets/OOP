@@ -1,7 +1,13 @@
 ﻿#include <iostream>
 #include <vector>
 
-#include "MatrixRealization.cpp"
+#include "Matrix.cpp"
+
+/*
+    Можно ли наследовать ошибки в Iterator от MatrixBaseException?
+    Че за <Type[]> в умных указателях?
+
+*/
 
 int main()
 {
@@ -70,7 +76,7 @@ int main()
         std::cout << mtrx1;
 
         std::cout << "Testing get value func\n";
-        std::cout << mtrx3.get_value(1, 0) << std::endl;
+        std::cout << mtrx3.get_value(0, 0) << std::endl; 
 
 
         std::cout << "\nTesting set value func\n";

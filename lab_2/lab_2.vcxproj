@@ -20,7 +20,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="MatrixRealization.cpp" />
+    <ClCompile Include="Matrix.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Iterator.h" />

@@ -37,7 +37,7 @@ Matrix<Type>::Matrix(size_t n, size_t m)
 
 	try
 	{
-		this->data = std::shared_ptr<Type>(new Type[element_numb]);
+		this->data = std::shared_ptr<Type[]>(new Type[element_numb]);
 	}
 
 	catch (std::bad_alloc)
@@ -57,7 +57,7 @@ Matrix<Type>::Matrix(const Matrix<Type>& mtrx) : MatrixBase()
 
 	try
 	{
-		this->data = std::shared_ptr<Type>(new Type[element_numb]);
+		this->data = std::shared_ptr<Type[]>(new Type[element_numb]);
 	}
 
 	catch (std::bad_alloc)
@@ -85,7 +85,7 @@ Matrix<Type>::Matrix(Matrix<Type>&& mtrx) : MatrixBase()
 
 	try
 	{
-		this->data = std::shared_ptr<Type>(new Type[element_numb]);
+		this->data = std::shared_ptr<Type[]>(new Type[element_numb]);
 	}
 
 	catch (std::bad_alloc)
@@ -113,7 +113,7 @@ Matrix<Type>::Matrix(std::initializer_list<std::initializer_list<Type>> list)
 
 	try
 	{
-		this->data = std::shared_ptr<Type>(new Type[element_numb]);
+		this->data = std::shared_ptr<Type[]>(new Type[element_numb]);
 	}
 
 	catch (std::bad_alloc)
@@ -169,7 +169,7 @@ Matrix<Type>& Matrix<Type>::operator =(const Matrix<Type>& mtrx)
 
 	try
 	{
-		this->data = std::shared_ptr<Type>(new Type[element_numb]);
+		this->data = std::shared_ptr<Type[]>(new Type[element_numb]);
 	}
 
 	catch(std::bad_alloc)
@@ -209,7 +209,7 @@ Matrix<Type>& Matrix<Type>::operator =(Matrix<Type>&& mtrx)
 
 	try
 	{
-		this->data = std::shared_ptr<Type>(new Type[element_numb]);
+		this->data = std::shared_ptr<Type[]>(new Type[element_numb]);
 	}
 
 	catch (std::bad_alloc)
@@ -246,7 +246,7 @@ Matrix<Type>& Matrix<Type>::operator =(std::initializer_list<std::initializer_li
 
 	try
 	{
-		this->data = std::shared_ptr<Type>(new Type[element_numb]);
+		this->data = std::shared_ptr<Type[]>(new Type[element_numb]);
 	}
 
 	catch (std::bad_alloc)
@@ -346,6 +346,27 @@ Matrix<Type> Matrix<Type>::operator +(const Type& value) const
 		return result;
 	}
 }
+
+// !!! Так?
+/*
+template<>
+Matrix<int> Matrix<int>::operator +(const int& value) const
+{
+	time_t err_time = time(nullptr);
+
+	if (this->is_empty())
+	{
+		throw IsEmptyException(__FILE__, typeid(*this).name(), __LINE__ - 4, err_time, "One of the matrices is empty.");
+	}
+	else
+	{
+		Matrix<int> result(*this);
+		result.addition(value);
+		return result;
+	}
+}
+*/
+// !!!
 
 template<typename Type>
 Matrix<Type>& Matrix<Type>::operator +=(const Matrix<Type>& mtrx)
@@ -812,7 +833,7 @@ const Type& Matrix<Type>::get_value(size_t i, size_t j) const
 		if (this->data)
 		{
 			//return data.get()[i * this->m + j];
-			return data[i][j];
+			return data[i * this->m + j];
 		}
 		else
 		{
@@ -872,6 +893,32 @@ void Matrix<Type>::identity_matrix()
 			}
 		}
 	}
+}
+
+template<typename Type>
+const typename Matrix<Type>::MatrixRow Matrix<Type>::operator [](size_t row) const
+{
+	time_t err_time = time(nullptr);
+
+	if (row >= this->get_n())
+	{
+		throw IndexException(__FILE__, typeid(*this).name(), __LINE__ - 4, err_time, "Index out of range");
+	}
+
+	return MatrixRow(*this, row);
+}
+
+template<typename Type>
+typename Matrix<Type>::MatrixRow Matrix<Type>::operator [](size_t row)
+{
+	time_t err_time = time(nullptr);
+
+	if (row >= this->get_n())
+	{
+		throw IndexException(__FILE__, typeid(*this).name(), __LINE__ - 4, err_time, "Index out of range");
+	}
+
+	return MatrixRow(*this, row);
 }
 
 #pragma endregion

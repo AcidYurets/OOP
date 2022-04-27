@@ -114,29 +114,8 @@ public:
 		size_t number;
 	};
 
-	const MatrixRow operator [](size_t row) const
-	{
-		time_t err_time = time(nullptr);
-
-		if (row >= this->get_n())
-		{
-			throw IndexException(__FILE__, typeid(*this).name(), __LINE__ - 4, err_time, "Index out of range");
-		}
-
-		return MatrixRow(*this, row);
-	}
-
-	MatrixRow operator [](size_t row)
-	{
-		time_t err_time = time(nullptr);
-
-		if (row >= this->get_n())
-		{
-			throw IndexException(__FILE__, typeid(*this).name(), __LINE__ - 4, err_time, "Index out of range");
-		}
-
-		return MatrixRow(*this, row);
-	}
+	const MatrixRow operator [](size_t row) const;
+	MatrixRow operator [](size_t row);
  
 private:
 	size_t n;

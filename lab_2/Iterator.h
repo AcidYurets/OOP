@@ -106,7 +106,7 @@ public:
 		check_valid(__LINE__);
 		check_index(__LINE__);
 
-		std::shared_ptr<Type> ptr_cpy = _data.lock();
+		std::shared_ptr<Type[]> ptr_cpy = _data.lock();
 		return *(ptr_cpy.get() + _index);
 	}
 	const Type& operator *() const
@@ -114,7 +114,7 @@ public:
 		check_valid(__LINE__);
 		check_index(__LINE__);
 
-		std::shared_ptr<Type> ptr_cpy = _data.lock();
+		std::shared_ptr<Type[]> ptr_cpy = _data.lock();
 		return *(ptr_cpy.get() + _index);
 	}
 
@@ -123,7 +123,7 @@ public:
 		check_valid(__LINE__);
 		check_index(__LINE__);
 
-		std::shared_ptr<Type> ptr_cpy = _data.lock();
+		std::shared_ptr<Type[]> ptr_cpy = _data.lock();
 		return ptr_cpy.get() + _index;
 	}
 	const Type& operator ->() const
@@ -131,7 +131,7 @@ public:
 		check_valid(__LINE__);
 		check_index(__LINE__);
 
-		std::shared_ptr<Type> ptr_cpy = _data.lock();
+		std::shared_ptr<Type[]> ptr_cpy = _data.lock();
 		return ptr_cpy.get() + _index;
 	}
 
