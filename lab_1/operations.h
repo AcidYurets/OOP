@@ -36,14 +36,14 @@ struct load_file
 };
 
 void move_point(point& dot, move coeff);
-int move_points_array(point* pts, int n, move coeff, point& center);
+int move_points_array(points_data points, move coeff, point& center);
 
 void scale_point(point& dot, scale coeff, point center);
-int scale_points_array(point* pts, int n, scale coeff, point center);
+int scale_points_array(points_data points, scale coeff, point center);
 
-void x_turn_point(point& dot, double angle, point c);
-void y_turn_point(point& dot, double angle, point c);
-void z_turn_point(point& dot, double angle, point c);
-int turn_points_array(point* pts, int n, turn coeff, point center);
+void x_turn_point(point& dot, double angle);
+void y_turn_point(point& dot, double angle);
+void z_turn_point(point& dot, double angle);
+int turn_points_array(points_data points, turn coeff, point center);
 
 #endif // OPERATIONS_H

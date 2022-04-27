@@ -13,8 +13,11 @@ void move_point(point& dot, move coeff)
     dot.z += coeff.dz;
 }
 
-int move_points_array(point* pts, int n, move coeff, point& center)
+int move_points_array(points_data points, move coeff, point& center)
 {
+    point* pts = points.arr;
+    int n = points.n;
+
     if(!pts)
         return NO_DOTS;
     int err = 0;
@@ -37,8 +40,11 @@ void scale_point(point& dot, scale coeff, point c)
     dot.z = coeff.kz * dot.z + (1 - coeff.kz) * c.z;
 }
 
-int scale_points_array(point* pts, int n, scale coeff, point center)
+int scale_points_array(points_data points, scale coeff, point center)
 {
+    point* pts = points.arr;
+    int n = points.n;
+
     if(!pts)
         return NO_DOTS;
     int err = 0;
@@ -49,47 +55,54 @@ int scale_points_array(point* pts, int n, scale coeff, point center)
     return err;
 }
 
-void x_turn_point(point& dot, double angle, point c)
+void x_turn_point(point& dot, double angle)
 {
     angle *= PI / 180;
    
     point buf = dot;
-    dot.y = c.y + (buf.y - c.y) * cosf(angle) + (buf.z - c.z) * sinf(angle);
-    dot.z = c.z + (buf.y - c.y) * sinf(-angle) + (buf.z - c.z) * cosf(angle);
+    dot.y = (buf.y) * cosf(angle) + (buf.z) * sinf(angle);
+    dot.z = (buf.y) * sinf(-angle) + (buf.z) * cosf(angle);
 }
 
-void y_turn_point(point& dot, double angle, point c)
+void y_turn_point(point& dot, double angle)
 {
     angle *= PI / 180;
 
     point buf = dot;
-    dot.x = c.x + (buf.x - c.x) * cosf(angle) + (buf.z - c.z) * sinf(angle);
-    dot.z = c.z + (buf.x - c.x) * sinf(-angle) + (buf.z - c.z) * cosf(angle);
+    dot.x = (buf.x) * cosf(angle) + (buf.z) * sinf(angle);
+    dot.z = (buf.x) * sinf(-angle) + (buf.z) * cosf(angle);
 }
 
-void z_turn_point(point& dot, double angle, point c)
+void z_turn_point(point& dot, double angle)
 {
     angle *= PI / 180;
 
     point buf = dot;
-    dot.x = c.x + (buf.x - c.x) * cosf(angle) + (buf.y - c.y) * sinf(angle);
-    dot.y = c.y + (buf.x - c.x) * sinf(-angle) + (buf.y - c.y) * cosf(angle);
+    dot.x = (buf.x) * cosf(angle) + (buf.y) * sinf(angle);
+    dot.y = (buf.x) * sinf(-angle) + (buf.y) * cosf(angle);
 }
 
 
-int turn_points_array(point* pts, int n, turn coeff, point center)
+int turn_points_array(points_data points, turn coeff, point center)
 {
-    if(!pts)
+    point* pts = points.arr;
+    int n = points.n;
+
+    if (!pts)
         return NO_DOTS;
     int err = 0;
 
-    points_data p_d{ n, pts };
-    //point center = get_center(p_d);
-    for(int i = 0; i < n; i++)
+    for (int i = 0; i < n; i++)
     {
-        x_turn_point(pts[i], coeff.ox, center);
-        y_turn_point(pts[i], coeff.oy, center);
-        z_turn_point(pts[i], coeff.oz, center);
+        move move_to_center = { -center.x, -center.y, -center.z };
+        move_point(pts[i], move_to_center);
+
+        x_turn_point(pts[i], coeff.ox);
+        y_turn_point(pts[i], coeff.oy);
+        z_turn_point(pts[i], coeff.oz);
+
+        move move_back = { center.x, center.y, center.z };
+        move_point(pts[i], move_back);
     }
 
     return err;

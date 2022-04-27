@@ -23,6 +23,6 @@ int read_point(point* dot, FILE* f);
 int read_n_points(point *dots, int n, FILE *f);
 int process_points(points_data &pts, FILE *f);
 
-point get_center_from_points(points_data p);
+point get_center(points_data p);
 
 #endif // POINT_H

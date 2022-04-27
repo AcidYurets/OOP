@@ -96,7 +96,7 @@ int load_figure_from_file(figure& fig, load_file file)
     {
         empty_figure(fig);
         copy_figure(fig, fig_tmp);
-        get_center(fig);
+        get_figure_center(fig);
     }
 
     return err;
@@ -119,24 +119,22 @@ int draw_figure(figure fig, draw arg)
 }
 
 
-void get_center(figure& fig)
+void get_figure_center(figure& fig)
 {
-    points_data p = fig.points;
-
-    fig.center = get_center_from_points(p);
+    fig.center = get_center(fig.points);
 }
 
 int move_figure(figure& fig, move coeff)
 {
-    return move_points_array(fig.points.arr, fig.points.n, coeff, fig.center);
+    return move_points_array(fig.points, coeff, fig.center);
 }
 
 int scale_figure(figure& fig, scale coeff)
 {
-    return scale_points_array(fig.points.arr, fig.points.n, coeff, fig.center);
+    return scale_points_array(fig.points, coeff, fig.center);
 }
 
 int turn_figure(figure& fig, turn coeff)
 {
-    return turn_points_array(fig.points.arr, fig.points.n, coeff, fig.center);
+    return turn_points_array(fig.points, coeff, fig.center);
 }
