@@ -21,6 +21,8 @@ int main()
         Matrix<float> mtrx3({ { 3.3f, 2.1f, 1.4f }, { 0.2f, 0.23f, 1.12f } });
         std::cout << mtrx3;
 
+        Matrix<double> mtrx4(5, 5);
+
         std::cout << "Testing addition\n"; 
         mtrx1.identity_matrix();
         mtrx2.identity_matrix();
@@ -37,8 +39,7 @@ int main()
         mtrx1.add(10);
         std::cout << mtrx1;
 
-        mtrx1 = mtrx1 + 10;
-        std::cout << mtrx1;
+        mtrx1 = mtrx1 + 11;
 
         std::cout << "Testing subtraction\n";
         mtrx1.identity_matrix();
@@ -58,7 +59,7 @@ int main()
          
         mtrx1 = mtrx1 - 10;
         std::cout << mtrx1;
-
+        
         std::cout << "Testing multiplication\n";
         mtrx1.identity_matrix();
         mtrx2.identity_matrix();

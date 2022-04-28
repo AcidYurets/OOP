@@ -186,7 +186,7 @@ Matrix<Type>& Matrix<Type>::operator =(const Matrix<Type>& mtrx)
 
 	try
 	{
-		this->data = std::shared_ptr<MatrixRow[]>(new Type[element_numb]);
+		this->data = std::shared_ptr<MatrixRow[]>(allocateMemory(n, m));
 	}
 
 	catch(std::bad_alloc)
@@ -263,7 +263,7 @@ Matrix<Type>& Matrix<Type>::operator =(std::initializer_list<std::initializer_li
 
 	try
 	{
-		this->data = std::shared_ptr<MatrixRow[]>(new Type[element_numb]);
+		this->data = std::shared_ptr<MatrixRow[]>(allocateMemory(n, m));
 	}
 
 	catch (std::bad_alloc)
@@ -300,7 +300,7 @@ Matrix<Type>& Matrix<Type>::operator =(std::initializer_list<std::initializer_li
 
 // Private methods
 template<typename Type>
-void Matrix<Type>::addition(const Matrix<Type>& mtrx) const
+void Matrix<Type>::addition(const Matrix<Type>& mtrx)
 {
 	for (size_t i = 0; i < this->get_n(); i++)
 	{
@@ -312,7 +312,7 @@ void Matrix<Type>::addition(const Matrix<Type>& mtrx) const
 }
 
 template<typename Type>
-void Matrix<Type>::addition(const Type& value) const
+void Matrix<Type>::addition(const Type& value)
 {
 	for (size_t i = 0; i < this->get_n(); i++)
 	{
@@ -383,7 +383,7 @@ Matrix<Type>& Matrix<Type>::operator +=(const Matrix<Type>& mtrx)
 }
 
 template<typename Type>
-void Matrix<Type>::add(const Matrix<Type>& mtrx) const
+void Matrix<Type>::add(const Matrix<Type>& mtrx)
 {
 	time_t err_time = time(nullptr);
 
@@ -401,7 +401,7 @@ void Matrix<Type>::add(const Matrix<Type>& mtrx) const
 }
 
 template<typename Type>
-void Matrix<Type>::add(const Type& value) const
+void Matrix<Type>::add(const Type& value)
 {
 	time_t err_time = time(nullptr);
 
@@ -420,7 +420,7 @@ void Matrix<Type>::add(const Type& value) const
 
 // Private methods
 template<typename Type>
-void Matrix<Type>::subtraction(const Matrix<Type>& mtrx) const
+void Matrix<Type>::subtraction(const Matrix<Type>& mtrx)
 {
 	for (size_t i = 0; i < this->get_n(); i++)
 	{
@@ -432,7 +432,7 @@ void Matrix<Type>::subtraction(const Matrix<Type>& mtrx) const
 }
 
 template<typename Type>
-void Matrix<Type>::subtraction(const Type& value) const
+void Matrix<Type>::subtraction(const Type& value)
 {
 	for (size_t i = 0; i < this->get_n(); i++)
 	{
@@ -505,7 +505,7 @@ Matrix<Type>& Matrix<Type>::operator -=(const Matrix<Type>& mtrx)
 }
 
 template<typename Type>
-void Matrix<Type>::sub(const Matrix<Type>& mtrx) const
+void Matrix<Type>::sub(const Matrix<Type>& mtrx)
 {
 	time_t err_time = time(nullptr);
 
@@ -523,7 +523,7 @@ void Matrix<Type>::sub(const Matrix<Type>& mtrx) const
 }
 
 template<typename Type>
-void Matrix<Type>::sub(const Type& value) const
+void Matrix<Type>::sub(const Type& value)
 {
 	time_t err_time = time(nullptr);
 
@@ -544,7 +544,7 @@ void Matrix<Type>::sub(const Type& value) const
 
 // Private method
 template<typename Type>
-void Matrix<Type>::multiplicate(const Type& value) const
+void Matrix<Type>::multiplicate(const Type& value)
 {
 	size_t n = this->n;
 	size_t m = this->m;
@@ -558,38 +558,46 @@ void Matrix<Type>::multiplicate(const Type& value) const
 	}
 }
 
+template<typename Type>
+void Matrix<Type>::multiplicate(const Matrix<Type>& mtrx)
+{
+	size_t n = this->n;
+	size_t m = mtrx.get_m();
+	size_t l = this->n;
+
+	Matrix<Type> result = Matrix<Type>(n, m);
+
+	for (size_t i = 0; i < n; i++)
+	{
+		for (size_t j = 0; j < m; j++)
+		{
+			Type temp = 0;
+			for (size_t k = 0; k < l; k++)
+			{
+				temp += mtrx.data[i][j] * this->data[i][j];
+			}
+			result.data[i][j] = temp;
+		}
+	}
+	Matrix<Type> my(result); 
+	*this = result;
+}
+
 
 // Public methods
 template<typename Type>
-Matrix<Type> Matrix<Type>::operator *(const Matrix<Type>& mtrx1) const
+Matrix<Type> Matrix<Type>::operator *(const Matrix<Type>& mtrx) const
 {
 	time_t err_time = time(nullptr);
 
-	if (this->n != mtrx1.get_m())
+	if (this->n != mtrx.get_m())
 	{
 		throw IsEmptyException(__FILE__, typeid(*this).name(), __LINE__ - 4, err_time, "Size should be equal");
 	}
 	else
 	{
-		size_t n = this->n;
-		size_t m = mtrx1.get_m();
-		size_t l = this->n;
-
-		Matrix<Type> result = Matrix<Type>(n, m);
-
-		for (size_t i = 0; i < n; i++)
-		{
-			for (size_t j = 0; j < m; j++)
-			{
-				double temp = 0;
-				for (size_t k = 0; k < l; k++)
-				{
-					temp += mtrx1.data[i][j] * this->data[i][j];
-				}
-				result.data[i][j] = temp;
-			}
-		}
-
+		Matrix<Type> result(*this);
+		result.multiplicate(mtrx);
 		return result;
 	}
 }
@@ -622,32 +630,13 @@ Matrix<Type>& Matrix<Type>::operator *=(const Matrix<Type>& mtrx)
 	}
 	else
 	{
-		size_t n = this->n;
-		size_t m = mtrx.get_m();
-		size_t l = this->n;
-
-		Matrix<Type> result = Matrix<Type>(n, m);
-		
-		for (size_t i = 0; i < n; i++)
-		{
-			for (size_t j = 0; j < m; j++)
-			{
-				double element = 0;
-
-				for (size_t k = 0; k < l; k++)
-				{
-					element += mtrx.data[i][j] * this->data[i][j];
-				}
-				result.data[i][j] = element;
-			}
-		}
-
-		return result;
+		this->multiplicate(mtrx);
+		return *this;
 	}
 }
 
 template<typename Type>
-void Matrix<Type>::mult(const Type& value) const
+void Matrix<Type>::mult(const Type& value)
 {
 	time_t err_time = time(nullptr);
 
@@ -668,7 +657,7 @@ void Matrix<Type>::mult(const Type& value) const
 
 // Private method
 template<typename Type>
-void Matrix<Type>::division(const Type& value) const
+void Matrix<Type>::division(const Type& value)
 {
 	size_t n = this->n;
 	size_t m = this->m;
@@ -702,7 +691,7 @@ Matrix<Type> Matrix<Type>::operator /(const Type& value) const
 }
 
 template<typename Type>
-void Matrix<Type>::divide(const Type& value) const
+void Matrix<Type>::divide(const Type& value)
 {
 	time_t err_time = time(nullptr);
 

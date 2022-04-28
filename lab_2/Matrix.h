@@ -36,29 +36,28 @@ public:
 
 	// Addition
 	Matrix<Type> operator +(const Matrix<Type>& mtrx1) const;
-	//Matrix<Type> operator +(const Type& value) const;
 	template <typename U>
 	decltype(auto) operator +(const U& value) const;
 	Matrix<Type>& operator +=(const Matrix<Type>& mtrx);
-	void add(const Matrix<Type>& mtrx) const;
-	void add(const Type& value) const;
+	void add(const Matrix<Type>& mtrx);
+	void add(const Type& value);
 
 	// Substraction
 	Matrix<Type> operator -(const Matrix<Type>& mtrx1) const;
 	Matrix<Type> operator -(const Type& value) const;
 	Matrix<Type>& operator -=(const Matrix<Type>& mtrx);
-	void sub(const Matrix<Type>& mtrx) const;
-	void sub(const Type& value) const;
+	void sub(const Matrix<Type>& mtrx);
+	void sub(const Type& value);
 
 	// Multiplication
 	Matrix<Type> operator *(const Matrix<Type>& mtrx1) const;
 	Matrix<Type> operator *(const Type& value) const;
 	Matrix<Type>& operator *=(const Matrix<Type>& mtrx);
-	void mult(const Type& value) const;
+	void mult(const Type& value);
 
 	// Division
 	Matrix<Type> operator /(const Type& value) const;
-	void divide(const Type& value) const;
+	void divide(const Type& value);
 
 	Type& operator ()(size_t i, size_t j);
 	const Type& operator ()(size_t i, size_t j) const;
@@ -105,14 +104,16 @@ private:
 	std::shared_ptr<MatrixRow[]> data;
 	std::shared_ptr<MatrixRow[]> allocateMemory(size_t n, size_t m);
 
-	void addition(const Matrix<Type>& mtrx) const;
-	void addition(const Type& value) const;
+	void addition(const Matrix<Type>& mtrx);
+	void addition(const Type& value);
 
-	void subtraction(const Matrix<Type>& mtrx) const;
-	void subtraction(const Type& value) const;
+	void subtraction(const Matrix<Type>& mtrx);
+	void subtraction(const Type& value);
 
-	void multiplicate(const Type& value) const;
-	void division(const Type& value) const; 
+	void multiplicate(const Type& value);
+	void multiplicate(const Matrix<Type>& matr);
+
+	void division(const Type& value); 
 };
 
 #endif // !MATRIX_H
