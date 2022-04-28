@@ -366,10 +366,11 @@ Matrix<Type> Matrix<Type>::operator +(const Type& value) const
 	}
 }
 
+
 // !!! Так?
-/*
-template<>
-Matrix<int> Matrix<int>::operator +(const int& value) const
+template<typename Type>
+template<typename U>
+decltype(auto) Matrix<Type>::operator +(const U& value) const
 {
 	time_t err_time = time(nullptr);
 
@@ -379,12 +380,11 @@ Matrix<int> Matrix<int>::operator +(const int& value) const
 	}
 	else
 	{
-		Matrix<int> result(*this);
+		Matrix<decltype(this->data[0][0] + value)> result(*this);
 		result.addition(value);
 		return result;
 	}
 }
-*/
 // !!!
 
 template<typename Type>

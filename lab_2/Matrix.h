@@ -36,6 +36,8 @@ public:
 	// Addition
 	Matrix<Type> operator +(const Matrix<Type>& mtrx1) const;
 	Matrix<Type> operator +(const Type& value) const;
+	template <typename U>
+	decltype(auto) operator +(const U& value) const;
 	Matrix<Type>& operator +=(const Matrix<Type>& mtrx);
 	void add(const Matrix<Type>& mtrx) const;
 	void add(const Type& value) const;
