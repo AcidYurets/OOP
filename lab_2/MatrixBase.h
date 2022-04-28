@@ -6,8 +6,7 @@
 class MatrixBase
 {
 public:
-	explicit MatrixBase() : element_numb(0) { }
-	explicit MatrixBase(size_t n) : element_numb(n) { }
+	explicit MatrixBase() : element_numb(0), rows(0), columns(0) { }
 	virtual ~MatrixBase() = default;
 
 	bool is_empty() const { return element_numb == 0; }

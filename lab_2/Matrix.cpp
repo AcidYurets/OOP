@@ -796,14 +796,14 @@ std::ostream& operator <<(std::ostream& ostream, const Matrix<_Type>& mtrx)
 template<typename Type>
 Iterator<Type> Matrix<Type>::begin()
 {
-	Iterator<Type> iter(*this, 0);
+	Iterator<Type> iter(data[0].getPtr(), n, m, 0);
 	return iter;
 }
 
 template<typename Type>
 Iterator<Type> Matrix<Type>::end()
 {
-	Iterator<Type> iter(*this, this->n * this->m);
+	Iterator<Type> iter(data[0].getPtr(), n, m, n * m);
 	return iter;
 }
 

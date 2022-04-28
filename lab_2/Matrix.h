@@ -83,8 +83,8 @@ public:
 	void identity_matrix();
 
 	class MatrixRow {
-		/*friend Iterator<Type>;
-		friend IteratorConst<Type>;*/
+		friend Iterator<Type>;
+		friend IteratorConst<Type>;
 	private:
 		std::shared_ptr<Type[]> _data = nullptr;
 		size_t _size = 0;

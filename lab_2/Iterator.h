@@ -13,8 +13,8 @@ template <typename Type>
 class Iterator : public std::iterator<std::input_iterator_tag, Type>
 {
 public:
-	Iterator(const Matrix<Type>& mtrx, const size_t index = 0)
-		: _data(mtrx.data), _index(index), _rows(mtrx.get_n()), _cols(mtrx.get_m()) {  }
+	Iterator(const std::weak_ptr<typename Matrix<Type>::MatrixRow[]>& data, const size_t n, const size_t m, const size_t index = 0)
+		: _data(data), _index(index), _rows(n), _cols(m) { }
 
 	Iterator(const Iterator& iter) = default;
 
@@ -106,7 +106,7 @@ public:
 		check_valid(__LINE__);
 		check_index(__LINE__);
 
-		std::shared_ptr<Type[]> ptr_cpy = _data.lock();
+		std::weak_ptr<typename Matrix<Type>::MatrixRow[]> ptr_cpy = _data.lock();
 		return *(ptr_cpy.get() + _index);
 	}
 	const Type& operator *() const
@@ -114,7 +114,7 @@ public:
 		check_valid(__LINE__);
 		check_index(__LINE__);
 
-		std::shared_ptr<Type[]> ptr_cpy = _data.lock();
+		std::weak_ptr<typename Matrix<Type>::MatrixRow[]> ptr_cpy = _data.lock();
 		return *(ptr_cpy.get() + _index);
 	}
 
@@ -123,7 +123,7 @@ public:
 		check_valid(__LINE__);
 		check_index(__LINE__);
 
-		std::shared_ptr<Type[]> ptr_cpy = _data.lock();
+		std::weak_ptr<typename Matrix<Type>::MatrixRow[]> ptr_cpy = _data.lock();
 		return ptr_cpy.get() + _index;
 	}
 	const Type& operator ->() const
@@ -131,7 +131,7 @@ public:
 		check_valid(__LINE__);
 		check_index(__LINE__);
 
-		std::shared_ptr<Type[]> ptr_cpy = _data.lock();
+		std::weak_ptr<typename Matrix<Type>::MatrixRow[]> ptr_cpy = _data.lock();
 		return ptr_cpy.get() + _index;
 	}
 
@@ -142,12 +142,12 @@ public:
 	Iterator<Type>& next() { return operator ++(); }
 
 private:
-	std::weak_ptr<Type[]> _data = nullptr;
+	std::weak_ptr<typename Matrix<Type>::MatrixRow[]> _data = nullptr;
 	size_t _index = 0;
 	size_t _rows = 0;
 	size_t _cols = 0;
 
-	void check_valid(size_t line)
+	void check_valid(int line)
 	{
 		time_t err_time = time(nullptr);
 
@@ -156,7 +156,7 @@ private:
 			throw IsEmptyException(__FILE__, typeid(*this).name(), line - 4, err_time, "Pointer is null");
 		}
 	}
-	void check_index(size_t line)
+	void check_index(int line)
 	{
 		time_t err_time = time(nullptr);
 
