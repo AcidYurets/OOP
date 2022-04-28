@@ -27,7 +27,7 @@ public:
 	Matrix(std::initializer_list<std::initializer_list<Type>> list);
 	
 	// Destructor
-	~Matrix();  
+	~Matrix() = default;  
 
 	// Operators equal
 	Matrix<Type>& operator =(const Matrix<Type>& mtr);
@@ -36,7 +36,7 @@ public:
 
 	// Addition
 	Matrix<Type> operator +(const Matrix<Type>& mtrx1) const;
-	Matrix<Type> operator +(const Type& value) const;
+	//Matrix<Type> operator +(const Type& value) const;
 	template <typename U>
 	decltype(auto) operator +(const U& value) const;
 	Matrix<Type>& operator +=(const Matrix<Type>& mtrx);

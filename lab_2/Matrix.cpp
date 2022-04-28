@@ -167,15 +167,6 @@ Matrix<Type>::Matrix(std::initializer_list<std::initializer_list<Type>> list)
 	}
 }
 
-// Destructor
-template<typename Type>
-Matrix<Type>::~Matrix()
-{
-	//this->data.reset();
-	this->n = 0;
-	this->m = 0;
-}
-
 #pragma endregion
 
 
@@ -357,25 +348,6 @@ Matrix<Type> Matrix<Type>::operator +(const Matrix<Type>& mtrx1) const
 }
 
 template<typename Type>
-Matrix<Type> Matrix<Type>::operator +(const Type& value) const
-{
-	time_t err_time = time(nullptr);
-
-	if (this->is_empty())
-	{
-		throw IsEmptyException(__FILE__, typeid(*this).name(), __LINE__ - 4, err_time, "One of the matrices is empty.");
-	}
-	else
-	{
-		Matrix<Type> result(*this);
-		result.addition(value);
-		return result;
-	}
-}
-
-
-// !!! Так?
-template<typename Type>
 template<typename U>
 decltype(auto) Matrix<Type>::operator +(const U& value) const
 {
@@ -392,7 +364,6 @@ decltype(auto) Matrix<Type>::operator +(const U& value) const
 		return result;
 	}
 }
-// !!!
 
 template<typename Type>
 Matrix<Type>& Matrix<Type>::operator +=(const Matrix<Type>& mtrx)
@@ -656,7 +627,7 @@ Matrix<Type>& Matrix<Type>::operator *=(const Matrix<Type>& mtrx)
 		size_t l = this->n;
 
 		Matrix<Type> result = Matrix<Type>(n, m);
-		 
+		
 		for (size_t i = 0; i < n; i++)
 		{
 			for (size_t j = 0; j < m; j++)

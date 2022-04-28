@@ -25,7 +25,7 @@ public:
 
 	// Addition
 	Iterator<Type>& operator ++();
-	Iterator<Type>& operator ++(int);
+	Iterator<Type> operator ++(int);
 	Iterator<Type> operator +(const int value) const;
 	Iterator<Type>& operator +=(const size_t value) const;
 
@@ -54,7 +54,7 @@ private:
 	size_t _rows = 0;
 	size_t _cols = 0;
 
-	void check_valid(size_t line)
+	void check_valid(int line)
 	{
 		time_t err_time = time(nullptr);
 
@@ -63,7 +63,7 @@ private:
 			throw IsEmptyIterException(__FILE__, typeid(*this).name(), line - 4, err_time, "Pointer is null");
 		}
 	}
-	void check_index(size_t line)
+	void check_index(int line)
 	{
 		time_t err_time = time(nullptr);
 

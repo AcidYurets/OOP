@@ -33,7 +33,7 @@ Iterator<Type>& Iterator<Type>::operator ++()
 }
 
 template<typename Type>
-Iterator<Type>& Iterator<Type>::operator ++(int)
+Iterator<Type> Iterator<Type>::operator ++(int)
 {
 	Iterator<Type> iter(*this);
 	++(*this);
