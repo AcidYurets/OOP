@@ -3,21 +3,22 @@
 
 #include "MatrixBase.h"
 #include "MatrixBaseException.h"
-
+ 
 #include "Iterator.h"
 #include "IteratorConst.h"
 
 #include <iostream>
-#include <stdio.h>
+#include <stdio.h> 
 #include <typeinfo>
 #include <time.h>
 
 template<typename Type>
 class Matrix : public MatrixBase
 {
-	friend Iterator<Type>;
-	friend IteratorConst<Type>;
 public:
+	class MatrixRow;
+	friend IteratorConst<Type>;
+	friend Iterator<Type>;
 	// Constructors
 	Matrix();
 	Matrix(size_t n, size_t m);
@@ -26,7 +27,7 @@ public:
 	Matrix(std::initializer_list<std::initializer_list<Type>> list);
 	
 	// Destructor
-	~Matrix(); 
+	~Matrix();  
 
 	// Operators equal
 	Matrix<Type>& operator =(const Matrix<Type>& mtr);
@@ -80,7 +81,7 @@ public:
 	void set_value(size_t i, size_t j, const Type& value);
 
 	void fill_zero();
-	void identity_matrix();
+	void identity_matrix(); 
 
 	class MatrixRow {
 		friend Iterator<Type>;
@@ -95,16 +96,12 @@ public:
 		const Type& operator[](size_t index) const;
 		void reset(Type* data, const size_t size);
 		void reset();
-		Type* getAddr() { return _data.get(); }
-		const Type* getAddr() const { return _data.get(); }
 	};
 
 	const MatrixRow operator [](size_t row) const;
 	MatrixRow operator [](size_t row);
 
 private:
-	size_t n;
-	size_t m;
 	std::shared_ptr<MatrixRow[]> data;
 	std::shared_ptr<MatrixRow[]> allocateMemory(size_t n, size_t m);
 

@@ -2,7 +2,7 @@
 #define MATRIX_REALIZATION_H
 
 #include "Matrix.h"
-
+ 
 #include <iostream>
 #include <cstdlib>
 #include <ctime>
@@ -15,11 +15,18 @@ std::shared_ptr <typename Matrix<T>::MatrixRow[]> Matrix<T>::allocateMemory(size
 {
 	time_t err_time = time(nullptr);
 
-	std::shared_ptr <MatrixRow[]> data = nullptr;
+	std::shared_ptr <MatrixRow[]> data = nullptr; 
 	try {
+		//T* matrix(new T[rows * cols]);
+
 		data.reset(new MatrixRow[rows]);
 		for (size_t i = 0; i < rows; i++)
+		{
+			//printf("%p\n", (void*)((char*)matrix + i * cols * sizeof(T)));
+			//data[i].reset((T*)((char*)matrix + i * cols * sizeof(T)), cols);
 			data[i].reset(new T[cols], cols);
+		}
+			
 	}
 	catch (std::bad_alloc)
 	{
@@ -164,7 +171,7 @@ Matrix<Type>::Matrix(std::initializer_list<std::initializer_list<Type>> list)
 template<typename Type>
 Matrix<Type>::~Matrix()
 {
-	this->data.reset();
+	//this->data.reset();
 	this->n = 0;
 	this->m = 0;
 }
@@ -649,7 +656,7 @@ Matrix<Type>& Matrix<Type>::operator *=(const Matrix<Type>& mtrx)
 		size_t l = this->n;
 
 		Matrix<Type> result = Matrix<Type>(n, m);
-
+		 
 		for (size_t i = 0; i < n; i++)
 		{
 			for (size_t j = 0; j < m; j++)
@@ -793,17 +800,17 @@ std::ostream& operator <<(std::ostream& ostream, const Matrix<_Type>& mtrx)
 
 #pragma region Iterators
 
-template<typename Type>
+template<typename Type> 
 Iterator<Type> Matrix<Type>::begin()
-{
-	Iterator<Type> iter(data[0].getPtr(), n, m, 0);
+{ 
+	Iterator<Type> iter(*this, 0);
 	return iter;
 }
 
 template<typename Type>
 Iterator<Type> Matrix<Type>::end()
 {
-	Iterator<Type> iter(data[0].getPtr(), n, m, n * m);
+	Iterator<Type> iter(*this, n * m);
 	return iter;
 }
 
@@ -934,7 +941,7 @@ void Matrix<Type>::fill_zero()
 template<typename Type>
 void Matrix<Type>::identity_matrix()
 {
-	for (size_t i = 0; i < this->n; i++)
+	for (size_t i = 0; i < this->n; i++) 
 	{
 		for (size_t j = 0; j < this->m; j++)
 		{

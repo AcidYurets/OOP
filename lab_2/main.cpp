@@ -2,12 +2,8 @@
 #include <vector>
 
 #include "Matrix.cpp"
+#include "Iterator.cpp"
 
-/*
-    Можно ли наследовать ошибки в Iterator от MatrixBaseException?
-    Че за <Type[]> в умных указателях?
-
-*/
 
 int main()
 {
@@ -16,7 +12,7 @@ int main()
         std::cout << "Testing constructors:\n";
 
         Matrix<int> mtrx1(3, 3);
-        mtrx1.fill_zero();
+        mtrx1.fill_zero(); 
         std::cout << mtrx1;
 
         Matrix<int> mtrx2(mtrx1);
@@ -35,7 +31,7 @@ int main()
         mtrx1 = mtrx1 + mtrx2;
         std::cout << mtrx1;
 
-        mtrx1.add(mtrx2);
+        mtrx1.add(mtrx2); 
         std::cout << mtrx1;
 
         mtrx1.add(10);
@@ -46,7 +42,7 @@ int main()
         mtrx2.identity_matrix();
 
         mtrx1 -= mtrx2;
-        std::cout << mtrx1;
+        std::cout << mtrx1; 
 
         mtrx1 = mtrx1 - mtrx2;
         std::cout << mtrx1;
@@ -56,7 +52,7 @@ int main()
 
         mtrx1.sub(10);
         std::cout << mtrx1;
-
+         
         mtrx1 = mtrx1 - 10;
         std::cout << mtrx1;
 
@@ -71,7 +67,7 @@ int main()
 
         mtrx1 *= mtrx2;
         std::cout << mtrx1;
-
+        
         mtrx1 = mtrx1 * 2;
         std::cout << mtrx1;
 
@@ -84,11 +80,11 @@ int main()
         std::cout << "\nTesting set value func\n";
         mtrx1.set_value(1, 0, 3);
         std::cout << mtrx1[1][0] << std::endl;
-
+        
         std::cout << "\nTesting iterators";
         auto iter = mtrx3.begin();
 
-        for (size_t i = 0; iter != mtrx3.end(); i++, iter++)
+        for (size_t i = 0; iter != (mtrx3.end()); i++, iter++)
         {
             if (i % mtrx3.get_m() == 0)
             {
@@ -97,6 +93,8 @@ int main()
 
             std::cout << *iter << '\t';
         }
+
+        //Matrix<float> m(2, 2);
     }
 
     catch (MatrixBaseException& exception)
