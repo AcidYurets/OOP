@@ -154,5 +154,5 @@ template<typename Type>
 bool Iterator<Type>::is_valid() const { return !_data.expired(); }
 
 template<typename Type>
-Iterator<Type>& next() { return Iterator<Type>::operator ++(); }
+Iterator<Type>& Iterator<Type>::next() { return operator ++(); }
 

@@ -7,6 +7,7 @@
 #include <cstdlib>
 #include <ctime>
 
+using namespace std;
 
 #pragma region Constructor/Destructor
 
@@ -326,25 +327,28 @@ void Matrix<Type>::addition(const Type& value)
 
 // Public methods
 template<typename Type>
-Matrix<Type> Matrix<Type>::operator +(const Matrix<Type>& mtrx1) const
+template<typename U>
+decltype(auto) Matrix<Type>::operator +(const Matrix<U>& mtrx) const
 {
 	time_t err_time = time(nullptr);
 
-	if (this->is_empty() || mtrx1.is_empty())
+	if (this->is_empty() || mtrx.is_empty())
 	{
 		throw IsEmptyException(__FILE__, typeid(*this).name(), __LINE__ - 4, err_time, "One of the matrices is empty.");
 	}
 
-	if ((mtrx1.get_n() != this->n) && (mtrx1.get_m() != this->m))
+	if ((mtrx.get_n() != this->n) && (mtrx.get_m() != this->m))
 	{
 		throw IsEmptyException(__FILE__, typeid(*this).name(), __LINE__ - 4, err_time, "Size should be equal");
 	}
-	else
-	{
-		Matrix<Type> result(*this);
-		result.addition(mtrx1);
-		return result;
-	}
+
+	Matrix<decltype((*this)[0][0] + mtrx[0][0])> tmp(n, m);
+
+	for (size_t i = 0; i < n; ++i)
+		for (size_t j = 0; j < m; ++j)
+			tmp[i][j] = data[i][j] + mtrx[i][j];
+
+	return tmp;
 }
 
 template<typename Type>
@@ -357,12 +361,17 @@ decltype(auto) Matrix<Type>::operator +(const U& value) const
 	{
 		throw IsEmptyException(__FILE__, typeid(*this).name(), __LINE__ - 4, err_time, "One of the matrices is empty.");
 	}
-	else
+
+	Matrix<decltype(this->data[0][0] + value)> result(n, m);
+
+	for (size_t i = 0; i < result.get_n(); i++)
 	{
-		Matrix<decltype(this->data[0][0] + value)> result(*this);
-		result.addition(value);
-		return result;
+		for (size_t j = 0; j < result.get_m(); j++)
+		{
+			result[i][j] = data[i][j] + value;
+		}
 	}
+	return result;
 }
 
 template<typename Type>
@@ -446,29 +455,33 @@ void Matrix<Type>::subtraction(const Type& value)
 
 // Public methods
 template<typename Type>
-Matrix<Type> Matrix<Type>::operator -(const Matrix<Type>& mtrx1) const
+template<typename U>
+decltype(auto) Matrix<Type>::operator -(const Matrix<U>& mtrx) const
 {
 	time_t err_time = time(nullptr);
 
-	if (this->is_empty() || mtrx1.is_empty())
+	if (this->is_empty() || mtrx.is_empty())
 	{
 		throw IsEmptyException(__FILE__, typeid(*this).name(), __LINE__ - 4, err_time, "One of the matrices is empty.");
 	}
 
-	if ((mtrx1.get_n() != this->n) && (mtrx1.get_m() != this->m))
+	if ((mtrx.get_n() != this->n) && (mtrx.get_m() != this->m))
 	{
 		throw IsEmptyException(__FILE__, typeid(*this).name(), __LINE__ - 4, err_time, "Size should be equal");
 	}
-	else
-	{
-		Matrix<Type> result(*this);
-		result.subtraction(mtrx1);
-		return result;
-	}
+
+	Matrix<decltype((*this)[0][0] + mtrx[0][0])> tmp(n, m);
+
+	for (size_t i = 0; i < n; ++i)
+		for (size_t j = 0; j < m; ++j)
+			tmp[i][j] = data[i][j] - mtrx[i][j];
+
+	return tmp;
 }
 
 template<typename Type>
-Matrix<Type> Matrix<Type>::operator -(const Type& value) const
+template<typename U>
+decltype(auto) Matrix<Type>::operator -(const U& value) const
 {
 	time_t err_time = time(nullptr);
 
@@ -476,12 +489,17 @@ Matrix<Type> Matrix<Type>::operator -(const Type& value) const
 	{
 		throw IsEmptyException(__FILE__, typeid(*this).name(), __LINE__ - 4, err_time, "One of the matrices is empty.");
 	}
-	else
+
+	Matrix<decltype(this->data[0][0] + value)> result(n, m);
+
+	for (size_t i = 0; i < result.get_n(); i++)
 	{
-		Matrix<Type> result(*this);
-		result.subtraction(value);
-		return result;
+		for (size_t j = 0; j < result.get_m(); j++)
+		{
+			result[i][j] = data[i][j] - value;
+		}
 	}
+	return result;
 }
 
 template<typename Type>
@@ -537,6 +555,24 @@ void Matrix<Type>::sub(const Type& value)
 	}
 }
 
+template <typename T>
+Matrix<T> Matrix<T>::operator-() 
+{
+	Matrix<T> tmp(n, m);
+
+	for (size_t i = 0; i < n; ++i)
+		for (size_t j = 0; j < m; ++j)
+			tmp[i][j] = -data[i][j];
+
+	return tmp;
+}
+
+template <typename T>
+Matrix<T> Matrix<T>::neg() 
+{
+	return operator-();
+}
+
 #pragma endregion
 
 
@@ -558,35 +594,11 @@ void Matrix<Type>::multiplicate(const Type& value)
 	}
 }
 
-template<typename Type>
-void Matrix<Type>::multiplicate(const Matrix<Type>& mtrx)
-{
-	size_t n = this->n;
-	size_t m = mtrx.get_m();
-	size_t l = this->n;
-
-	Matrix<Type> result = Matrix<Type>(n, m);
-
-	for (size_t i = 0; i < n; i++)
-	{
-		for (size_t j = 0; j < m; j++)
-		{
-			Type temp = 0;
-			for (size_t k = 0; k < l; k++)
-			{
-				temp += mtrx.data[i][j] * this->data[i][j];
-			}
-			result.data[i][j] = temp;
-		}
-	}
-	Matrix<Type> my(result); 
-	*this = result;
-}
-
 
 // Public methods
 template<typename Type>
-Matrix<Type> Matrix<Type>::operator *(const Matrix<Type>& mtrx) const
+template<typename U>
+decltype(auto) Matrix<Type>::operator *(const Matrix<U>& mtrx) const
 {
 	time_t err_time = time(nullptr);
 
@@ -594,29 +606,33 @@ Matrix<Type> Matrix<Type>::operator *(const Matrix<Type>& mtrx) const
 	{
 		throw IsEmptyException(__FILE__, typeid(*this).name(), __LINE__ - 4, err_time, "Size should be equal");
 	}
-	else
-	{
-		Matrix<Type> result(*this);
-		result.multiplicate(mtrx);
-		return result;
-	}
+
+	Matrix<decltype((*this)[0][0] * mtrx[0][0])> tmp(n, mtrx.get_m());
+	for (size_t i = 0; i < n; ++i)
+		for (size_t j = 0; j < mtrx.get_m(); ++j)
+			for (size_t k = 0; k < m; ++k)
+				tmp[i][j] = data[i][k] * mtrx[k][j];
+
+	return tmp;
 }
 
 template<typename Type>
-Matrix<Type> Matrix<Type>::operator *(const Type& value) const
+template<typename U>
+Matrix<Type> Matrix<Type>::operator *(const U& value) const
 {
 	time_t err_time = time(nullptr);
 
 	if (this->is_empty())
 	{
-		throw IsEmptyException(__FILE__, typeid(*this).name(), __LINE__ - 4, err_time, "One of the matrices is empty.");
+		throw IsEmptyException(__FILE__, typeid(*this).name(), __LINE__ - 4, err_time, "Matrix is empty.");
 	}
-	else
-	{
-		Matrix<Type> result(*this);
-		result.multiplicate(value);
-		return result;
-	}
+	
+	Matrix<decltype((*this)[0][0] * value)> tmp(n, m);
+	for (size_t i = 0; i < n; ++i)
+		for (size_t j = 0; j < m; ++j)
+			tmp[i][j] = data[i][j] * value;
+
+	return tmp;
 }
 
 template<typename Type>
@@ -628,11 +644,9 @@ Matrix<Type>& Matrix<Type>::operator *=(const Matrix<Type>& mtrx)
 	{
 		throw IsEmptyException(__FILE__, typeid(*this).name(), __LINE__ - 4, err_time, "Size should be equal");
 	}
-	else
-	{
-		this->multiplicate(mtrx);
-		return *this;
-	}
+
+	*this = *this * mtrx;
+	return *this;
 }
 
 template<typename Type>
@@ -674,20 +688,22 @@ void Matrix<Type>::division(const Type& value)
 
 // Public methods
 template<typename Type>
-Matrix<Type> Matrix<Type>::operator /(const Type& value) const
+template<typename U>
+Matrix<Type> Matrix<Type>::operator /(const U& value) const
 {
 	time_t err_time = time(nullptr);
 
 	if (this->is_empty())
 	{
-		throw IsEmptyException(__FILE__, typeid(*this).name(), __LINE__ - 4, err_time, "One of the matrices is empty.");
+		throw IsEmptyException(__FILE__, typeid(*this).name(), __LINE__ - 4, err_time, "Matrix is empty.");
 	}
-	else
-	{
-		Matrix<Type> result(*this);
-		result.division(value);
-		return result;
-	}
+
+	Matrix<decltype((*this)[0][0] / value)> tmp(n, m);
+	for (size_t i = 0; i < n; ++i)
+		for (size_t j = 0; j < m; ++j)
+			tmp[i][j] = data[i][j] / value;
+
+	return tmp;
 }
 
 template<typename Type>
@@ -697,7 +713,7 @@ void Matrix<Type>::divide(const Type& value)
 
 	if (this->is_empty())
 	{
-		throw IsEmptyException(__FILE__, typeid(*this).name(), __LINE__ - 4, err_time, "One of the matrices is empty.");
+		throw IsEmptyException(__FILE__, typeid(*this).name(), __LINE__ - 4, err_time, "matrix is empty.");
 	}
 	else
 	{
@@ -757,6 +773,21 @@ std::ostream& operator <<(std::ostream& ostream, const Matrix<_Type>& mtrx)
 
 #pragma endregion
 
+template <typename T>
+bool Matrix<T>::isSquare() const { return n == m; }
+
+template <typename T>
+void Matrix<T>::transpose() 
+{
+	auto tmp = allocateMemory(m, n);
+
+	for (size_t i = 0; i < n; ++i)
+		for (size_t j = 0; j < m; ++j)
+			tmp[j][i] = data[i][j];
+
+	data = tmp;
+	std::swap(n, m);
+}
 
 #pragma region Iterators
 
@@ -775,16 +806,16 @@ Iterator<Type> Matrix<Type>::end()
 }
 
 template<typename Type>
-IteratorConst<Type> Matrix<Type>::begin() const
+ConstIterator<Type> Matrix<Type>::begin() const
 {
-	IteratorConst<Type> iter(*this->data, 0);
+	ConstIterator<Type> iter(*this->data, 0);
 	return iter;
 }
 
 template<typename Type>
-IteratorConst<Type> Matrix<Type>::end() const
+ConstIterator<Type> Matrix<Type>::end() const
 {
-	IteratorConst<Type> iter(*this->data, this->n * this->m);
+	ConstIterator<Type> iter(*this->data, this->n * this->m);
 	return iter;
 }
 
@@ -944,6 +975,34 @@ typename Matrix<Type>::MatrixRow Matrix<Type>::operator [](size_t row)
 }
 
 #pragma endregion
+
+
+template <typename T>
+Matrix<T> operator+(const T& elem, const Matrix<T>& matrix) 
+{
+	return matrix + elem;
+}
+
+template <typename T>
+Matrix<T> operator-(const T& elem, const Matrix<T>& matrix) 
+{
+	return matrix - elem;
+}
+
+template <typename T>
+Matrix<T> operator*(const T& elem, const Matrix<T>& matrix) 
+{
+	return matrix * elem;
+}
+
+template <typename T>
+Matrix<T> operator/(const T& elem, const Matrix<T>& matrix) 
+{
+	Matrix tmp(matrix);
+	tmp.inverse();
+	return tmp * elem;
+}
+
 
 
 #endif // !MATRIX_REALIZATION_H

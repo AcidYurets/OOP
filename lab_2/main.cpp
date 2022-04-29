@@ -3,7 +3,7 @@
 
 #include "Matrix.cpp"
 #include "Iterator.cpp"
-
+#include "IteratorConst.cpp"
  
 int main()
 {
@@ -36,10 +36,8 @@ int main()
         mtrx1.add(mtrx2); 
         std::cout << mtrx1;
 
-        mtrx1.add(10);
-        std::cout << mtrx1;
-
-        mtrx1 = mtrx1 + 11;
+        mtrx4 = mtrx1 + 1.1;
+        std::cout << mtrx4;
 
         std::cout << "Testing subtraction\n";
         mtrx1.identity_matrix();
@@ -62,9 +60,9 @@ int main()
         
         std::cout << "Testing multiplication\n";
         mtrx1.identity_matrix();
-        mtrx2.identity_matrix();
+        mtrx2.identity_matrix(); 
 
-        mtrx1.mult(3);
+        mtrx1.mult(3); 
         mtrx2.mult(4);
 
         std::cout << mtrx1;
@@ -73,6 +71,11 @@ int main()
         std::cout << mtrx1;
         
         mtrx1 = mtrx1 * 2;
+        std::cout << mtrx1;
+
+        std::cout << "Testing division\n";
+
+        mtrx1 = mtrx1 / 4;
         std::cout << mtrx1;
 
         std::cout << "Testing get value func\n";
@@ -97,6 +100,13 @@ int main()
 
             std::cout << *iter << '\t';
         }
+
+        std::cout << "\nOther\n";
+
+        std::cout << "Transp:\n";
+
+        mtrx3.transpose();
+        std::cout << mtrx3;
     }
 
     catch (MatrixBaseException& exception)

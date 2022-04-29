@@ -17,7 +17,7 @@ class Matrix : public MatrixBase
 {
 public:
 	class MatrixRow;
-	friend IteratorConst<Type>;
+	friend ConstIterator<Type>;
 	friend Iterator<Type>;
 	// Constructors
 	Matrix();
@@ -35,7 +35,8 @@ public:
 	Matrix<Type>& operator =(std::initializer_list<std::initializer_list<Type>> list);
 
 	// Addition
-	Matrix<Type> operator +(const Matrix<Type>& mtrx1) const;
+	template<typename U>
+	decltype(auto) operator +(const Matrix<U>& mtrx) const;
 	template <typename U>
 	decltype(auto) operator +(const U& value) const;
 	Matrix<Type>& operator +=(const Matrix<Type>& mtrx);
@@ -43,20 +44,28 @@ public:
 	void add(const Type& value);
 
 	// Substraction
-	Matrix<Type> operator -(const Matrix<Type>& mtrx1) const;
-	Matrix<Type> operator -(const Type& value) const;
+	template<typename U>
+	decltype(auto) operator -(const Matrix<U>& mtrx) const;
+	template <typename U>
+	decltype(auto) operator -(const U& value) const;
 	Matrix<Type>& operator -=(const Matrix<Type>& mtrx);
 	void sub(const Matrix<Type>& mtrx);
 	void sub(const Type& value);
 
+	Matrix<Type> operator-();
+	Matrix<Type> neg();
+
 	// Multiplication
-	Matrix<Type> operator *(const Matrix<Type>& mtrx1) const;
-	Matrix<Type> operator *(const Type& value) const;
+	template<typename U>
+	decltype(auto) operator *(const Matrix<U>& mtrx) const;
+	template<typename U>
+	Matrix<Type> operator *(const U& value) const;
 	Matrix<Type>& operator *=(const Matrix<Type>& mtrx);
 	void mult(const Type& value);
 
 	// Division
-	Matrix<Type> operator /(const Type& value) const;
+	template<typename U>
+	Matrix<Type> operator /(const U& value) const;
 	void divide(const Type& value);
 
 	Type& operator ()(size_t i, size_t j);
@@ -64,13 +73,19 @@ public:
 
 	template<typename _Type>
 	friend std::ostream& operator <<(std::ostream& os, const Matrix<_Type>& mtrx);
+
+	bool isSquare() const;
+	void transpose();
+	Type determinant() const;
+	// inverse method
+	void inverse();
 	
 	// Iterators
 	Iterator<Type> begin();
 	Iterator<Type> end();
 
-	IteratorConst<Type> begin() const;
-	IteratorConst<Type> end() const;
+	ConstIterator<Type> begin() const;
+	ConstIterator<Type> end() const;
 
 	// Other methods
 	size_t get_n() const;
@@ -84,7 +99,7 @@ public:
 
 	class MatrixRow {
 		friend Iterator<Type>;
-		friend IteratorConst<Type>;
+		friend ConstIterator<Type>;
 	private:
 		std::shared_ptr<Type[]> _data = nullptr;
 		size_t _size = 0;
@@ -111,7 +126,6 @@ private:
 	void subtraction(const Type& value);
 
 	void multiplicate(const Type& value);
-	void multiplicate(const Matrix<Type>& matr);
 
 	void division(const Type& value); 
 };
