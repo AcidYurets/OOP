@@ -70,6 +70,15 @@ public:
 	const char* what(void) const noexcept { return this->error_msg.c_str(); }
 };
 
+class SizeException : public MatrixBaseException
+{
+public:
+	SizeException(std::string file, std::string classname, int line, time_t time, std::string msg)
+		: MatrixBaseException(file, classname, line, time, msg) { }
+	const char* what(void) const noexcept { return this->error_msg.c_str(); }
+};
+
+
 
 class IndexIterException : public IteratorBaseException
 {

@@ -755,8 +755,8 @@ const Type& Matrix<Type>::operator ()(size_t i, size_t j) const
 
 
 // Output matrix <<
-template<typename _Type>
-std::ostream& operator <<(std::ostream& ostream, const Matrix<_Type>& mtrx)
+template<typename Type>
+std::ostream& operator <<(std::ostream& ostream, const Matrix<Type>& mtrx)
 {
 	for (size_t i = 0; i < mtrx.get_n(); i++)
 	{
@@ -773,6 +773,8 @@ std::ostream& operator <<(std::ostream& ostream, const Matrix<_Type>& mtrx)
 
 #pragma endregion
 
+#pragma region Math
+
 template <typename T>
 bool Matrix<T>::isSquare() const { return n == m; }
 
@@ -788,6 +790,83 @@ void Matrix<T>::transpose()
 	data = tmp;
 	std::swap(n, m);
 }
+
+
+template <typename T>
+// метод исключающий строку или столбец
+void _excludeCopy(Matrix<T>& target, const Matrix<T>& source, size_t ex_row, size_t ex_col)
+{
+	size_t row_index, col_index;
+	for (size_t i = 0; i < source.get_n() - 1; ++i)
+		for (size_t j = 0; j < source.get_m() - 1; ++j)
+		{
+			row_index = i >= ex_row ? i + 1 : i;
+			col_index = j >= ex_col ? j + 1 : j;
+			target[i][j] = source[row_index][col_index];
+		}
+}
+
+template <typename T>
+T _determinant(const Matrix<T>& matrix)
+{
+	if (matrix.get_n() == 2)
+		return matrix[0][0] * matrix[1][1] - matrix[1][0] * matrix[0][1];
+	if (matrix.get_n() == 1)
+		return matrix[0][0];
+
+	Matrix<T> tmp(matrix.get_n() - 1, matrix.get_m() - 1);
+	T res = {};
+	for (size_t i = 0; i < matrix.get_n(); ++i)
+	{
+		_excludeCopy(tmp, matrix, 0, i);
+		T minor = _determinant(tmp);
+		if (i & 1)
+			minor = -minor;
+		res += minor * matrix[0][i];
+	}
+
+	return res;
+}
+
+template <typename T>
+T Matrix<T>::determinant() const
+{
+	if (!isSquare()) {
+		time_t err_time = time(nullptr);
+		throw SizeException(__FILE__, typeid(*this).name(), __LINE__ - 4, err_time, "Matrix should be square to get determinant");
+	}
+
+	return _determinant(*this);
+}
+
+template <typename T>
+void Matrix<T>::inverse()
+{
+	T det = determinant();
+	if (!isSquare() || !det)
+	{
+		time_t err_time = time(nullptr);
+		throw SizeException(__FILE__, typeid(*this).name(), __LINE__ - 4, err_time, "Matrix should be square and determinant should be > 0");
+	}
+
+	Matrix<T> res(n, m);
+	Matrix<T> tmp(n - 1, m - 1);
+	T value = {};
+
+	for (size_t i = 0; i < n; ++i)
+		for (size_t j = 0; j < m; ++j)
+		{
+			_excludeCopy(tmp, *this, i, j);
+			value = tmp.determinant() / det;
+			if ((i + j) & 1)
+				value = -value;
+			res[j][i] = value;
+		}
+
+	*this = res;
+}
+
+#pragma endregion
 
 #pragma region Iterators
 
@@ -915,6 +994,31 @@ void Matrix<Type>::set_value(size_t i, size_t j, const Type& value)
 			throw IsEmptyException(__FILE__, typeid(*this).name(), __LINE__ - 4, err_time, "Allocation error");
 		}
 	}
+}
+
+template <typename T>
+void Matrix<T>::resize(size_t rows, size_t cols, const T& filler) 
+{
+	if ((rows == 0 && cols != 0) || (rows != 0 && cols == 0))
+		rows = 0, cols = 0;
+
+	auto tmp = allocateMemory(rows, cols);
+
+	for (size_t i = 0; i < std::min(n, rows); ++i)
+	{
+		for (size_t j = 0; j < std::min(m, cols); ++j)
+			tmp[i][j] = data[i][j];
+		for (size_t j = m; j < cols; ++j)
+			tmp[i][j] = filler;
+	}
+
+	for (size_t i = n; i < rows; ++i)
+		for (size_t j = 0; j < cols; ++j)
+			tmp[i][j] = filler;
+
+	data = tmp;
+	n = rows;
+	m = cols;
 }
 
 template<typename Type>

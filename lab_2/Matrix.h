@@ -94,6 +94,7 @@ public:
 	const Type& get_value(size_t i, size_t j) const;
 	void set_value(size_t i, size_t j, const Type& value);
 
+	void resize(size_t rows, size_t cols, const Type& filler);
 	void fill_zero();
 	void identity_matrix(); 
 

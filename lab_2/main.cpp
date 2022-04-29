@@ -66,7 +66,7 @@ int main()
         mtrx2.mult(4);
 
         std::cout << mtrx1;
-
+         
         mtrx1 *= mtrx2;
         std::cout << mtrx1;
         
@@ -107,6 +107,14 @@ int main()
 
         mtrx3.transpose();
         std::cout << mtrx3;
+
+        std::cout << "Resize:\n";
+        mtrx3.resize(2, 2, 0);
+        std::cout << mtrx3;
+
+        std::cout << "Inverse:\n";
+        mtrx3.inverse();
+        std::cout << mtrx3; 
     }
 
     catch (MatrixBaseException& exception)
