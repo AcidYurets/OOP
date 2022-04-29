@@ -88,6 +88,14 @@ int main()
         mtrx1.set_value(1, 0, 3);
         std::cout << mtrx1[1][0] << std::endl;
         
+        std::cout << "\nCheck bool:\n";
+        bool b1 = mtrx1;
+        std::cout << b1 << endl;
+
+        Matrix<int> empty;
+        bool b2 = empty;
+        std::cout << b2; 
+
         std::cout << "\nTesting iterators";
         auto iter = mtrx3.begin();
 

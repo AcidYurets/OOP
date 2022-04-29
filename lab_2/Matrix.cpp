@@ -299,32 +299,6 @@ Matrix<Type>& Matrix<Type>::operator =(std::initializer_list<std::initializer_li
 
 #pragma region Addition
 
-// Private methods
-template<typename Type>
-void Matrix<Type>::addition(const Matrix<Type>& mtrx)
-{
-	for (size_t i = 0; i < this->get_n(); i++)
-	{
-		for (size_t j = 0; j < this->get_m(); j++)
-		{
-			this->data[i][j] += mtrx[i][j];
-		}
-	}
-}
-
-template<typename Type>
-void Matrix<Type>::addition(const Type& value)
-{
-	for (size_t i = 0; i < this->get_n(); i++)
-	{
-		for (size_t j = 0; j < this->get_m(); j++)
-		{
-			this->data[i][j] += value;
-		}
-	}
-}
-
-
 // Public methods
 template<typename Type>
 template<typename U>
@@ -337,9 +311,9 @@ decltype(auto) Matrix<Type>::operator +(const Matrix<U>& mtrx) const
 		throw IsEmptyException(__FILE__, typeid(*this).name(), __LINE__ - 4, err_time, "One of the matrices is empty.");
 	}
 
-	if ((mtrx.get_n() != this->n) && (mtrx.get_m() != this->m))
+	if ((mtrx.get_n() != this->n) || (mtrx.get_m() != this->m))
 	{
-		throw IsEmptyException(__FILE__, typeid(*this).name(), __LINE__ - 4, err_time, "Size should be equal");
+		throw SizeException(__FILE__, typeid(*this).name(), __LINE__ - 4, err_time, "Size should be equal");
 	}
 
 	Matrix<decltype((*this)[0][0] + mtrx[0][0])> tmp(n, m);
@@ -377,16 +351,15 @@ decltype(auto) Matrix<Type>::operator +(const U& value) const
 template<typename Type>
 Matrix<Type>& Matrix<Type>::operator +=(const Matrix<Type>& mtrx)
 {
-	time_t err_time = time(nullptr);
+	*this = *this + mtrx;
 
-	if ((this->m == mtrx.get_m()) && (this->n == mtrx.get_n()))
-	{
-		this->addition(mtrx);
-	}
-	else
-	{
-		throw IsEmptyException(__FILE__, typeid(*this).name(), __LINE__ - 4, err_time, "Size should be equal");
-	}
+	return *this;
+}
+
+template<typename Type>
+Matrix<Type>& Matrix<Type>::operator +=(const Type& value)
+{
+	*this = *this + value;
 
 	return *this;
 }
@@ -394,64 +367,19 @@ Matrix<Type>& Matrix<Type>::operator +=(const Matrix<Type>& mtrx)
 template<typename Type>
 void Matrix<Type>::add(const Matrix<Type>& mtrx)
 {
-	time_t err_time = time(nullptr);
-
-	if (this->is_empty() || mtrx.is_empty())
-	{
-		throw IsEmptyException(__FILE__, typeid(*this).name(), __LINE__ - 4, err_time, "One of the matrices is empty.");
-	}
-
-	if ((this->get_n() != mtrx.get_n()) || (this->get_m() != mtrx.get_m()))
-	{
-		throw IsNotEqualException(__FILE__, typeid(*this).name(), __LINE__ - 4, err_time, "Matrices is not equal.");
-	}
-
-	this->addition(mtrx);
+	*this = *this + mtrx;
 }
 
 template<typename Type>
 void Matrix<Type>::add(const Type& value)
 {
-	time_t err_time = time(nullptr);
-
-	if (this->is_empty())
-	{
-		throw IsEmptyException(__FILE__, typeid(*this).name(), __LINE__ - 4, err_time, "One of the matrices is empty.");
-	}
-
-	this->addition(value);
+	*this = *this + value;
 }
 
 #pragma endregion
 
 
 #pragma region Substraction
-
-// Private methods
-template<typename Type>
-void Matrix<Type>::subtraction(const Matrix<Type>& mtrx)
-{
-	for (size_t i = 0; i < this->get_n(); i++)
-	{
-		for (size_t j = 0; j < this->get_m(); j++)
-		{
-			this->data[i][j] -= mtrx[i][j];
-		}
-	}
-}
-
-template<typename Type>
-void Matrix<Type>::subtraction(const Type& value)
-{
-	for (size_t i = 0; i < this->get_n(); i++)
-	{
-		for (size_t j = 0; j < this->get_m(); j++)
-		{
-			this->data[i][j] -= value;
-		}
-	}
-}
-
 
 // Public methods
 template<typename Type>
@@ -505,19 +433,15 @@ decltype(auto) Matrix<Type>::operator -(const U& value) const
 template<typename Type>
 Matrix<Type>& Matrix<Type>::operator -=(const Matrix<Type>& mtrx)
 {
-	time_t err_time = time(nullptr);
+	*this = *this - mtrx;
 
-	size_t n_mtrx = mtrx.get_n();
-	size_t m_mtrx = mtrx.get_m();
+	return *this;
+}
 
-	if ((this->m == m_mtrx) && (this->n == n_mtrx))
-	{
-		this->subtraction(mtrx);
-	}
-	else
-	{
-		throw IsEmptyException(__FILE__, typeid(*this).name(), __LINE__ - 4, err_time, "Size should be equal");
-	}
+template<typename Type>
+Matrix<Type>& Matrix<Type>::operator -=(const Type& value)
+{
+	*this = *this - value;
 
 	return *this;
 }
@@ -525,34 +449,13 @@ Matrix<Type>& Matrix<Type>::operator -=(const Matrix<Type>& mtrx)
 template<typename Type>
 void Matrix<Type>::sub(const Matrix<Type>& mtrx)
 {
-	time_t err_time = time(nullptr);
-
-	if (this->is_empty() || mtrx.is_empty())
-	{
-		throw IsEmptyException(__FILE__, typeid(*this).name(), __LINE__ - 4, err_time, "One of the matrices is empty.");
-	}
-
-	if ((this->get_n() != mtrx.get_n()) || (this->get_m() != mtrx.get_m()))
-	{
-		throw IsNotEqualException(__FILE__, typeid(*this).name(), __LINE__ - 4, err_time, "Matrices is not equal.");
-	}
-
-	this->subtraction(mtrx);
+	*this = *this - mtrx;
 }
 
 template<typename Type>
 void Matrix<Type>::sub(const Type& value)
 {
-	time_t err_time = time(nullptr);
-
-	if (this->is_empty())
-	{
-		throw IsEmptyException(__FILE__, typeid(*this).name(), __LINE__ - 4, err_time, "One of the matrices is empty.");
-	}
-	else
-	{
-		this->subtraction(value);
-	}
+	*this = *this - value;
 }
 
 template <typename T>
@@ -578,23 +481,6 @@ Matrix<T> Matrix<T>::neg()
 
 #pragma region Multiplication
 
-// Private method
-template<typename Type>
-void Matrix<Type>::multiplicate(const Type& value)
-{
-	size_t n = this->n;
-	size_t m = this->m;
-
-	for (size_t i = 0; i < n; i++)
-	{
-		for (size_t j = 0; j < m; j++)
-		{
-			this->data[i][j] *= value;
-		}
-	}
-}
-
-
 // Public methods
 template<typename Type>
 template<typename U>
@@ -618,7 +504,7 @@ decltype(auto) Matrix<Type>::operator *(const Matrix<U>& mtrx) const
 
 template<typename Type>
 template<typename U>
-Matrix<Type> Matrix<Type>::operator *(const U& value) const
+decltype(auto) Matrix<Type>::operator *(const U& value) const
 {
 	time_t err_time = time(nullptr);
 
@@ -638,30 +524,29 @@ Matrix<Type> Matrix<Type>::operator *(const U& value) const
 template<typename Type>
 Matrix<Type>& Matrix<Type>::operator *=(const Matrix<Type>& mtrx)
 {
-	time_t err_time = time(nullptr);
-
-	if (this->n != mtrx.get_m())
-	{
-		throw IsEmptyException(__FILE__, typeid(*this).name(), __LINE__ - 4, err_time, "Size should be equal");
-	}
-
 	*this = *this * mtrx;
+
 	return *this;
+}
+
+template<typename Type>
+Matrix<Type>& Matrix<Type>::operator *=(const Type& value)
+{
+	*this = *this * value;
+
+	return *this;
+}
+
+template<typename Type>
+void Matrix<Type>::mult(const Matrix<Type>& mtrx)
+{
+	*this = *this * mtrx;
 }
 
 template<typename Type>
 void Matrix<Type>::mult(const Type& value)
 {
-	time_t err_time = time(nullptr);
-
-	if (this->is_empty())
-	{
-		throw IsEmptyException(__FILE__, typeid(*this).name(), __LINE__ - 4, err_time, "One of the matrices is empty.");
-	}
-	else
-	{
-		this->multiplicate(value);
-	}
+	*this = *this * value;
 }
 
 #pragma endregion
@@ -669,27 +554,10 @@ void Matrix<Type>::mult(const Type& value)
 
 #pragma region Division
 
-// Private method
-template<typename Type>
-void Matrix<Type>::division(const Type& value)
-{
-	size_t n = this->n;
-	size_t m = this->m;
-
-	for (size_t i = 0; i < n; i++)
-	{
-		for (size_t j = 0; j < m; j++)
-		{
-			this->data[i][j] /= value;
-		}
-	}
-}
-
-
 // Public methods
 template<typename Type>
 template<typename U>
-Matrix<Type> Matrix<Type>::operator /(const U& value) const
+decltype(auto) Matrix<Type>::operator /(const U& value) const
 {
 	time_t err_time = time(nullptr);
 
@@ -706,19 +574,41 @@ Matrix<Type> Matrix<Type>::operator /(const U& value) const
 	return tmp;
 }
 
+template <typename Type>
+template <typename U>
+decltype(auto) Matrix<Type>::operator /(const Matrix<U>& matrix) const
+{
+	Matrix<decltype(data[0][0] / matrix[0][0])> tmp(matrix);
+	tmp.inverse();
+	return operator *(tmp);
+}
+
+template<typename Type>
+Matrix<Type>& Matrix<Type>::operator /=(const Matrix<Type>& mtrx)
+{
+	*this = *this / mtrx;
+
+	return *this;
+}
+
+template<typename Type>
+Matrix<Type>& Matrix<Type>::operator /=(const Type& value)
+{
+	*this = *this / value;
+
+	return *this;
+}
+
+template<typename Type>
+void Matrix<Type>::divide(const Matrix<Type>& mtrx)
+{
+	*this = *this / mtrx;
+}
+
 template<typename Type>
 void Matrix<Type>::divide(const Type& value)
 {
-	time_t err_time = time(nullptr);
-
-	if (this->is_empty())
-	{
-		throw IsEmptyException(__FILE__, typeid(*this).name(), __LINE__ - 4, err_time, "matrix is empty.");
-	}
-	else
-	{
-		this->division(value);
-	}
+	*this = *this / value;
 }
 
 #pragma endregion
@@ -753,6 +643,13 @@ const Type& Matrix<Type>::operator ()(size_t i, size_t j) const
 
 #pragma endregion
 
+template<typename Type>
+Matrix<Type>::operator bool()
+{
+	bool r = data.get();
+	return r;
+}
+
 
 // Output matrix <<
 template<typename Type>
@@ -770,8 +667,6 @@ std::ostream& operator <<(std::ostream& ostream, const Matrix<Type>& mtrx)
 	ostream << std::endl;
 	return ostream;
 }
-
-#pragma endregion
 
 #pragma region Math
 

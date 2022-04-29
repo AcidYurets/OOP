@@ -61,7 +61,7 @@ public:
 	template<typename U>
 	decltype(auto) operator *(const Matrix<U>& mtrx) const;
 	template<typename U>
-	Matrix<Type> operator *(const U& value) const;
+	decltype(auto) operator *(const U& value) const;
 	Matrix<Type>& operator *=(const Matrix<Type>& mtrx);
 	Matrix<Type>& operator *=(const Type& value);
 	void mult(const Matrix<Type>& mtrx);
@@ -69,9 +69,9 @@ public:
 
 	// Division
 	template<typename U>
-	Matrix<Type> operator /(const Matrix<U>& mtrx) const;
+	decltype(auto) operator /(const Matrix<U>& mtrx) const;
 	template<typename U>
-	Matrix<Type> operator /(const U& value) const;
+	decltype(auto) operator /(const U& value) const;
 	Matrix<Type>& operator /=(const Matrix<Type>& mtrx);
 	Matrix<Type>& operator /=(const Type& value);
 	void divide(const Matrix<Type>& mtrx);
@@ -79,9 +79,10 @@ public:
 
 	Type& operator ()(size_t i, size_t j);
 	const Type& operator ()(size_t i, size_t j) const;
+	operator bool();
 
-	template<typename _Type>
-	friend std::ostream& operator <<(std::ostream& os, const Matrix<_Type>& mtrx);
+	template<typename U>
+	friend std::ostream& operator <<(std::ostream& os, const Matrix<U>& mtrx);
 
 	bool isSquare() const;
 	void transpose();
@@ -128,16 +129,6 @@ public:
 private:
 	std::shared_ptr<MatrixRow[]> data;
 	std::shared_ptr<MatrixRow[]> allocateMemory(size_t n, size_t m);
-
-	void addition(const Matrix<Type>& mtrx);
-	void addition(const Type& value);
-
-	void subtraction(const Matrix<Type>& mtrx);
-	void subtraction(const Type& value);
-
-	void multiplicate(const Type& value);
-
-	void division(const Type& value); 
 };
 
 #endif // !MATRIX_H
