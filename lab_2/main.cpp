@@ -79,10 +79,7 @@ int main()
         std::cout << mtrx1;
 
         std::cout << "Testing get value func\n";
-        std::cout << mtrx3.get_value(0, 0) << std::endl; 
-        std::cout << mtrx3[0][0] << std::endl;
-        std::cout << mtrx3[1][0] << std::endl;
-
+        std::cout << mtrx3.get_value(0, 0) << std::endl;
 
         std::cout << "\nTesting set value func\n";
         mtrx1.set_value(1, 0, 3);
@@ -113,7 +110,7 @@ int main()
 
         std::cout << "Transp:\n";
 
-        mtrx3.transpose();
+        mtrx3 = mtrx3.transpose();
         std::cout << mtrx3;
 
         std::cout << "Resize:\n";

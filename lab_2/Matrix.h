@@ -20,19 +20,25 @@ public:
 	friend ConstIterator<Type>;
 	friend Iterator<Type>;
 	// Constructors
-	Matrix();
+	Matrix() noexcept;
 	Matrix(size_t n, size_t m);
+	Matrix(size_t n, size_t m, const Type& filler);
+	Matrix(size_t rows, size_t columns, Type** matrix);
+
 	explicit Matrix(const Matrix<Type>& mtrx);
-	Matrix(Matrix<Type>&& mtrx);
+	Matrix(Matrix<Type>&& mtrx) noexcept;
 	Matrix(std::initializer_list<std::initializer_list<Type>> list);
-	
-	// Destructor
-	~Matrix() = default;  
 
 	// Operators equal
 	Matrix<Type>& operator =(const Matrix<Type>& mtr);
-	Matrix<Type>& operator =(Matrix<Type>&& mtr);
+	Matrix<Type>& operator =(Matrix<Type>&& mtr) noexcept;
 	Matrix<Type>& operator =(std::initializer_list<std::initializer_list<Type>> list);
+
+	virtual ~Matrix() = default; 
+
+	void resize(size_t rows, size_t cols, const Type& filler);
+	void fill_zero() noexcept;
+	void identity_matrix() noexcept;
 
 	// Addition
 	template<typename U>
@@ -54,7 +60,7 @@ public:
 	void sub(const Matrix<Type>& mtrx);
 	void sub(const Type& value);
 
-	Matrix<Type> operator-();
+	Matrix<Type> operator-() noexcept;
 	Matrix<Type> neg();
 
 	// Multiplication
@@ -79,34 +85,29 @@ public:
 
 	Type& operator ()(size_t i, size_t j);
 	const Type& operator ()(size_t i, size_t j) const;
+	const MatrixRow operator [](size_t row) const;
+	MatrixRow operator [](size_t row);
+	const Type& get_value(size_t i, size_t j) const;
+	void set_value(size_t i, size_t j, const Type& value);
 	operator bool();
+	size_t get_n() const noexcept;
+	size_t get_m() const noexcept;
 
 	template<typename U>
-	friend std::ostream& operator <<(std::ostream& os, const Matrix<U>& mtrx);
+	friend std::ostream& operator <<(std::ostream& os, const Matrix<U>& mtrx) noexcept;
 
-	bool isSquare() const;
-	void transpose();
+	// Math methods
+	bool isSquare() const noexcept;
+	Matrix<Type> transpose() const noexcept;
 	Type determinant() const;
 	// inverse method
 	void inverse();
 	
 	// Iterators
-	Iterator<Type> begin();
-	Iterator<Type> end();
-
-	ConstIterator<Type> begin() const;
-	ConstIterator<Type> end() const;
-
-	// Other methods
-	size_t get_n() const;
-	size_t get_m() const;
-
-	const Type& get_value(size_t i, size_t j) const;
-	void set_value(size_t i, size_t j, const Type& value);
-
-	void resize(size_t rows, size_t cols, const Type& filler);
-	void fill_zero();
-	void identity_matrix(); 
+	Iterator<Type> begin() noexcept;
+	Iterator<Type> end() noexcept;
+	ConstIterator<Type> begin() const noexcept;
+	ConstIterator<Type> end() const noexcept;
 
 	class MatrixRow {
 		friend Iterator<Type>;
@@ -115,16 +116,12 @@ public:
 		std::shared_ptr<Type[]> _data = nullptr;
 		size_t _size = 0;
 	public:
-		MatrixRow(Type* data, const size_t size) : _data(data), _size(size) {}
 		MatrixRow() : _data(nullptr), _size(0) {}
 		Type& operator[](size_t index);
 		const Type& operator[](size_t index) const;
 		void reset(Type* data, const size_t size);
 		void reset();
 	};
-
-	const MatrixRow operator [](size_t row) const;
-	MatrixRow operator [](size_t row);
 
 private:
 	std::shared_ptr<MatrixRow[]> data;
