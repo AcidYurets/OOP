@@ -6,19 +6,19 @@
 class MatrixBase
 {
 public:
-	explicit MatrixBase() : element_numb(0) { }
-	explicit MatrixBase(size_t n) : element_numb(n) { }
 	virtual ~MatrixBase() = default;
 
-	bool is_empty() const { return element_numb == 0; }
-	size_t get_rows(void) const { return this->rows; }
-	size_t get_columns(void) const { return this->columns; }
-	size_t size() const { return element_numb; }
+	bool is_empty() const noexcept { return element_numb == 0; }
+	virtual size_t get_n(void) const noexcept { return n; }
+	virtual size_t get_m(void) const noexcept { return m; }
+	size_t size() const noexcept { return element_numb; }
 
 protected:
-	size_t rows;
-	size_t columns;
-	size_t element_numb;
+	size_t n;
+	size_t m;
+	size_t element_numb; 
+
+	explicit MatrixBase() : element_numb(0), n(0), m(0) { }
 };
 
 #endif // !MATRIX_BASE_H

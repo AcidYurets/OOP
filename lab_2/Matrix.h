@@ -3,133 +3,129 @@
 
 #include "MatrixBase.h"
 #include "MatrixBaseException.h"
-
+ 
 #include "Iterator.h"
 #include "IteratorConst.h"
 
 #include <iostream>
-#include <stdio.h>
+#include <stdio.h> 
 #include <typeinfo>
 #include <time.h>
 
 template<typename Type>
 class Matrix : public MatrixBase
 {
-	friend Iterator<Type>;
-	friend IteratorConst<Type>;
 public:
+	class MatrixRow;
+	friend ConstIterator<Type>;
+	friend Iterator<Type>;
 	// Constructors
-	Matrix();
+	Matrix() noexcept;
 	Matrix(size_t n, size_t m);
+	Matrix(size_t n, size_t m, const Type& filler);
+	Matrix(size_t rows, size_t columns, Type** matrix);
+
 	explicit Matrix(const Matrix<Type>& mtrx);
-	Matrix(Matrix<Type>&& mtrx);
+	Matrix(Matrix<Type>&& mtrx) noexcept;
 	Matrix(std::initializer_list<std::initializer_list<Type>> list);
-	
-	// Destructor
-	~Matrix(); 
 
 	// Operators equal
 	Matrix<Type>& operator =(const Matrix<Type>& mtr);
-	Matrix<Type>& operator =(Matrix<Type>&& mtr);
+	Matrix<Type>& operator =(Matrix<Type>&& mtr) noexcept;
 	Matrix<Type>& operator =(std::initializer_list<std::initializer_list<Type>> list);
 
+	virtual ~Matrix() = default; 
+
+	void resize(size_t rows, size_t cols, const Type& filler);
+	void fill_zero() noexcept;
+	void identity_matrix() noexcept;
+
 	// Addition
-	Matrix<Type> operator +(const Matrix<Type>& mtrx1) const;
-	Matrix<Type> operator +(const Type& value) const;
+	template<typename U>
+	decltype(auto) operator +(const Matrix<U>& mtrx) const;
+	template <typename U>
+	decltype(auto) operator +(const U& value) const;
 	Matrix<Type>& operator +=(const Matrix<Type>& mtrx);
-	void add(const Matrix<Type>& mtrx) const;
-	void add(const Type& value) const;
+	Matrix<Type>& operator +=(const Type& value);
+	void add(const Matrix<Type>& mtrx);
+	void add(const Type& value);
 
 	// Substraction
-	Matrix<Type> operator -(const Matrix<Type>& mtrx1) const;
-	Matrix<Type> operator -(const Type& value) const;
+	template<typename U>
+	decltype(auto) operator -(const Matrix<U>& mtrx) const;
+	template <typename U>
+	decltype(auto) operator -(const U& value) const;
 	Matrix<Type>& operator -=(const Matrix<Type>& mtrx);
-	void sub(const Matrix<Type>& mtrx) const;
-	void sub(const Type& value) const;
+	Matrix<Type>& operator -=(const Type& value);
+	void sub(const Matrix<Type>& mtrx);
+	void sub(const Type& value);
+
+	Matrix<Type> operator-() noexcept;
+	Matrix<Type> neg();
 
 	// Multiplication
-	Matrix<Type> operator *(const Matrix<Type>& mtrx1) const;
-	Matrix<Type> operator *(const Type& value) const;
+	template<typename U>
+	decltype(auto) operator *(const Matrix<U>& mtrx) const;
+	template<typename U>
+	decltype(auto) operator *(const U& value) const;
 	Matrix<Type>& operator *=(const Matrix<Type>& mtrx);
-	void mult(const Type& value) const;
+	Matrix<Type>& operator *=(const Type& value);
+	void mult(const Matrix<Type>& mtrx);
+	void mult(const Type& value);
 
 	// Division
-	Matrix<Type> operator /(const Type& value) const;
-	void divide(const Type& value) const;
+	template<typename U>
+	decltype(auto) operator /(const Matrix<U>& mtrx) const;
+	template<typename U>
+	decltype(auto) operator /(const U& value) const;
+	Matrix<Type>& operator /=(const Matrix<Type>& mtrx);
+	Matrix<Type>& operator /=(const Type& value);
+	void divide(const Matrix<Type>& mtrx);
+	void divide(const Type& value);
 
 	Type& operator ()(size_t i, size_t j);
 	const Type& operator ()(size_t i, size_t j) const;
-
-	template<typename _Type>
-	friend std::ostream& operator <<(std::ostream& os, const Matrix<_Type>& mtrx);
-	
-	// Iterators
-	Iterator<Type> begin();
-	Iterator<Type> end();
-
-	IteratorConst<Type> begin() const;
-	IteratorConst<Type> end() const;
-
-	// Other methods
-	size_t get_n() const;
-	size_t get_m() const;
-
-	const Type& get_value(size_t i, size_t j) const;
-	void set_value(size_t i, size_t j, const Type& value);
-
-	void fill_zero();
-	void identity_matrix();
-
-	class MatrixRow
-	{
-		friend Matrix;
-	public:
-		const Type& operator [](size_t column) const
-		{
-			time_t err_time = time(nullptr);
-
-			if (column >= this->parent.get_m())
-			{
-				throw IndexException(__FILE__, typeid(*this).name(), __LINE__ - 4, err_time, "Index out of range");
-			}
-
-			return parent.data.get()[number * parent.get_m() + column];
-		}
-
-		Type& operator [](size_t column)
-		{
-			time_t err_time = time(nullptr);
-
-			if (column >= this->parent.get_m())
-			{
-				throw IndexException(__FILE__, typeid(*this).name(), __LINE__ - 4, err_time, "Index out of range");
-			}
-
-			return parent.data.get()[number * parent.get_m() + column];
-		}
-
-	private:
-		MatrixRow(const Matrix<Type>& parent, size_t row) : parent(parent), number(row) {  }
-		const Matrix& parent;
-		size_t number;
-	};
-
 	const MatrixRow operator [](size_t row) const;
 	MatrixRow operator [](size_t row);
- 
+	const Type& get_value(size_t i, size_t j) const;
+	void set_value(size_t i, size_t j, const Type& value);
+	operator bool();
+	size_t get_n() const noexcept;
+	size_t get_m() const noexcept;
+
+	template<typename U>
+	friend std::ostream& operator <<(std::ostream& os, const Matrix<U>& mtrx) noexcept;
+
+	// Math methods
+	bool isSquare() const noexcept;
+	Matrix<Type> transpose() const noexcept;
+	Type determinant() const;
+	// inverse method
+	void inverse();
+	
+	// Iterators
+	Iterator<Type> begin() noexcept;
+	Iterator<Type> end() noexcept;
+	ConstIterator<Type> begin() const noexcept;
+	ConstIterator<Type> end() const noexcept;
+
+	class MatrixRow {
+		friend Iterator<Type>;
+		friend ConstIterator<Type>;
+	private:
+		std::shared_ptr<Type[]> _data = nullptr;
+		size_t _size = 0;
+	public:
+		MatrixRow() : _data(nullptr), _size(0) {}
+		Type& operator[](size_t index);
+		const Type& operator[](size_t index) const;
+		void reset(Type* data, const size_t size);
+		void reset();
+	};
+
 private:
-	size_t n;
-	size_t m;
-	std::shared_ptr<Type[]> data;
-
-	void addition(const Matrix<Type>& mtrx) const;
-	void addition(const Type& value) const;
-
-	void subtraction(const Matrix<Type>& mtrx) const;
-	void subtraction(const Type& value) const;
-
-	void multiplicate(const Type& value) const;
-	void division(const Type& value) const; 
+	std::shared_ptr<MatrixRow[]> data;
+	std::shared_ptr<MatrixRow[]> allocateMemory(size_t n, size_t m);
 };
 
 #endif // !MATRIX_H
