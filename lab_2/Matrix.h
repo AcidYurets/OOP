@@ -40,6 +40,7 @@ public:
 	template <typename U>
 	decltype(auto) operator +(const U& value) const;
 	Matrix<Type>& operator +=(const Matrix<Type>& mtrx);
+	Matrix<Type>& operator +=(const Type& value);
 	void add(const Matrix<Type>& mtrx);
 	void add(const Type& value);
 
@@ -49,6 +50,7 @@ public:
 	template <typename U>
 	decltype(auto) operator -(const U& value) const;
 	Matrix<Type>& operator -=(const Matrix<Type>& mtrx);
+	Matrix<Type>& operator -=(const Type& value);
 	void sub(const Matrix<Type>& mtrx);
 	void sub(const Type& value);
 
@@ -61,11 +63,18 @@ public:
 	template<typename U>
 	Matrix<Type> operator *(const U& value) const;
 	Matrix<Type>& operator *=(const Matrix<Type>& mtrx);
+	Matrix<Type>& operator *=(const Type& value);
+	void mult(const Matrix<Type>& mtrx);
 	void mult(const Type& value);
 
 	// Division
 	template<typename U>
+	Matrix<Type> operator /(const Matrix<U>& mtrx) const;
+	template<typename U>
 	Matrix<Type> operator /(const U& value) const;
+	Matrix<Type>& operator /=(const Matrix<Type>& mtrx);
+	Matrix<Type>& operator /=(const Type& value);
+	void divide(const Matrix<Type>& mtrx);
 	void divide(const Type& value);
 
 	Type& operator ()(size_t i, size_t j);
