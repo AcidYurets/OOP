@@ -33,7 +33,10 @@ int main()
         mtrx1 = mtrx1 + mtrx2;
         std::cout << mtrx1;
 
-        mtrx1.add(mtrx2); 
+        mtrx1.addEq(mtrx2); 
+        std::cout << mtrx1;
+
+        mtrx1 = mtrx1.add(mtrx2);
         std::cout << mtrx1;
 
         mtrx4 = mtrx1 + 1.1;
@@ -49,10 +52,10 @@ int main()
         mtrx1 = mtrx1 - mtrx2;
         std::cout << mtrx1;
 
-        mtrx1.sub(mtrx2);
+        mtrx1 = mtrx1.sub(mtrx2);
         std::cout << mtrx1;
 
-        mtrx1.sub(10);
+        mtrx1 = mtrx1.sub(10);
         std::cout << mtrx1;
          
         mtrx1 = mtrx1 - 10;
@@ -68,6 +71,9 @@ int main()
         std::cout << mtrx1;
          
         mtrx1 *= mtrx2;
+        std::cout << mtrx1;
+
+        mtrx1.addEq(mtrx2);
         std::cout << mtrx1;
         
         mtrx1 = mtrx1 * 2;
@@ -118,7 +124,7 @@ int main()
         std::cout << mtrx3;
 
         std::cout << "Inverse:\n";
-        mtrx3.inverse();
+        mtrx3 = mtrx3.inverse();
         std::cout << mtrx3; 
     }
 

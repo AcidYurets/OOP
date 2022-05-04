@@ -10,7 +10,7 @@ template <typename Type>
 class Matrix;
 
 template <typename Type>
-class Iterator : public std::iterator<std::input_iterator_tag, Type> 
+class Iterator : public std::iterator<std::bidirectional_iterator_tag, Type> 
 {
 public:
 	Iterator(const Matrix<Type>& mtrx, const size_t index = 0)

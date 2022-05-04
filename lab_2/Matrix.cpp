@@ -402,15 +402,33 @@ Matrix<Type>& Matrix<Type>::operator +=(const Type& value)
 }
 
 template<typename Type>
-void Matrix<Type>::add(const Matrix<Type>& mtrx)
+template<typename U>
+decltype(auto) Matrix<Type>::add(const Matrix<U>& mtrx)
 {
-	*this = *this + mtrx;
+	return *this + mtrx;
 }
 
 template<typename Type>
-void Matrix<Type>::add(const Type& value)
+template<typename U>
+decltype(auto) Matrix<Type>::add(const U& value)
+{
+	return *this + value;
+}
+
+template<typename Type>
+Matrix<Type>& Matrix<Type>::addEq(const Matrix<Type>& mtrx)
+{
+	*this = *this + mtrx;
+
+	return *this;
+}
+
+template<typename Type>
+Matrix<Type>& Matrix<Type>::addEq(const Type& value)
 {
 	*this = *this + value;
+
+	return *this;
 }
 
 #pragma endregion
@@ -483,16 +501,35 @@ Matrix<Type>& Matrix<Type>::operator -=(const Type& value)
 	return *this;
 }
 
+
 template<typename Type>
-void Matrix<Type>::sub(const Matrix<Type>& mtrx)
+template<typename U>
+decltype(auto) Matrix<Type>::sub(const Matrix<U>& mtrx)
 {
-	*this = *this - mtrx;
+	return *this - mtrx;
 }
 
 template<typename Type>
-void Matrix<Type>::sub(const Type& value)
+template<typename U>
+decltype(auto) Matrix<Type>::sub(const U& value)
+{
+	return *this - value;
+}
+
+template<typename Type>
+Matrix<Type>& Matrix<Type>::subEq(const Matrix<Type>& mtrx)
+{
+	*this = *this - mtrx;
+
+	return *this;
+}
+
+template<typename Type>
+Matrix<Type>& Matrix<Type>::subEq(const Type& value)
 {
 	*this = *this - value;
+
+	return *this;
 }
 
 template <typename T>
@@ -574,16 +611,35 @@ Matrix<Type>& Matrix<Type>::operator *=(const Type& value)
 	return *this;
 }
 
+
 template<typename Type>
-void Matrix<Type>::mult(const Matrix<Type>& mtrx)
+template<typename U>
+decltype(auto) Matrix<Type>::mult(const Matrix<U>& mtrx)
 {
-	*this = *this * mtrx;
+	return *this * mtrx;
 }
 
 template<typename Type>
-void Matrix<Type>::mult(const Type& value)
+template<typename U>
+decltype(auto) Matrix<Type>::mult(const U& value)
+{
+	return *this * value;
+}
+
+template<typename Type>
+Matrix<Type>& Matrix<Type>::multEq(const Matrix<Type>& mtrx)
+{
+	*this = *this * mtrx;
+
+	return *this;
+}
+
+template<typename Type>
+Matrix<Type>& Matrix<Type>::multEq(const Type& value)
 {
 	*this = *this * value;
+
+	return *this;
 }
 
 #pragma endregion
@@ -636,16 +692,35 @@ Matrix<Type>& Matrix<Type>::operator /=(const Type& value)
 	return *this;
 }
 
+
 template<typename Type>
-void Matrix<Type>::divide(const Matrix<Type>& mtrx)
+template<typename U>
+decltype(auto) Matrix<Type>::divide(const Matrix<U>& mtrx)
 {
-	*this = *this / mtrx;
+	return *this / mtrx;
 }
 
 template<typename Type>
-void Matrix<Type>::divide(const Type& value)
+template<typename U>
+decltype(auto) Matrix<Type>::divide(const U& value)
+{
+	return *this / value;
+}
+
+template<typename Type>
+Matrix<Type>& Matrix<Type>::divideEq(const Matrix<Type>& mtrx)
+{
+	*this = *this / mtrx;
+
+	return *this;
+}
+
+template<typename Type>
+Matrix<Type>& Matrix<Type>::divideEq(const Type& value)
 {
 	*this = *this / value;
+
+	return *this;
 }
 
 #pragma endregion
@@ -771,7 +846,7 @@ T Matrix<T>::determinant() const
 }
 
 template <typename T>
-void Matrix<T>::inverse()
+Matrix<T> Matrix<T>::inverse()
 {
 	T det = determinant();
 	if (!isSquare() || !det)
@@ -794,7 +869,7 @@ void Matrix<T>::inverse()
 			res[j][i] = value;
 		}
 
-	*this = res;
+	return res;
 }
 
 #pragma endregion
@@ -927,8 +1002,8 @@ void Matrix<Type>::set_value(size_t i, size_t j, const Type& value)
 	}
 }
 
-template <typename T>
-void Matrix<T>::resize(size_t rows, size_t cols, const T& filler) 
+template <typename Type>
+void Matrix<Type>::resize(size_t rows, size_t cols, const Type& filler) 
 {
 	if ((rows == 0 && cols != 0) || (rows != 0 && cols == 0))
 		rows = 0, cols = 0;

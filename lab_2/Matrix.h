@@ -47,8 +47,12 @@ public:
 	decltype(auto) operator +(const U& value) const;
 	Matrix<Type>& operator +=(const Matrix<Type>& mtrx);
 	Matrix<Type>& operator +=(const Type& value);
-	void add(const Matrix<Type>& mtrx);
-	void add(const Type& value);
+	template<typename U>
+	decltype(auto) add(const Matrix<U>& mtrx);
+	template<typename U>
+	decltype(auto) add(const U& value);
+	Matrix<Type>& addEq(const Matrix<Type>& mtrx);
+	Matrix<Type>& addEq(const Type& value);
 
 	// Substraction
 	template<typename U>
@@ -57,8 +61,12 @@ public:
 	decltype(auto) operator -(const U& value) const;
 	Matrix<Type>& operator -=(const Matrix<Type>& mtrx);
 	Matrix<Type>& operator -=(const Type& value);
-	void sub(const Matrix<Type>& mtrx);
-	void sub(const Type& value);
+	template<typename U>
+	decltype(auto) sub(const Matrix<U>& mtrx);
+	template<typename U>
+	decltype(auto) sub(const U& value);
+	Matrix<Type>& subEq(const Matrix<Type>& mtrx);
+	Matrix<Type>& subEq(const Type& value);
 
 	Matrix<Type> operator-() noexcept;
 	Matrix<Type> neg();
@@ -70,8 +78,12 @@ public:
 	decltype(auto) operator *(const U& value) const;
 	Matrix<Type>& operator *=(const Matrix<Type>& mtrx);
 	Matrix<Type>& operator *=(const Type& value);
-	void mult(const Matrix<Type>& mtrx);
-	void mult(const Type& value);
+	template<typename U>
+	decltype(auto) mult(const Matrix<U>& mtrx);
+	template<typename U>
+	decltype(auto) mult(const U& value);
+	Matrix<Type>& multEq(const Matrix<Type>& mtrx);
+	Matrix<Type>& multEq(const Type& value);
 
 	// Division
 	template<typename U>
@@ -80,8 +92,12 @@ public:
 	decltype(auto) operator /(const U& value) const;
 	Matrix<Type>& operator /=(const Matrix<Type>& mtrx);
 	Matrix<Type>& operator /=(const Type& value);
-	void divide(const Matrix<Type>& mtrx);
-	void divide(const Type& value);
+	template<typename U>
+	decltype(auto) divide(const Matrix<U>& mtrx);
+	template<typename U>
+	decltype(auto) divide(const U& value);
+	Matrix<Type>& divideEq(const Matrix<Type>& mtrx);
+	Matrix<Type>& divideEq(const Type& value);
 
 	Type& operator ()(size_t i, size_t j);
 	const Type& operator ()(size_t i, size_t j) const;
@@ -101,7 +117,7 @@ public:
 	Matrix<Type> transpose() const noexcept;
 	Type determinant() const;
 	// inverse method
-	void inverse();
+	Matrix<Type> inverse();
 	
 	// Iterators
 	Iterator<Type> begin() noexcept;
