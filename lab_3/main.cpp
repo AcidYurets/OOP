@@ -1,11 +1,15 @@
-#include "mainwindow.h"
-
 #include <QApplication>
 
-int main(int argc, char *argv[])
-{
+#include <QScreen>
+#include <QStyle>
+
+#include "gui/qt/mainwindow.h"
+
+int main(int argc, char *argv[]) {
     QApplication a(argc, argv);
     MainWindow w;
+    w.setGeometry(QStyle::alignedRect(Qt::LeftToRight, Qt::AlignCenter, w.size(),
+                                      QGuiApplication::primaryScreen()->availableGeometry()));
     w.show();
-    return a.exec();
+    return QApplication::exec();
 }

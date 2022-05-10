@@ -1,0 +1,209 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="gui\qt\drawer\factory\qt_drawer_factory.cpp" />
+    <ClCompile Include="gui\qt\drawer\qt_drawer.cpp" />
+    <ClCompile Include="gui\qt\mainwindow.cpp" />
+    <ClCompile Include="implementation\commands\camera\add\add_camera.cpp" />
+    <ClCompile Include="implementation\commands\camera\count\count_cameras.cpp" />
+    <ClCompile Include="implementation\commands\camera\load\load_camera.cpp" />
+    <ClCompile Include="implementation\commands\camera\move\move_camera.cpp" />
+    <ClCompile Include="implementation\commands\camera\remove\remove_camera.cpp" />
+    <ClCompile Include="implementation\commands\camera\set\set_camera.cpp" />
+    <ClCompile Include="implementation\commands\model\add\add_model.cpp" />
+    <ClCompile Include="implementation\commands\model\count\count_models.cpp" />
+    <ClCompile Include="implementation\commands\model\load\load_model.cpp" />
+    <ClCompile Include="implementation\commands\model\move\move_model.cpp" />
+    <ClCompile Include="implementation\commands\model\remove\remove_model.cpp" />
+    <ClCompile Include="implementation\commands\model\rotate\rotate_model.cpp" />
+    <ClCompile Include="implementation\commands\model\scale\scale_model.cpp" />
+    <ClCompile Include="implementation\commands\model\transform\transform_model.cpp" />
+    <ClCompile Include="implementation\commands\scene\render\render_scene.cpp" />
+    <ClCompile Include="implementation\config_manager\config_manager.cpp" />
+    <ClCompile Include="implementation\config_manager\creator\config_manager_creator.cpp" />
+    <ClCompile Include="implementation\config_manager\registration\registration_maker.cpp" />
+    <ClCompile Include="implementation\config_manager\solution\solution.cpp" />
+    <ClCompile Include="implementation\facade\facade.cpp" />
+    <ClCompile Include="implementation\load\builders\camera\camera_builder.cpp" />
+    <ClCompile Include="implementation\load\builders\model\model_builder.cpp" />
+    <ClCompile Include="implementation\load\builders\scene\scene_builder.cpp" />
+    <ClCompile Include="implementation\load\directors\camera\camera_director.cpp" />
+    <ClCompile Include="implementation\load\directors\model\model_director.cpp" />
+    <ClCompile Include="implementation\load\loaders\camera\file_camera_loader\file_camera_loader.cpp" />
+    <ClCompile Include="implementation\load\loaders\model\file_model_loader\file_model_loader.cpp" />
+    <ClCompile Include="implementation\load\solutions\camera\camera_load_solution.cpp" />
+    <ClCompile Include="implementation\load\solutions\model\model_load_solution.cpp" />
+    <ClCompile Include="implementation\managers\draw\draw_manager.cpp" />
+    <ClCompile Include="implementation\managers\load\load_manager.cpp" />
+    <ClCompile Include="implementation\managers\scene\scene_manager.cpp" />
+    <ClCompile Include="implementation\managers\transform\transform_manager.cpp" />
+    <ClCompile Include="implementation\objects\camera\camera.cpp" />
+    <ClCompile Include="implementation\objects\composite\composite.cpp" />
+    <ClCompile Include="implementation\objects\model\model.cpp" />
+    <ClCompile Include="implementation\objects\model\model_details\edge\edge.cpp" />
+    <ClCompile Include="implementation\objects\model\model_details\model_details.cpp" />
+    <ClCompile Include="implementation\objects\model\model_details\point\point.cpp" />
+    <ClCompile Include="implementation\scene\scene.cpp" />
+    <ClCompile Include="implementation\visitor\draw_visitor\draw_visitor.cpp" />
+    <ClCompile Include="main.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="gui\qt\design.h" />
+    <ClInclude Include="gui\qt\drawer\factory\qt_drawer_factory.hpp" />
+    <ClInclude Include="gui\qt\drawer\qt_drawer.hpp" />
+    <ClInclude Include="gui\qt\[Last] design.h" />
+    <QtMoc Include="gui\qt\mainwindow.h" />
+    <ClInclude Include="implementation\commands\camera\add\add_camera.hpp" />
+    <ClInclude Include="implementation\commands\camera\camera_command.hpp" />
+    <ClInclude Include="implementation\commands\camera\count\count_cameras.hpp" />
+    <ClInclude Include="implementation\commands\camera\load\load_camera.hpp" />
+    <ClInclude Include="implementation\commands\camera\move\move_camera.hpp" />
+    <ClInclude Include="implementation\commands\camera\remove\remove_camera.hpp" />
+    <ClInclude Include="implementation\commands\camera\set\set_camera.hpp" />
+    <ClInclude Include="implementation\commands\command.hpp" />
+    <ClInclude Include="implementation\commands\model\add\add_model.hpp" />
+    <ClInclude Include="implementation\commands\model\count\count_models.hpp" />
+    <ClInclude Include="implementation\commands\model\load\load_model.hpp" />
+    <ClInclude Include="implementation\commands\model\model_command.hpp" />
+    <ClInclude Include="implementation\commands\model\move\move_model.hpp" />
+    <ClInclude Include="implementation\commands\model\remove\remove_model.hpp" />
+    <ClInclude Include="implementation\commands\model\rotate\rotate_model.hpp" />
+    <ClInclude Include="implementation\commands\model\scale\scale_model.hpp" />
+    <ClInclude Include="implementation\commands\model\transform\transform_model.hpp" />
+    <ClInclude Include="implementation\commands\scene\render\render_scene.hpp" />
+    <ClInclude Include="implementation\commands\scene\scene_command.hpp" />
+    <ClInclude Include="implementation\config_manager\config_manager.hpp" />
+    <ClInclude Include="implementation\config_manager\creator\config_manager_creator.hpp" />
+    <ClInclude Include="implementation\config_manager\registration\registration_maker.hpp" />
+    <ClInclude Include="implementation\config_manager\solution\solution.hpp" />
+    <ClInclude Include="implementation\drawer\drawer.hpp" />
+    <ClInclude Include="implementation\exceptions\base_exception.hpp" />
+    <ClInclude Include="implementation\exceptions\camera_exceptions.hpp" />
+    <ClInclude Include="implementation\exceptions\load_exceptions.hpp" />
+    <ClInclude Include="implementation\exceptions\model_exceptions.hpp" />
+    <ClInclude Include="implementation\exceptions\ui_exceptions.hpp" />
+    <ClInclude Include="implementation\facade\facade.hpp" />
+    <ClInclude Include="implementation\load\builders\camera\camera_builder.hpp" />
+    <ClInclude Include="implementation\load\builders\model\model_builder.hpp" />
+    <ClInclude Include="implementation\load\builders\scene\scene_builder.hpp" />
+    <ClInclude Include="implementation\load\directors\camera\camera_director.hpp" />
+    <ClInclude Include="implementation\load\directors\load_director.hpp" />
+    <ClInclude Include="implementation\load\directors\model\model_director.hpp" />
+    <ClInclude Include="implementation\load\loaders\camera\camera_loader.hpp" />
+    <ClInclude Include="implementation\load\loaders\camera\file_camera_loader\file_camera_loader.hpp" />
+    <ClInclude Include="implementation\load\loaders\model\file_model_loader\file_model_loader.hpp" />
+    <ClInclude Include="implementation\load\loaders\model\model_loader.hpp" />
+    <ClInclude Include="implementation\load\loaders\object_loader.hpp" />
+    <ClInclude Include="implementation\load\loaders\object_loader_creator.hpp" />
+    <ClInclude Include="implementation\load\solutions\camera\camera_load_solution.hpp" />
+    <ClInclude Include="implementation\load\solutions\model\model_load_solution.hpp" />
+    <ClInclude Include="implementation\managers\draw\draw_manager.hpp" />
+    <ClInclude Include="implementation\managers\load\load_manager.hpp" />
+    <ClInclude Include="implementation\managers\manager.hpp" />
+    <ClInclude Include="implementation\managers\scene\scene_manager.hpp" />
+    <ClInclude Include="implementation\managers\transform\transform_manager.hpp" />
+    <ClInclude Include="implementation\objects\camera\camera.hpp" />
+    <ClInclude Include="implementation\objects\composite\composite.hpp" />
+    <ClInclude Include="implementation\objects\model\model.hpp" />
+    <ClInclude Include="implementation\objects\model\model_details\edge\edge.hpp" />
+    <ClInclude Include="implementation\objects\model\model_details\model_details.hpp" />
+    <ClInclude Include="implementation\objects\model\model_details\point\point.hpp" />
+    <ClInclude Include="implementation\objects\object.hpp" />
+    <ClInclude Include="implementation\scene\scene.hpp" />
+    <ClInclude Include="implementation\visitor\draw_visitor\draw_visitor.hpp" />
+    <ClInclude Include="implementation\visitor\visitor.hpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="cpp.hint" />
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{9B1E3EBA-7198-4E21-A62A-3DC2DE8ECE4F}</ProjectGuid>
+    <Keyword>QtVS_v304</Keyword>
+    <WindowsTargetPlatformVersion Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">10.0.19041.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">10.0.19041.0</WindowsTargetPlatformVersion>
+    <QtMsBuild Condition="'$(QtMsBuild)'=='' OR !Exists('$(QtMsBuild)\qt.targets')">$(MSBuildProjectDirectory)\QtMsBuild</QtMsBuild>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <PlatformToolset>v143</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <PlatformToolset>v143</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Condition="Exists('$(QtMsBuild)\qt_defaults.props')">
+    <Import Project="$(QtMsBuild)\qt_defaults.props" />
+  </ImportGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'" Label="QtSettings">
+    <QtInstall>6.2.3_msvc2019_64</QtInstall>
+    <QtModules>core;gui;widgets</QtModules>
+    <QtBuildConfig>debug</QtBuildConfig>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'" Label="QtSettings">
+    <QtInstall>6.2.3_msvc2019_64</QtInstall>
+    <QtModules>core;gui;widgets</QtModules>
+    <QtBuildConfig>release</QtBuildConfig>
+  </PropertyGroup>
+  <Target Name="QtMsBuildNotFound" BeforeTargets="CustomBuild;ClCompile" Condition="!Exists('$(QtMsBuild)\qt.targets') or !Exists('$(QtMsBuild)\qt.props')">
+    <Message Importance="High" Text="QtMsBuild: could not locate qt.targets, qt.props; project may not build correctly." />
+  </Target>
+  <ImportGroup Label="ExtensionSettings" />
+  <ImportGroup Label="Shared" />
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(QtMsBuild)\Qt.props" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(QtMsBuild)\Qt.props" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'" Label="Configuration">
+    <ClCompile>
+      <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <Optimization>Disabled</Optimization>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'" Label="Configuration">
+    <ClCompile>
+      <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <DebugInformationFormat>None</DebugInformationFormat>
+      <Optimization>MaxSpeed</Optimization>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>false</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Condition="Exists('$(QtMsBuild)\qt.targets')">
+    <Import Project="$(QtMsBuild)\qt.targets" />
+  </ImportGroup>
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

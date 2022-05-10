@@ -1,0 +1,361 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>qrc;rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Form Files">
+      <UniqueIdentifier>{99349809-55BA-4b9d-BF79-8FDBB0286EB3}</UniqueIdentifier>
+      <Extensions>ui</Extensions>
+    </Filter>
+    <Filter Include="Translation Files">
+      <UniqueIdentifier>{639EADAA-A684-42e4-A9AD-28FC9BCB8F7C}</UniqueIdentifier>
+      <Extensions>ts</Extensions>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="implementation\commands\camera\add\add_camera.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="implementation\commands\camera\count\count_cameras.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="implementation\commands\camera\load\load_camera.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="implementation\commands\camera\move\move_camera.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="implementation\commands\camera\remove\remove_camera.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="implementation\commands\camera\set\set_camera.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="implementation\commands\model\add\add_model.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="implementation\commands\model\count\count_models.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="implementation\commands\model\load\load_model.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="implementation\commands\model\move\move_model.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="implementation\commands\model\remove\remove_model.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="implementation\commands\model\rotate\rotate_model.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="implementation\commands\model\scale\scale_model.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="implementation\commands\model\transform\transform_model.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="implementation\commands\scene\render\render_scene.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="implementation\config_manager\config_manager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="implementation\config_manager\creator\config_manager_creator.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="implementation\config_manager\registration\registration_maker.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="implementation\config_manager\solution\solution.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="implementation\facade\facade.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="implementation\load\builders\camera\camera_builder.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="implementation\load\builders\model\model_builder.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="implementation\load\builders\scene\scene_builder.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="implementation\load\directors\camera\camera_director.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="implementation\load\directors\model\model_director.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="implementation\load\loaders\camera\file_camera_loader\file_camera_loader.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="implementation\load\loaders\model\file_model_loader\file_model_loader.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="implementation\load\solutions\camera\camera_load_solution.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="implementation\load\solutions\model\model_load_solution.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="implementation\managers\draw\draw_manager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="implementation\managers\load\load_manager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="implementation\managers\scene\scene_manager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="implementation\managers\transform\transform_manager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="implementation\objects\camera\camera.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="implementation\objects\composite\composite.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="implementation\objects\model\model.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="implementation\objects\model\model_details\edge\edge.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="implementation\objects\model\model_details\model_details.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="implementation\objects\model\model_details\point\point.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="implementation\scene\scene.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="implementation\visitor\draw_visitor\draw_visitor.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="gui\qt\drawer\factory\qt_drawer_factory.cpp">
+      <Filter>Form Files</Filter>
+    </ClCompile>
+    <ClCompile Include="gui\qt\drawer\qt_drawer.cpp">
+      <Filter>Form Files</Filter>
+    </ClCompile>
+    <ClCompile Include="gui\qt\mainwindow.cpp">
+      <Filter>Form Files</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="implementation\commands\camera\add\add_camera.hpp">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="implementation\commands\camera\camera_command.hpp">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="implementation\commands\camera\count\count_cameras.hpp">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="implementation\commands\camera\load\load_camera.hpp">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="implementation\commands\camera\move\move_camera.hpp">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="implementation\commands\camera\remove\remove_camera.hpp">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="implementation\commands\camera\set\set_camera.hpp">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="implementation\commands\command.hpp">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="implementation\commands\model\add\add_model.hpp">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="implementation\commands\model\count\count_models.hpp">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="implementation\commands\model\load\load_model.hpp">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="implementation\commands\model\model_command.hpp">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="implementation\commands\model\move\move_model.hpp">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="implementation\commands\model\remove\remove_model.hpp">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="implementation\commands\model\rotate\rotate_model.hpp">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="implementation\commands\model\scale\scale_model.hpp">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="implementation\commands\model\transform\transform_model.hpp">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="implementation\commands\scene\render\render_scene.hpp">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="implementation\commands\scene\scene_command.hpp">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="implementation\config_manager\config_manager.hpp">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="implementation\config_manager\creator\config_manager_creator.hpp">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="implementation\config_manager\registration\registration_maker.hpp">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="implementation\config_manager\solution\solution.hpp">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="implementation\drawer\drawer.hpp">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="implementation\exceptions\base_exception.hpp">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="implementation\exceptions\camera_exceptions.hpp">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="implementation\exceptions\load_exceptions.hpp">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="implementation\exceptions\model_exceptions.hpp">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="implementation\exceptions\ui_exceptions.hpp">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="implementation\facade\facade.hpp">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="implementation\load\builders\camera\camera_builder.hpp">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="implementation\load\builders\model\model_builder.hpp">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="implementation\load\builders\scene\scene_builder.hpp">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="implementation\load\directors\camera\camera_director.hpp">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="implementation\load\directors\load_director.hpp">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="implementation\load\directors\model\model_director.hpp">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="implementation\load\loaders\camera\camera_loader.hpp">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="implementation\load\loaders\camera\file_camera_loader\file_camera_loader.hpp">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="implementation\load\loaders\model\file_model_loader\file_model_loader.hpp">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="implementation\load\loaders\model\model_loader.hpp">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="implementation\load\loaders\object_loader.hpp">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="implementation\load\loaders\object_loader_creator.hpp">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="implementation\load\solutions\camera\camera_load_solution.hpp">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="implementation\load\solutions\model\model_load_solution.hpp">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="implementation\managers\draw\draw_manager.hpp">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="implementation\managers\load\load_manager.hpp">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="implementation\managers\manager.hpp">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="implementation\managers\scene\scene_manager.hpp">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="implementation\managers\transform\transform_manager.hpp">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="implementation\objects\camera\camera.hpp">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="implementation\objects\composite\composite.hpp">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="implementation\objects\model\model.hpp">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="implementation\objects\model\model_details\edge\edge.hpp">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="implementation\objects\model\model_details\model_details.hpp">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="implementation\objects\model\model_details\point\point.hpp">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="implementation\objects\object.hpp">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="implementation\scene\scene.hpp">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="implementation\visitor\draw_visitor\draw_visitor.hpp">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="implementation\visitor\visitor.hpp">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="gui\qt\design.h">
+      <Filter>Form Files</Filter>
+    </ClInclude>
+    <ClInclude Include="gui\qt\drawer\factory\qt_drawer_factory.hpp">
+      <Filter>Form Files</Filter>
+    </ClInclude>
+    <ClInclude Include="gui\qt\drawer\qt_drawer.hpp">
+      <Filter>Form Files</Filter>
+    </ClInclude>
+    <ClInclude Include="gui\qt\[Last] design.h">
+      <Filter>Form Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <QtMoc Include="gui\qt\mainwindow.h">
+      <Filter>Form Files</Filter>
+    </QtMoc>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="cpp.hint" />
+  </ItemGroup>
+</Project>
