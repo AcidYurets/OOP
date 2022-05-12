@@ -7,9 +7,9 @@
 
 
 #include <memory>
-#include <../../implementation/visitor/draw_visitor/draw_visitor.hpp>
+#include <implementation/visitor/draw_visitor/draw_visitor.hpp>
 #include "model_details/model_details.hpp"
-#include "../../implementation/objects/object.hpp"
+#include "implementation/objects/object.hpp"
 
 class Model : public VisibleObject {
 public:

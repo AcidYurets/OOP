@@ -2,8 +2,8 @@
 // Created by ivaaahn on 23.05.2021.
 //
 
-#include <../../implementation/managers/scene/scene_manager.hpp>
-#include <../../implementation/managers/transform/transform_manager.hpp>
+#include <implementation/managers/scene/scene_manager.hpp>
+#include <implementation/managers/transform/transform_manager.hpp>
 #include "move_camera.hpp"
 
 MoveCamera::MoveCamera(std::size_t camera_id, double shift_x, double shift_y) : camera_id(camera_id), shift_x(shift_x),

@@ -2,8 +2,8 @@
 // Created by ivaaahn on 24.05.2021.
 //
 
-#include <../../implementation/exceptions/load_exceptions.hpp>
-#include "../../implementation/objects/camera/camera.hpp"
+#include <implementation/exceptions/load_exceptions.hpp>
+#include "implementation/objects/camera/camera.hpp"
 #include "scene_manager.hpp"
 
 SceneManager::SceneManager() : scene(std::make_shared<Scene>()) {}

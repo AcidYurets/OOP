@@ -7,7 +7,7 @@
 
 
 #include <memory>
-#include "../../implementation/objects/composite/composite.hpp"
+#include "implementation/objects/composite/composite.hpp"
 
 
 class Scene {

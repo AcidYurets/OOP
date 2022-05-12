@@ -2,9 +2,9 @@
 // Created by ivaaahn on 23.05.2021.
 //
 
-#include <../../implementation/objects/model/model_details/point/point.hpp>
-#include <../../implementation/objects/camera/camera.hpp>
-#include <../../implementation/managers/scene/scene_manager.hpp>
+#include <implementation/objects/model/model_details/point/point.hpp>
+#include <implementation/objects/camera/camera.hpp>
+#include <implementation/managers/scene/scene_manager.hpp>
 #include "add_camera.hpp"
 
 AddCamera::AddCamera(double x_pos, double y_pos, double z_pos) : x_pos(x_pos), y_pos(y_pos), z_pos(z_pos) {}

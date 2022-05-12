@@ -5,7 +5,7 @@
 #include "file_model_loader.hpp"
 
 #include <fstream>
-#include <../../implementation/exceptions/load_exceptions.hpp>
+#include <implementation/exceptions/load_exceptions.hpp>
 
 FileModelLoader::FileModelLoader() : builder(std::make_shared<ModelBuilder>()) {}
 

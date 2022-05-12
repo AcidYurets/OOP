@@ -9,7 +9,7 @@
 #include <vector>
 #include <string>
 
-#include <../../implementation/visitor/visitor.hpp>
+#include <implementation/visitor/visitor.hpp>
 #include "model/model_details/point/point.hpp"
 
 class Object;

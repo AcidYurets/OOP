@@ -6,12 +6,12 @@
 #define __LAB_03_DRAW_MANAGER_HPP__
 
 
-#include "../../implementation/managers/manager.hpp"
-#include "../../implementation/managers/load/load_manager.hpp"
-#include "../../implementation/objects/model/model_details/point/point.hpp"
-#include "../../implementation/objects/model/model.hpp"
-#include "../../implementation/objects/camera/camera.hpp"
-#include "../../implementation/visitor/visitor.hpp"
+#include "implementation/managers/manager.hpp"
+#include "implementation/managers/load/load_manager.hpp"
+#include "implementation/objects/model/model_details/point/point.hpp"
+#include "implementation/objects/model/model.hpp"
+#include "implementation/objects/camera/camera.hpp"
+#include "implementation/visitor/visitor.hpp"
 
 class DrawManager : public Manager {
 public:

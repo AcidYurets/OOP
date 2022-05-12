@@ -2,7 +2,7 @@
 // Created by ivaaahn on 24.05.2021.
 //
 
-#include <../../implementation/exceptions/load_exceptions.hpp>
+#include <implementation/exceptions/load_exceptions.hpp>
 #include "load_manager.hpp"
 
 

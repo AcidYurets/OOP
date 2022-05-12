@@ -9,8 +9,8 @@
 #include <memory>
 #include <utility>
 
-#include "../../implementation/load/loaders/object_loader.hpp"
-#include "../../implementation/objects/object.hpp"
+#include "implementation/load/loaders/object_loader.hpp"
+#include "implementation/objects/object.hpp"
 
 
 class LoadDirector {

@@ -6,7 +6,7 @@
 #define __LAB_03_RENDER_SCENE_HPP__
 
 
-#include <../../implementation/drawer/drawer.hpp>
+#include <implementation/drawer/drawer.hpp>
 #include "../scene_command.hpp"
 
 class RenderScene : public SceneCommand {

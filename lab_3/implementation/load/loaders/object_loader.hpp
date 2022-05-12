@@ -6,7 +6,7 @@
 #define __LAB_03_OBJECT_LOADER_HPP__
 
 
-#include <../../implementation/objects/object.hpp>
+#include <implementation/objects/object.hpp>
 
 class ObjectLoader {
 public:

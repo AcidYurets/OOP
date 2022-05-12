@@ -7,11 +7,11 @@
 
 
 #include <memory>
-#include "../../implementation/objects/model/model_details/point/point.hpp"
-#include "../../implementation/objects/camera/camera.hpp"
-#include "../../implementation/objects/composite/composite.hpp"
-#include "../../implementation/drawer/drawer.hpp"
-#include "../../implementation/visitor/visitor.hpp"
+#include "implementation/objects/model/model_details/point/point.hpp"
+#include "implementation/objects/camera/camera.hpp"
+#include "implementation/objects/composite/composite.hpp"
+#include "implementation/drawer/drawer.hpp"
+#include "implementation/visitor/visitor.hpp"
 
 
 class DrawVisitor : public Visitor {

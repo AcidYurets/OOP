@@ -8,7 +8,7 @@
 #include <map>
 #include <cstddef>
 #include <memory>
-#include "../../implementation/load/loaders/object_loader_creator.hpp"
+#include "implementation/load/loaders/object_loader_creator.hpp"
 
 
 using CallbackMapObject = std::map<size_t, std::shared_ptr<ObjectLoaderCreator>>;

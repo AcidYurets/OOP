@@ -9,7 +9,7 @@
 #include <vector>
 #include "point/point.hpp"
 #include "edge/edge.hpp"
-#include "../../implementation/visitor/draw_visitor/draw_visitor.hpp"
+#include "implementation/visitor/draw_visitor/draw_visitor.hpp"
 
 class ModelDetails {
 public:

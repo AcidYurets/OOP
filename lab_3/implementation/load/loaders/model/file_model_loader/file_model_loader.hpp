@@ -6,7 +6,7 @@
 #define __LAB_03_FILE_MODEL_LOADER_HPP__
 
 
-#include <../../implementation/load/builders/model/model_builder.hpp>
+#include <implementation/load/builders/model/model_builder.hpp>
 #include "../model_loader.hpp"
 
 class FileModelLoader : public ModelLoader {

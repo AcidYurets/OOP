@@ -5,8 +5,8 @@
 #include "file_camera_loader.hpp"
 
 #include <fstream>
-#include <../../implementation/load/builders/camera/camera_builder.hpp>
-#include <../../implementation/exceptions/load_exceptions.hpp>
+#include <implementation/load/builders/camera/camera_builder.hpp>
+#include <implementation/exceptions/load_exceptions.hpp>
 
 FileCameraLoader::FileCameraLoader() : builder(std::make_shared<CameraBuilder>()) {}
 

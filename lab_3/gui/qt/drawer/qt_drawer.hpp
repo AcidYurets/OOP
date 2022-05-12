@@ -6,7 +6,7 @@
 #define __LAB_03_QT_DRAWER_HPP__
 
 
-#include "../../implementation/drawer/drawer.hpp"
+#include "implementation/drawer/drawer.hpp"
 #include <QGraphicsScene>
 #include <memory>
 

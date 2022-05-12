@@ -6,7 +6,7 @@
 #define __LAB_03_LOAD_CAMERA_HPP__
 
 
-#include <../../implementation/commands/camera/camera_command.hpp>
+#include <implementation/commands/camera/camera_command.hpp>
 #include <string>
 
 class LoadCamera : public CameraCommand {

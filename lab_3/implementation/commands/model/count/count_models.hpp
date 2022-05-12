@@ -7,7 +7,7 @@
 
 
 #include <memory>
-#include "../../implementation/commands/model/model_command.hpp"
+#include "implementation/commands/model/model_command.hpp"
 
 class CountModels : public ModelCommand {
 public:

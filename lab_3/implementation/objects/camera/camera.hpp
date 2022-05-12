@@ -5,9 +5,9 @@
 #ifndef __LAB_03_CAMERA_HPP__
 #define __LAB_03_CAMERA_HPP__
 
-#include "../../implementation/objects/object.hpp"
-#include "../../implementation/objects/model/model_details/point/point.hpp"
-#include "../../implementation/visitor/draw_visitor/draw_visitor.hpp"
+#include "implementation/objects/object.hpp"
+#include "implementation/objects/model/model_details/point/point.hpp"
+#include "implementation/visitor/draw_visitor/draw_visitor.hpp"
 
 class Camera : public InvisibleObject {
 public:

@@ -4,7 +4,7 @@
 
 #include "solution.hpp"
 #include <cstddef>
-#include <../../implementation/exceptions/load_exceptions.hpp>
+#include <implementation/exceptions/load_exceptions.hpp>
 
 bool Solution::registerLoaderCreator(size_t id, const std::shared_ptr<ObjectLoaderCreator> &object_loader_creator) {
     return this->callbacks.insert(CallbackMapObject::value_type(id, object_loader_creator)).second;

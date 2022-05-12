@@ -1,13 +1,13 @@
 /********************************************************************************
-** Form generated from reading UI file 'designxIlQkx.ui'
+** Form generated from reading UI file 'designsfVodx.ui'
 **
 ** Created by: Qt User Interface Compiler version 6.2.3
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
 
-#ifndef DESIGNXILQKX_H
-#define DESIGNXILQKX_H
+#ifndef DESIGNSFVODX_H
+#define DESIGNSFVODX_H
 
 #include <QtCore/QLocale>
 #include <QtCore/QVariant>
@@ -93,7 +93,7 @@ public:
     {
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName(QString::fromUtf8("MainWindow"));
-        MainWindow->resize(1345, 929);
+        MainWindow->resize(992, 896);
         QPalette palette;
         QBrush brush(QColor(114, 159, 207, 255));
         brush.setStyle(Qt::SolidPattern);
@@ -603,4 +603,4 @@ namespace Ui {
 
 QT_END_NAMESPACE
 
-#endif // DESIGNXILQKX_H
+#endif // DESIGNSFVODX_H

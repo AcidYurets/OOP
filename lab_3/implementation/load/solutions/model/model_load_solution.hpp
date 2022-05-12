@@ -7,7 +7,7 @@
 
 
 #include <memory>
-#include "../../implementation/load/loaders/object_loader_creator.hpp"
+#include "implementation/load/loaders/object_loader_creator.hpp"
 
 #define MODEL_CFG_PATH "data/configuration/model_load.cfg"
 

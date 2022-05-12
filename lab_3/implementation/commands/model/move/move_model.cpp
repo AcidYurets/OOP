@@ -3,10 +3,10 @@
 //
 
 #include <memory>
-#include <../../implementation/objects/model/model_details/point/point.hpp>
-#include <../../implementation/objects/object.hpp>
-#include <../../implementation/managers/scene/scene_manager.hpp>
-#include <../../implementation/managers/transform/transform_manager.hpp>
+#include <implementation/objects/model/model_details/point/point.hpp>
+#include <implementation/objects/object.hpp>
+#include <implementation/managers/scene/scene_manager.hpp>
+#include <implementation/managers/transform/transform_manager.hpp>
 #include "move_model.hpp"
 
 

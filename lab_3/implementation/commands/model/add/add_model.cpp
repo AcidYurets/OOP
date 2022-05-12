@@ -2,7 +2,7 @@
 // Created by ivaaahn on 23.05.2021.
 //
 
-#include <../../implementation/managers/scene/scene_manager.hpp>
+#include <implementation/managers/scene/scene_manager.hpp>
 #include "add_model.hpp"
 
 void AddModel::execute() {

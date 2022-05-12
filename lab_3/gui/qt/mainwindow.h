@@ -6,12 +6,12 @@
 #include <memory>
 #include "design.h"
 
-#include "../../implementation/commands/command.hpp"
-#include "../../implementation/commands/camera/camera_command.hpp"
-#include "../../implementation/commands/model/model_command.hpp"
-#include "../../implementation/commands/scene/scene_command.hpp"
-#include "../../implementation/drawer/drawer.hpp"
-#include "../../implementation/facade/facade.hpp"
+#include "implementation/commands/command.hpp"
+#include "implementation/commands/camera/camera_command.hpp"
+#include "implementation/commands/model/model_command.hpp"
+#include "implementation/commands/scene/scene_command.hpp"
+#include "implementation/drawer/drawer.hpp"
+#include "implementation/facade/facade.hpp"
 
 
 class MainWindow : public QMainWindow {

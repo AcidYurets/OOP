@@ -7,9 +7,9 @@
 
 
 #include <memory>
-#include <../../implementation/load/directors/load_director.hpp>
-#include "../../implementation/managers/manager.hpp"
-#include "../../implementation/objects/object.hpp"
+#include <implementation/load/directors/load_director.hpp>
+#include "implementation/managers/manager.hpp"
+#include "implementation/objects/object.hpp"
 
 class LoadManager : public Manager {
 public:

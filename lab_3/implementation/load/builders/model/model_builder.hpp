@@ -7,10 +7,10 @@
 
 
 #include <vector>
-#include <../../implementation/objects/model/model_details/point/point.hpp>
-#include <../../implementation/objects/model/model_details/edge/edge.hpp>
+#include <implementation/objects/model/model_details/point/point.hpp>
+#include <implementation/objects/model/model_details/edge/edge.hpp>
 #include <memory>
-#include <../../implementation/objects/model/model.hpp>
+#include <implementation/objects/model/model.hpp>
 
 class ModelBuilder {
 public:

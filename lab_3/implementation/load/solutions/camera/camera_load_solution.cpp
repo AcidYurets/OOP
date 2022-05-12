@@ -3,8 +3,8 @@
 //
 
 #include <fstream>
-#include <../../implementation/exceptions/load_exceptions.hpp>
-#include <../../implementation/config_manager/creator/config_manager_creator.hpp>
+#include <implementation/exceptions/load_exceptions.hpp>
+#include <implementation/config_manager/creator/config_manager_creator.hpp>
 #include "camera_load_solution.hpp"
 
 std::shared_ptr<ObjectLoaderCreator> CameraLoadSolution::getCreator() {

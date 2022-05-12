@@ -2,9 +2,9 @@
 // Created by ivaaahn on 23.05.2021.
 //
 
-#include <../../implementation/objects/model/model_details/point/point.hpp>
-#include <../../implementation/managers/scene/scene_manager.hpp>
-#include <../../implementation/managers/transform/transform_manager.hpp>
+#include <implementation/objects/model/model_details/point/point.hpp>
+#include <implementation/managers/scene/scene_manager.hpp>
+#include <implementation/managers/transform/transform_manager.hpp>
 #include "transform_model.hpp"
 
 

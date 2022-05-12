@@ -7,8 +7,8 @@
 
 
 #include <memory>
-#include "../../implementation/objects/camera/camera.hpp"
-#include "../../implementation/objects/model/model_details/point/point.hpp"
+#include "implementation/objects/camera/camera.hpp"
+#include "implementation/objects/model/model_details/point/point.hpp"
 
 class CameraBuilder {
 public:

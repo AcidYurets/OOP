@@ -8,7 +8,7 @@
 
 #include <memory>
 #include <qdebug>
-#include "../../implementation/commands/command.hpp"
+#include "implementation/commands/command.hpp"
 
 class Facade {
 public:

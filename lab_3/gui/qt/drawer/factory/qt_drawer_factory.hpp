@@ -8,7 +8,7 @@
 #include <memory>
 #include <QGraphicsScene>
 
-#include "../../implementation/drawer/drawer.hpp"
+#include "implementation/drawer/drawer.hpp"
 
 class QtDrawerFactory : public DrawerFactory {
 public:

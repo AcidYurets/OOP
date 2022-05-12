@@ -6,8 +6,8 @@
 #define __LAB_03_SCENE_BUILDER_HPP__
 
 #include <memory>
-#include <../../implementation/objects/object.hpp>
-#include "../../implementation/scene/scene.hpp"
+#include <implementation/objects/object.hpp>
+#include "implementation/scene/scene.hpp"
 
 class SceneBuilder {
 public:

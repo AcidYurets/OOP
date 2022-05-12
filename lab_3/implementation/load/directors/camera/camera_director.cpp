@@ -2,7 +2,7 @@
 // Created by ivaaahn on 26.05.2021.
 //
 
-#include <../../implementation/load/solutions/camera/camera_load_solution.hpp>
+#include <implementation/load/solutions/camera/camera_load_solution.hpp>
 #include "camera_director.hpp"
 
 CameraDirector::CameraDirector() {

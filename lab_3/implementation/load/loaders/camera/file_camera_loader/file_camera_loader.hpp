@@ -6,8 +6,8 @@
 #define __LAB_03_FILE_CAMERA_LOADER_HPP__
 
 
-#include <../../implementation/load/builders/model/model_builder.hpp>
-#include <../../implementation/load/builders/camera/camera_builder.hpp>
+#include <implementation/load/builders/model/model_builder.hpp>
+#include <implementation/load/builders/camera/camera_builder.hpp>
 #include "../camera_loader.hpp"
 
 class FileCameraLoader : public CameraLoader {

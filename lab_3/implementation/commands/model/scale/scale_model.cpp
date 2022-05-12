@@ -2,9 +2,9 @@
 // Created by ivaaahn on 23.05.2021.
 //
 
-#include <../../implementation/objects/model/model_details/point/point.hpp>
-#include <../../implementation/managers/scene/scene_manager.hpp>
-#include <../../implementation/managers/transform/transform_manager.hpp>
+#include <implementation/objects/model/model_details/point/point.hpp>
+#include <implementation/managers/scene/scene_manager.hpp>
+#include <implementation/managers/transform/transform_manager.hpp>
 #include "scale_model.hpp"
 
 ScaleModel::ScaleModel(std::size_t model_id, const double kx, const double ky, const double kz) : model_id(model_id),

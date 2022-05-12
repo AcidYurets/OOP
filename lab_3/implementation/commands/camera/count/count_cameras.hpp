@@ -8,7 +8,7 @@
 #include <memory>
 #include <cstddef>
 
-#include <../../implementation/commands/camera/camera_command.hpp>
+#include <implementation/commands/camera/camera_command.hpp>
 
 class CountCameras : public CameraCommand {
 public:

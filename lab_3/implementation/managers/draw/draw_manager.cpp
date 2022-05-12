@@ -6,8 +6,8 @@
 #include <memory>
 
 #include "draw_manager.hpp"
-#include "../../implementation/scene/scene.hpp"
-#include "../../implementation/visitor/draw_visitor/draw_visitor.hpp"
+#include "implementation/scene/scene.hpp"
+#include "implementation/visitor/draw_visitor/draw_visitor.hpp"
 
 void DrawManager::setDrawer(std::shared_ptr<Drawer> drawer) {
     this->drawer = std::move(drawer);

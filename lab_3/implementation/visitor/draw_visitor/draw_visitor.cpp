@@ -3,11 +3,11 @@
 //
 
 #include <iostream>
-#include <../../implementation/scene/scene.hpp>
+#include <implementation/scene/scene.hpp>
 
 #include "draw_visitor.hpp"
-#include "../../implementation/drawer/drawer.hpp"
-#include "../../implementation/objects/model/model.hpp"
+#include "implementation/drawer/drawer.hpp"
+#include "implementation/objects/model/model.hpp"
 
 
 DrawVisitor::DrawVisitor(const std::shared_ptr<Drawer> &drawer, const std::shared_ptr<Camera> &camera) : drawer(drawer),

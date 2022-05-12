@@ -3,12 +3,12 @@
 //
 
 #include <memory>
-#include <../../implementation/exceptions/load_exceptions.hpp>
+#include <implementation/exceptions/load_exceptions.hpp>
 
 
 #include "registration_maker.hpp"
-#include "../../implementation/load/loaders/model/file_model_loader/file_model_loader.hpp"
-#include "../../implementation/load/loaders/camera/file_camera_loader/file_camera_loader.hpp"
+#include "implementation/load/loaders/model/file_model_loader/file_model_loader.hpp"
+#include "implementation/load/loaders/camera/file_camera_loader/file_camera_loader.hpp"
 
 
 void RegistrationMaker::makeRegistration(Solution &solution) {

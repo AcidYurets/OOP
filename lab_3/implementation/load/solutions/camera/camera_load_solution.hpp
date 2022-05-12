@@ -7,7 +7,7 @@
 
 
 #include <memory>
-#include "../../implementation/load/loaders/object_loader_creator.hpp"
+#include "implementation/load/loaders/object_loader_creator.hpp"
 
 #define CAMERA_CFG_PATH "data/configuration/camera_load.cfg"
 

@@ -1,19 +1,19 @@
 #include <QFileDialog>
 #include <qdebug>
-#include <../../implementation/commands/scene/render/render_scene.hpp>
-#include <../../implementation/exceptions/base_exception.hpp>
-#include <../../implementation/commands/model/load/load_model.hpp>
-#include <../../implementation/commands/model/remove/remove_model.hpp>
-#include <../../implementation/commands/camera/load/load_camera.hpp>
-#include <../../implementation/commands/camera/add/add_camera.hpp>
-#include <../../implementation/commands/camera/remove/remove_camera.hpp>
-#include <../../implementation/commands/camera/set/set_camera.hpp>
-#include <../../implementation/commands/camera/move/move_camera.hpp>
-#include <../../implementation/commands/model/move/move_model.hpp>
-#include <../../implementation/commands/model/scale/scale_model.hpp>
-#include <../../implementation/commands/model/rotate/rotate_model.hpp>
-#include <../../implementation/commands/camera/count/count_cameras.hpp>
-#include <../../implementation/commands/model/count/count_models.hpp>
+#include <implementation/commands/scene/render/render_scene.hpp>
+#include <implementation/exceptions/base_exception.hpp>
+#include <implementation/commands/model/load/load_model.hpp>
+#include <implementation/commands/model/remove/remove_model.hpp>
+#include <implementation/commands/camera/load/load_camera.hpp>
+#include <implementation/commands/camera/add/add_camera.hpp>
+#include <implementation/commands/camera/remove/remove_camera.hpp>
+#include <implementation/commands/camera/set/set_camera.hpp>
+#include <implementation/commands/camera/move/move_camera.hpp>
+#include <implementation/commands/model/move/move_model.hpp>
+#include <implementation/commands/model/scale/scale_model.hpp>
+#include <implementation/commands/model/rotate/rotate_model.hpp>
+#include <implementation/commands/camera/count/count_cameras.hpp>
+#include <implementation/commands/model/count/count_models.hpp>
 
 #include "mainwindow.h"
 

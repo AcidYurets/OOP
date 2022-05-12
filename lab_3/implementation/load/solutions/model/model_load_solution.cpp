@@ -3,9 +3,9 @@
 //
 
 #include <fstream>
-#include <../../implementation/exceptions/load_exceptions.hpp>
+#include <implementation/exceptions/load_exceptions.hpp>
 #include "model_load_solution.hpp"
-#include "../../implementation/config_manager/creator/config_manager_creator.hpp"
+#include "implementation/config_manager/creator/config_manager_creator.hpp"
 
     std::shared_ptr<ObjectLoaderCreator> ModelLoadSolution::getCreator() {
     std::ifstream cfg_file(MODEL_CFG_PATH);
