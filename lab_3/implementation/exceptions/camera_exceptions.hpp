@@ -5,6 +5,8 @@
 #ifndef __LAB_03_CAMERA_EXCEPTIONS_HPP__
 #define __LAB_03_CAMERA_EXCEPTIONS_HPP__
 
+#include "base_exception.hpp"
+
 class LastCameraRemoveError : public BaseException {
 public:
     explicit LastCameraRemoveError(const string &file, const int line, const string &msg) : BaseException(file, line, msg) {
