@@ -83,11 +83,9 @@ private slots:
 
     void on_down_btn_clicked();
 
-    void mousePressEvent(QMouseEvent* mouse);
+    void mouseMoveSlot(double x, double y, double z);
 
-    void mouseReleaseEvent(QMouseEvent* mouse);
-
-    void mouseMoveEvent(QMouseEvent* mouse);
+    void mouseRotateSlot(double x, double y, double z);
 
 private:
 
@@ -100,8 +98,4 @@ private:
 
     size_t last_cam_id = 0;
     size_t last_mod_id = 0;
-
-    QPoint cursor;
-    bool mouseLeftButtonPressed = false;
-    bool mouseRightButtonPressed = false;
 };

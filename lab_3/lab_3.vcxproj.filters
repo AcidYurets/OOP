@@ -354,6 +354,9 @@
     <QtMoc Include="gui\qt\mainwindow.h">
       <Filter>Form Files</Filter>
     </QtMoc>
+    <QtMoc Include="gui\qt\display.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
   </ItemGroup>
   <ItemGroup>
     <None Include="cpp.hint" />

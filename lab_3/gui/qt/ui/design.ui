@@ -309,7 +309,7 @@
      </widget>
     </item>
     <item row="0" column="0" colspan="7">
-     <widget class="QGraphicsView" name="graphicsView">
+     <widget class="Display" name="display">
       <property name="font">
        <font>
         <family>Arial</family>
@@ -999,6 +999,13 @@
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>Display</class>
+   <extends>QGraphicsView</extends>
+   <header>display.h</header>
+  </customwidget>
+ </customwidgets>
  <tabstops>
   <tabstop>dx_box</tabstop>
   <tabstop>dy_box</tabstop>

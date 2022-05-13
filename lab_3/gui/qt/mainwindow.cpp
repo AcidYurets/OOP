@@ -28,19 +28,27 @@ MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent), ui(new Ui::MainWi
 
     this->facade = std::make_shared<Facade>(Facade());
 
-    mouseLeftButtonPressed = false;
-    mouseRightButtonPressed = false;
+    
+    connect(&*this->ui->display, SIGNAL(moveSignal(double, double, double)), 
+        &*this, SLOT(mouseMoveSlot(double, double, double)));
+
+    connect(&*this->ui->display, SIGNAL(rotateSignal(double, double, double)),
+        &*this, SLOT(mouseRotateSlot(double, double, double)));
 }
 
 void MainWindow::setupScene() {
     this->scene = std::make_shared<QGraphicsScene>(this);
-    ui->graphicsView->setScene(this->scene.get());
-    ui->graphicsView->setAlignment(Qt::AlignTop | Qt::AlignLeft);
+    ui->display->setScene(this->scene.get());
+    ui->display->setAlignment(Qt::AlignTop | Qt::AlignLeft);
+    //!!
+    ui->display->setInteractive(true);
+    //!!
 
-    this->scene->setSceneRect(0, 0, ui->graphicsView->width(), ui->graphicsView->height());
+    this->scene->setSceneRect(0, 0, ui->display->width(), ui->display->height());
 
     auto factory = std::make_shared<QtDrawerFactory>(this->scene);
     this->drawer = factory->createDrawer();
+
 }
 
 void MainWindow::updateScene() {
@@ -202,7 +210,7 @@ void MainWindow::on_load_camera_btn_clicked() {
 }
 
 void MainWindow::on_add_camera_btn_clicked() {
-    auto r_content = ui->graphicsView->contentsRect();
+    auto r_content = ui->display->contentsRect();
     auto add_camera_cmd = std::make_shared<AddCamera>(-r_content.width() / 2.0, -r_content.height() / 2.0, 0.0);
 
     try
@@ -416,74 +424,42 @@ void MainWindow::on_left_btn_clicked() {
     }
 }
 
-void MainWindow::mousePressEvent(QMouseEvent* mouse) {
+void MainWindow::mouseMoveSlot(double dx, double dy, double dz) {
+    if (!this->checkCamAndModel()) return;
 
-    cursor = mouse->pos();
-
-    if (mouse->button() == Qt::LeftButton)
-        mouseLeftButtonPressed = true;
-
-    if (mouse->button() == Qt::RightButton)
-        mouseRightButtonPressed = true;
-
-    mouse->accept();
-}
-
-void MainWindow::mouseReleaseEvent(QMouseEvent* mouse) {
-
-    mouseLeftButtonPressed = false;
-
-    mouseRightButtonPressed = false;
-
-    mouse->accept();
-}
-
-void MainWindow::mouseMoveEvent(QMouseEvent* mouse) {
-    double dx = mouse->x() - cursor.x();
-    double dy = mouse->y() - cursor.y();
-
-    cursor = mouse->pos();
-
-    if (mouseLeftButtonPressed) {
-        if (!this->checkCamAndModel()) return;
-
-        auto move_model_cmd = std::make_shared<MoveModel>(this->getCurrModelID(), dx, dy, 0);
-        try
-        {
-            this->facade->execute(move_model_cmd);
-            this->updateScene();
-        }
-        catch (const BaseException& ex)
-        {
-            QMessageBox::warning(this, "Error", QString(ex.what()));
-        }
+    auto move_model_cmd = std::make_shared<MoveModel>(this->getCurrModelID(), dx, dy, dz);
+    try
+    {
+        this->facade->execute(move_model_cmd);
+        this->updateScene();
     }
-
-    if (mouseRightButtonPressed) {
-        if (!this->checkCamAndModel()) return;
-
-        auto rotate_model_cmd = std::make_shared<RotateModel>(this->getCurrModelID(), 0.01 * dx, 0.01 * dy, 0);
-        try
-        {
-            this->facade->execute(rotate_model_cmd);
-            this->updateScene();
-        }
-        catch (BaseException& ex)
-        {
-            QMessageBox::warning(this, "Error", QString(ex.what()));
-        }
+    catch (const BaseException& ex)
+    {
+        QMessageBox::warning(this, "Error", QString(ex.what()));
     }
-
-    mouse->accept();
 }
 
+void MainWindow::mouseRotateSlot(double dx, double dy, double dz) {
+    if (!this->checkCamAndModel()) return;
+
+    auto rotate_model_cmd = std::make_shared<RotateModel>(this->getCurrModelID(), 0.1 * dx, 0.1 * dy, 0);
+    try
+    {
+        this->facade->execute(rotate_model_cmd);
+        this->updateScene();
+    }
+    catch (BaseException& ex)
+    {
+        QMessageBox::warning(this, "Error", QString(ex.what()));
+    }
+}
 
 void MainWindow::resizeEvent(QResizeEvent* event) {
     QWidget::resizeEvent(event);
 
-    this->scene->setSceneRect(0, 0, ui->graphicsView->width(), ui->graphicsView->height());
+    this->scene->setSceneRect(0, 0, ui->display->width(), ui->display->height());
 
-    auto r_content = ui->graphicsView->contentsRect();
+    auto r_content = ui->display->contentsRect();
     this->scene->setSceneRect(0, 0, r_content.width(), r_content.height());
 }
 

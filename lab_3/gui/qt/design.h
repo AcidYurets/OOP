@@ -1,20 +1,19 @@
 /********************************************************************************
-** Form generated from reading UI file 'designsfVodx.ui'
+** Form generated from reading UI file 'designPkTsWy.ui'
 **
 ** Created by: Qt User Interface Compiler version 6.2.3
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
 
-#ifndef DESIGNSFVODX_H
-#define DESIGNSFVODX_H
+#ifndef DESIGNPKTSWY_H
+#define DESIGNPKTSWY_H
 
 #include <QtCore/QLocale>
 #include <QtCore/QVariant>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QDoubleSpinBox>
 #include <QtWidgets/QFrame>
-#include <QtWidgets/QGraphicsView>
 #include <QtWidgets/QGridLayout>
 #include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QLabel>
@@ -24,6 +23,7 @@
 #include <QtWidgets/QStatusBar>
 #include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QWidget>
+#include "display.h"
 
 QT_BEGIN_NAMESPACE
 
@@ -39,7 +39,7 @@ public:
     QPushButton *add_camera_btn;
     QPushButton *down_btn;
     QPushButton *right_btn;
-    QGraphicsView *graphicsView;
+    Display *display;
     QFrame *frame_4;
     QVBoxLayout *verticalLayout;
     QFrame *move_label;
@@ -182,11 +182,11 @@ public:
 
         gridLayout->addWidget(right_btn, 1, 6, 1, 1);
 
-        graphicsView = new QGraphicsView(centralwidget);
-        graphicsView->setObjectName(QString::fromUtf8("graphicsView"));
-        graphicsView->setFont(font);
+        display = new Display(centralwidget);
+        display->setObjectName(QString::fromUtf8("display"));
+        display->setFont(font);
 
-        gridLayout->addWidget(graphicsView, 0, 0, 1, 7);
+        gridLayout->addWidget(display, 0, 0, 1, 7);
 
         frame_4 = new QFrame(centralwidget);
         frame_4->setObjectName(QString::fromUtf8("frame_4"));
@@ -603,4 +603,4 @@ namespace Ui {
 
 QT_END_NAMESPACE
 
-#endif // DESIGNSFVODX_H
+#endif // DESIGNPKTSWY_H
