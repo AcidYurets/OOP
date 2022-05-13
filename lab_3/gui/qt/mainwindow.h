@@ -3,6 +3,7 @@
 #include <QMainWindow>
 #include <QGraphicsScene>
 #include <QMessageBox>
+#include <QtWidgets>
 #include <memory>
 #include "design.h"
 
@@ -82,6 +83,12 @@ private slots:
 
     void on_down_btn_clicked();
 
+    void mousePressEvent(QMouseEvent* mouse);
+
+    void mouseReleaseEvent(QMouseEvent* mouse);
+
+    void mouseMoveEvent(QMouseEvent* mouse);
+
 private:
 
     Ui::MainWindow *ui;
@@ -93,4 +100,8 @@ private:
 
     size_t last_cam_id = 0;
     size_t last_mod_id = 0;
+
+    QPoint cursor;
+    bool mouseLeftButtonPressed = false;
+    bool mouseRightButtonPressed = false;
 };
