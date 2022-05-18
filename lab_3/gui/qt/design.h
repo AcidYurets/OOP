@@ -1,13 +1,13 @@
 /********************************************************************************
-** Form generated from reading UI file 'designPkTsWy.ui'
+** Form generated from reading UI file 'designdxAUGS.ui'
 **
 ** Created by: Qt User Interface Compiler version 6.2.3
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
 
-#ifndef DESIGNPKTSWY_H
-#define DESIGNPKTSWY_H
+#ifndef DESIGNDXAUGS_H
+#define DESIGNDXAUGS_H
 
 #include <QtCore/QLocale>
 #include <QtCore/QVariant>
@@ -93,7 +93,7 @@ public:
     {
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName(QString::fromUtf8("MainWindow"));
-        MainWindow->resize(992, 896);
+        MainWindow->resize(953, 777);
         QPalette palette;
         QBrush brush(QColor(114, 159, 207, 255));
         brush.setStyle(Qt::SolidPattern);
@@ -190,7 +190,7 @@ public:
 
         frame_4 = new QFrame(centralwidget);
         frame_4->setObjectName(QString::fromUtf8("frame_4"));
-        QSizePolicy sizePolicy(QSizePolicy::Minimum, QSizePolicy::Fixed);
+        QSizePolicy sizePolicy(QSizePolicy::Minimum, QSizePolicy::Maximum);
         sizePolicy.setHorizontalStretch(0);
         sizePolicy.setVerticalStretch(0);
         sizePolicy.setHeightForWidth(frame_4->sizePolicy().hasHeightForWidth());
@@ -202,12 +202,14 @@ public:
         verticalLayout->setObjectName(QString::fromUtf8("verticalLayout"));
         move_label = new QFrame(frame_4);
         move_label->setObjectName(QString::fromUtf8("move_label"));
+        move_label->setEnabled(true);
         QSizePolicy sizePolicy1(QSizePolicy::Preferred, QSizePolicy::Fixed);
         sizePolicy1.setHorizontalStretch(0);
         sizePolicy1.setVerticalStretch(0);
         sizePolicy1.setHeightForWidth(move_label->sizePolicy().hasHeightForWidth());
         move_label->setSizePolicy(sizePolicy1);
         move_label->setFont(font);
+        move_label->setAutoFillBackground(false);
         move_label->setFrameShape(QFrame::StyledPanel);
         move_label->setFrameShadow(QFrame::Raised);
         gridLayout_5 = new QGridLayout(move_label);
@@ -344,8 +346,11 @@ public:
 
         frame_3 = new QFrame(frame_4);
         frame_3->setObjectName(QString::fromUtf8("frame_3"));
-        sizePolicy.setHeightForWidth(frame_3->sizePolicy().hasHeightForWidth());
-        frame_3->setSizePolicy(sizePolicy);
+        QSizePolicy sizePolicy2(QSizePolicy::Minimum, QSizePolicy::Fixed);
+        sizePolicy2.setHorizontalStretch(0);
+        sizePolicy2.setVerticalStretch(0);
+        sizePolicy2.setHeightForWidth(frame_3->sizePolicy().hasHeightForWidth());
+        frame_3->setSizePolicy(sizePolicy2);
         frame_3->setFont(font);
         frame_3->setFrameShape(QFrame::StyledPanel);
         frame_3->setFrameShadow(QFrame::Raised);
@@ -424,12 +429,12 @@ public:
 
         objects_list = new QListWidget(frame);
         objects_list->setObjectName(QString::fromUtf8("objects_list"));
-        QSizePolicy sizePolicy2(QSizePolicy::Maximum, QSizePolicy::Expanding);
-        sizePolicy2.setHorizontalStretch(0);
-        sizePolicy2.setVerticalStretch(0);
-        sizePolicy2.setHeightForWidth(objects_list->sizePolicy().hasHeightForWidth());
-        objects_list->setSizePolicy(sizePolicy2);
-        objects_list->setMaximumSize(QSize(200, 16777215));
+        QSizePolicy sizePolicy3(QSizePolicy::Maximum, QSizePolicy::Expanding);
+        sizePolicy3.setHorizontalStretch(0);
+        sizePolicy3.setVerticalStretch(0);
+        sizePolicy3.setHeightForWidth(objects_list->sizePolicy().hasHeightForWidth());
+        objects_list->setSizePolicy(sizePolicy3);
+        objects_list->setMaximumSize(QSize(200, 300));
 
         verticalLayout_2->addWidget(objects_list);
 
@@ -441,11 +446,11 @@ public:
 
         clear_scene_btn = new QPushButton(frame);
         clear_scene_btn->setObjectName(QString::fromUtf8("clear_scene_btn"));
-        QSizePolicy sizePolicy3(QSizePolicy::Ignored, QSizePolicy::Fixed);
-        sizePolicy3.setHorizontalStretch(0);
-        sizePolicy3.setVerticalStretch(0);
-        sizePolicy3.setHeightForWidth(clear_scene_btn->sizePolicy().hasHeightForWidth());
-        clear_scene_btn->setSizePolicy(sizePolicy3);
+        QSizePolicy sizePolicy4(QSizePolicy::Ignored, QSizePolicy::Fixed);
+        sizePolicy4.setHorizontalStretch(0);
+        sizePolicy4.setVerticalStretch(0);
+        sizePolicy4.setHeightForWidth(clear_scene_btn->sizePolicy().hasHeightForWidth());
+        clear_scene_btn->setSizePolicy(sizePolicy4);
         clear_scene_btn->setFont(font);
 
         verticalLayout_2->addWidget(clear_scene_btn);
@@ -603,4 +608,4 @@ namespace Ui {
 
 QT_END_NAMESPACE
 
-#endif // DESIGNPKTSWY_H
+#endif // DESIGNDXAUGS_H
