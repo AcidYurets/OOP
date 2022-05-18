@@ -1,5 +1,5 @@
 //
-// Created by ivaaahn on 30.05.2021.
+
 //
 
 #include "qt_drawer.hpp"

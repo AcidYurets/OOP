@@ -1,5 +1,5 @@
 //
-// Created by ivaaahn on 30.05.2021.
+
 //
 
 #ifndef __LAB_03_QT_DRAWER_FACTORY_HPP__

@@ -1,5 +1,5 @@
 //
-// Created by ivaaahn on 31.05.2021.
+
 //
 
 #ifndef __LAB_03_BASE_EXCEPTION_HPP__

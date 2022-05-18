@@ -1,5 +1,5 @@
 //
-// Created by ivaaahn on 31.05.2021.
+
 //
 
 #ifndef __LAB_03_MODEL_EXCEPTIONS_HPP__

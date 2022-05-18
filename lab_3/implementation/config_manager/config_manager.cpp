@@ -1,5 +1,5 @@
 //
-// Created by ivaaahn on 26.05.2021.
+
 //
 
 #include "config_manager.hpp"

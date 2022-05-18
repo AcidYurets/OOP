@@ -1,5 +1,5 @@
 //
-// Created by ivaaahn on 28.05.2021.
+
 //
 
 #ifndef __LAB_03_CAMERA_BUILDER_HPP__

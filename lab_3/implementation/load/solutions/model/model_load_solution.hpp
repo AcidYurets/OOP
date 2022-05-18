@@ -1,5 +1,5 @@
 //
-// Created by ivaaahn on 26.05.2021.
+
 //
 
 #ifndef __LAB_03_MODEL_LOAD_SOLUTION_HPP__

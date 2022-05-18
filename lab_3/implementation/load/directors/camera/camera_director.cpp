@@ -1,5 +1,5 @@
 //
-// Created by ivaaahn on 26.05.2021.
+
 //
 
 #include <implementation/load/solutions/camera/camera_load_solution.hpp>
