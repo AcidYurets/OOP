@@ -1,7 +1,4 @@
-//
-// Created by ivaaahn on 23.05.2021.
-//
-
+#include <implementation/managers/singleton.hpp>
 #include <implementation/objects/model/model_details/point/point.hpp>
 #include <implementation/objects/camera/camera.hpp>
 #include <implementation/managers/scene/scene_manager.hpp>
@@ -13,10 +10,10 @@ void AddCamera::execute() {
     Point cam_pos(x_pos, y_pos, z_pos);
 
     auto camera = std::make_shared<Camera>();
-    auto scene_manager = SceneManagerCreator().getManager();
-    auto scene = scene_manager->getScene();
+    decltype(auto) scene_manager = Singleton<SceneManager>::instance();
+    auto scene = scene_manager.getScene();
 
     camera->transform(cam_pos, cam_pos, cam_pos);
     scene->addObject(camera);
-    scene_manager->setMainCamera(scene->end() - 1);
+    scene_manager.setMainCamera(scene->end() - 1);
 }

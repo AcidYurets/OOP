@@ -1,7 +1,3 @@
-//
-// Created by ivaaahn on 24.05.2021.
-//
-
 #ifndef __LAB_03_SCENE_MANAGER_HPP__
 #define __LAB_03_SCENE_MANAGER_HPP__
 
@@ -34,16 +30,6 @@ public:
 private:
     std::shared_ptr<Scene> scene;
     std::weak_ptr<Camera> main_camera;
-};
-
-class SceneManagerCreator {
-public:
-    std::shared_ptr<SceneManager> getManager();
-
-private:
-    void createManager();
-
-    std::shared_ptr<SceneManager> manager;
 };
 
 #endif //__LAB_03_SCENE_MANAGER_HPP__

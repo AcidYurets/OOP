@@ -1,7 +1,4 @@
-//
-// Created by ivaaahn on 23.05.2021.
-//
-
+#include <implementation/managers/singleton.hpp>
 #include <implementation/objects/model/model_details/point/point.hpp>
 #include <implementation/managers/scene/scene_manager.hpp>
 #include <implementation/managers/transform/transform_manager.hpp>
@@ -16,13 +13,13 @@ void ScaleModel::execute() {
     Point scale(kx, ky, kz);
     Point rotate(0, 0, 0);
 
-    auto scene_manager = SceneManagerCreator().getManager();
-    auto transform_manager = TransformManagerCreator().getManager();
+    decltype(auto) scene_manager = Singleton<SceneManager>::instance();
+    decltype(auto) transform_manager = Singleton<TransformManager>::instance();
 
-    auto models_iter = scene_manager->getScene()->begin();
+    auto models_iter = scene_manager.getScene()->begin();
     std::advance(models_iter, model_id);
 
     auto model = *models_iter;
 //    std::shared_ptr<Object> model = scene_manager->getScene()->getObjects().at(model_id);
-    transform_manager->transform(model, move, scale, rotate);
+    transform_manager.transform(model, move, scale, rotate);
 }

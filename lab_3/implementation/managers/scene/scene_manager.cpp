@@ -1,5 +1,5 @@
 //
-// Created by ivaaahn on 24.05.2021.
+
 //
 
 #include <implementation/exceptions/load_exceptions.hpp>
@@ -27,15 +27,3 @@ void SceneManager::setScene(std::shared_ptr<Scene> new_scene) {
 void SceneManager::setMainCamera(const Iterator &it) {
     this->main_camera = std::dynamic_pointer_cast<Camera>(*it);
 }
-
-void SceneManagerCreator::createManager() {
-    static auto manager = std::make_shared<SceneManager>();
-    this->manager = manager;
-}
-
-std::shared_ptr<SceneManager> SceneManagerCreator::getManager() {
-    if (this->manager == nullptr) this->createManager();
-
-    return this->manager;
-}
-

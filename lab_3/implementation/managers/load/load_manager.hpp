@@ -1,7 +1,3 @@
-//
-// Created by ivaaahn on 24.05.2021.
-//
-
 #ifndef __LAB_03_LOAD_MANAGER_HPP__
 #define __LAB_03_LOAD_MANAGER_HPP__
 
@@ -28,16 +24,6 @@ public:
 
 private:
     std::shared_ptr<LoadDirector> director;
-};
-
-class LoadManagerCreator {
-public:
-    std::shared_ptr<LoadManager> getManager();
-
-private:
-    void createManager();
-
-    std::shared_ptr<LoadManager> manager;
 };
 
 

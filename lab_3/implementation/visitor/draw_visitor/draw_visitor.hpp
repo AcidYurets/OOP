@@ -1,7 +1,3 @@
-//
-// Created by ivaaahn on 30.05.2021.
-//
-
 #ifndef __LAB_03_DRAW_VISITOR_HPP__
 #define __LAB_03_DRAW_VISITOR_HPP__
 
@@ -21,7 +17,6 @@ public:
     void visit(const Camera &camera) override;
     void visit(const Composite &composite) override;
     void visit(const Model &model) override;
-    void visit(const Scene &scene) override;
 
 private:
     std::shared_ptr<Drawer> drawer;

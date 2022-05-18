@@ -1,7 +1,3 @@
-//
-// Created by ivaaahn on 31.05.2021.
-//
-
 #ifndef __LAB_03_LOAD_CAMERA_HPP__
 #define __LAB_03_LOAD_CAMERA_HPP__
 

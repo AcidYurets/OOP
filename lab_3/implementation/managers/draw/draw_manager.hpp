@@ -1,7 +1,3 @@
-//
-// Created by ivaaahn on 24.05.2021.
-//
-
 #ifndef __LAB_03_DRAW_MANAGER_HPP__
 #define __LAB_03_DRAW_MANAGER_HPP__
 
@@ -32,16 +28,6 @@ public:
 private:
     std::shared_ptr<Drawer> drawer;
     std::shared_ptr<Camera> camera;
-};
-
-class DrawManagerCreator {
-public:
-    std::shared_ptr<DrawManager> getManager();
-
-private:
-    void createManager();
-
-    std::shared_ptr<DrawManager> manager;
 };
 
 #endif //__LAB_03_DRAW_MANAGER_HPP__

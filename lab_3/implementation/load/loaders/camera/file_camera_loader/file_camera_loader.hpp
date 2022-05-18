@@ -1,5 +1,5 @@
 //
-// Created by ivaaahn on 24.05.2021.
+
 //
 
 #ifndef __LAB_03_FILE_CAMERA_LOADER_HPP__

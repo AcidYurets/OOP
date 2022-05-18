@@ -1,8 +1,4 @@
-//
-// Created by ivaaahn on 31.05.2021.
-//
-
-#include <utility>
+#include <implementation/managers/singleton.hpp>
 #include <implementation/managers/load/load_manager.hpp>
 #include <implementation/managers/scene/scene_manager.hpp>
 #include <implementation/load/directors/camera/camera_director.hpp>
@@ -11,11 +7,11 @@
 LoadCamera::LoadCamera(std::string filename) : filename(std::move(filename)) {}
 
 void LoadCamera::execute() {
-    auto load_manager = LoadManagerCreator().getManager();
-    load_manager->setDirector(std::make_shared<CameraDirector>());
+    decltype(auto) load_manager = Singleton<LoadManager>::instance();
+    decltype(auto) scene_manager = Singleton<SceneManager>::instance();
 
-    auto camera = load_manager->load(filename);
-    auto scene_manager = SceneManagerCreator().getManager();
+    load_manager.setDirector(std::make_shared<CameraDirector>());
 
-    scene_manager->getScene()->addObject(camera);
+    auto camera = load_manager.load(filename);
+    scene_manager.getScene()->addObject(camera);
 }

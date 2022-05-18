@@ -37,7 +37,5 @@ Point DrawVisitor::projectPoint(const Point &point) {
 
 void DrawVisitor::visit(const Camera &camera) {}
 
-void DrawVisitor::visit(const Scene &scene) {}
-
 void DrawVisitor::visit(const Composite &composite) {}
 

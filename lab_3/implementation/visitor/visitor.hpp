@@ -1,5 +1,5 @@
 //
-// Created by ivaaahn on 24.05.2021.
+
 //
 
 #ifndef __LAB_03_VISITOR_HPP__
@@ -18,7 +18,6 @@ public:
     virtual void visit(const Camera &camera) = 0;
     virtual void visit(const Model &model) = 0;
     virtual void visit(const Composite &composite) = 0;
-    virtual void visit(const Scene &scene) = 0;
 };
 
 

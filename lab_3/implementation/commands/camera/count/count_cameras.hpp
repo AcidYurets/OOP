@@ -1,7 +1,3 @@
-//
-// Created by ivaaahn on 23.05.2021.
-//
-
 #ifndef __LAB_03_COUNT_CAMERAS_HPP__
 #define __LAB_03_COUNT_CAMERAS_HPP__
 

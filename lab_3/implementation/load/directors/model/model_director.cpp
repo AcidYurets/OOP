@@ -1,7 +1,3 @@
-//
-// Created by ivaaahn on 24.05.2021.
-//
-
 #include <implementation/load/solutions/model/model_load_solution.hpp>
 #include "model_director.hpp"
 

@@ -1,7 +1,3 @@
-//
-// Created by ivaaahn on 24.05.2021.
-//
-
 #include <utility>
 #include <memory>
 
@@ -20,15 +16,4 @@ void DrawManager::setCamera(std::shared_ptr<Camera> camera) {
 void DrawManager::draw(const std::shared_ptr<Scene> &scene) {
     auto visitor = std::make_shared<DrawVisitor>(this->drawer, this->camera);
     scene->accept(visitor);
-}
-
-void DrawManagerCreator::createManager() {
-    static auto manager = std::make_shared<DrawManager>();
-    this->manager = manager;
-}
-
-std::shared_ptr<DrawManager> DrawManagerCreator::getManager() {
-    if (this->manager == nullptr) this->createManager();
-
-    return this->manager;
 }

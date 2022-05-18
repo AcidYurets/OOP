@@ -1,5 +1,5 @@
 //
-// Created by ivaaahn on 24.05.2021.
+
 //
 
 #include "file_model_loader.hpp"
