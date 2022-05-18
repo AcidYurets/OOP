@@ -1,19 +1,15 @@
-//
-// Created by ivaaahn on 30.05.2021.
-//
-
 #include <iostream>
 #include <implementation/scene/scene.hpp>
 
 #include "draw_visitor.hpp"
 #include "implementation/drawer/drawer.hpp"
-#include "implementation/objects/model/model.hpp"
+#include "implementation/objects/model/wireframe_model/wireframe_model.hpp"
 
 
 DrawVisitor::DrawVisitor(const std::shared_ptr<Drawer> &drawer, const std::shared_ptr<Camera> &camera) : drawer(drawer),
                                                                                                          camera(camera) {}
 
-void DrawVisitor::visit(const Model &model) {
+void DrawVisitor::visit(const WireframeModel &model) {
     auto points = model.getDetails()->getPoints();
 
     for (const auto &edge : model.getDetails()->getEdges())

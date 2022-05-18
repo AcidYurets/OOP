@@ -1,7 +1,3 @@
-//
-
-//
-
 #ifndef __LAB_03_OBJECT_HPP__
 #define __LAB_03_OBJECT_HPP__
 
@@ -10,7 +6,7 @@
 #include <string>
 
 #include <implementation/visitor/visitor.hpp>
-#include "model/model_details/point/point.hpp"
+#include "model/wireframe_model/model_details/point/point.hpp"
 
 class Object;
 

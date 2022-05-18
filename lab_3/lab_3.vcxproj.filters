@@ -128,18 +128,6 @@
     <ClCompile Include="implementation\objects\composite\composite.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="implementation\objects\model\model.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="implementation\objects\model\model_details\edge\edge.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="implementation\objects\model\model_details\model_details.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="implementation\objects\model\model_details\point\point.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="implementation\scene\scene.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -156,6 +144,18 @@
       <Filter>Form Files</Filter>
     </ClCompile>
     <ClCompile Include="main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="implementation\objects\model\wireframe_model\model_details\edge\edge.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="implementation\objects\model\wireframe_model\model_details\point\point.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="implementation\objects\model\wireframe_model\model_details\wireframe_model_details.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="implementation\objects\model\wireframe_model\wireframe_model.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -316,15 +316,6 @@
     <ClInclude Include="implementation\objects\model\model.hpp">
       <Filter>Source Files</Filter>
     </ClInclude>
-    <ClInclude Include="implementation\objects\model\model_details\edge\edge.hpp">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="implementation\objects\model\model_details\model_details.hpp">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="implementation\objects\model\model_details\point\point.hpp">
-      <Filter>Source Files</Filter>
-    </ClInclude>
     <ClInclude Include="implementation\objects\object.hpp">
       <Filter>Source Files</Filter>
     </ClInclude>
@@ -350,6 +341,21 @@
       <Filter>Form Files</Filter>
     </ClInclude>
     <ClInclude Include="implementation\managers\singleton.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="implementation\objects\model\wireframe _model\wireframe _model.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="implementation\objects\model\wireframe_model\model_details\edge\edge.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="implementation\objects\model\wireframe_model\model_details\point\point.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="implementation\objects\model\wireframe_model\model_details\wireframe_model_details.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="implementation\objects\model\wireframe_model\wireframe_model.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

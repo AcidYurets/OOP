@@ -1,7 +1,3 @@
-//
-
-//
-
 #ifndef __LAB_03_POINT_HPP__
 #define __LAB_03_POINT_HPP__
 

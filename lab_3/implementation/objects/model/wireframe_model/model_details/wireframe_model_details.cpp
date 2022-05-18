@@ -1,38 +1,34 @@
-//
-
-//
-
 #include <iostream>
-#include "model_details.hpp"
+#include "wireframe_model_details.hpp"
 
-ModelDetails::ModelDetails(std::vector<Point> &points, std::vector<Edge> &edges)
+WireframeModelDetails::WireframeModelDetails(std::vector<Point> &points, std::vector<Edge> &edges)
         : center{}, points(points), edges(edges) {}
 
-ModelDetails::ModelDetails(Point &center, std::vector<Point> &points, std::vector<Edge> &edges) : center(center),
+WireframeModelDetails::WireframeModelDetails(Point &center, std::vector<Point> &points, std::vector<Edge> &edges) : center(center),
                                                                                                   points(points),
                                                                                                   edges(edges) {}
 
-void ModelDetails::addPoint(const Point &point) {
+void WireframeModelDetails::addPoint(const Point &point) {
     this->points.push_back(point);
 }
 
-void ModelDetails::addEdge(const Edge &edge) {
+void WireframeModelDetails::addEdge(const Edge &edge) {
     this->edges.push_back(edge);
 }
 
-const Point &ModelDetails::getCenter() const {
+const Point &WireframeModelDetails::getCenter() const {
     return this->center;
 }
 
-const std::vector<Point> &ModelDetails::getPoints() const {
+const std::vector<Point> &WireframeModelDetails::getPoints() const {
     return this->points;
 }
 
-const std::vector<Edge> &ModelDetails::getEdges() const {
+const std::vector<Edge> &WireframeModelDetails::getEdges() const {
     return this->edges;
 }
 
-void ModelDetails::transform(const Point &move_params, const Point &scale_params, const Point &rotate_params) {
+void WireframeModelDetails::transform(const Point &move_params, const Point &scale_params, const Point &rotate_params) {
     this->move(-this->center);
 
     for (auto &point: points)
@@ -45,21 +41,21 @@ void ModelDetails::transform(const Point &move_params, const Point &scale_params
     this->move(this->center);
 }
 
-void ModelDetails::setCenter(const Point &point) {
+void WireframeModelDetails::setCenter(const Point &point) {
     this->center = point;
 }
 
-void ModelDetails::move(const Point &move_params) {
+void WireframeModelDetails::move(const Point &move_params) {
     for (auto &point: points)
         point.move(move_params.getX(), move_params.getY(), move_params.getZ());
 }
 
-void ModelDetails::scale(const Point &scale_params) {
+void WireframeModelDetails::scale(const Point &scale_params) {
     for (auto &point: points)
         point.scale(scale_params.getX(), scale_params.getY(), scale_params.getZ());
 }
 
-void ModelDetails::rotate(const Point &rotate_params) {
+void WireframeModelDetails::rotate(const Point &rotate_params) {
     for (auto &point: points)
         point.rotate(rotate_params.getX(), rotate_params.getY(), rotate_params.getZ());
 }

@@ -7,10 +7,10 @@
 
 
 #include <vector>
-#include <implementation/objects/model/model_details/point/point.hpp>
-#include <implementation/objects/model/model_details/edge/edge.hpp>
+#include <implementation/objects/model/wireframe_model/model_details/point/point.hpp>
+#include <implementation/objects/model/wireframe_model/model_details/edge/edge.hpp>
 #include <memory>
-#include <implementation/objects/model/model.hpp>
+#include <implementation/objects/model/wireframe_model/wireframe_model.hpp>
 
 class ModelBuilder {
 public:
@@ -31,7 +31,7 @@ public:
     std::shared_ptr<Model> get();
 
 private:
-    std::shared_ptr<ModelDetails> model_details;
+    std::shared_ptr<WireframeModelDetails> model_details;
 };
 
 

@@ -1,7 +1,3 @@
-//
-// Created by ivaaahn on 28.05.2021.
-//
-
 #include "model_builder.hpp"
 
 ModelBuilder::ModelBuilder() : model_details(nullptr) {}
@@ -11,7 +7,7 @@ bool ModelBuilder::isBuild() {
 }
 
 void ModelBuilder::reset() {
-    this->model_details = std::make_shared<ModelDetails>();
+    this->model_details = std::make_shared<WireframeModelDetails>();
 }
 
 void ModelBuilder::buildCenter(const Point &point) {
@@ -27,5 +23,5 @@ void ModelBuilder::buildEdge(const Edge &edge) {
 }
 
 std::shared_ptr<Model> ModelBuilder::get() {
-    return std::make_shared<Model>(this->model_details);
+    return std::make_shared<WireframeModel>(this->model_details);
 }

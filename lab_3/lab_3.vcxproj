@@ -49,15 +49,16 @@
     <ClCompile Include="implementation\managers\transform\transform_manager.cpp" />
     <ClCompile Include="implementation\objects\camera\camera.cpp" />
     <ClCompile Include="implementation\objects\composite\composite.cpp" />
-    <ClCompile Include="implementation\objects\model\model.cpp" />
-    <ClCompile Include="implementation\objects\model\model_details\edge\edge.cpp" />
-    <ClCompile Include="implementation\objects\model\model_details\model_details.cpp" />
-    <ClCompile Include="implementation\objects\model\model_details\point\point.cpp" />
+    <ClCompile Include="implementation\objects\model\wireframe_model\model_details\edge\edge.cpp" />
+    <ClCompile Include="implementation\objects\model\wireframe_model\model_details\point\point.cpp" />
+    <ClCompile Include="implementation\objects\model\wireframe_model\model_details\wireframe_model_details.cpp" />
+    <ClCompile Include="implementation\objects\model\wireframe_model\wireframe_model.cpp" />
     <ClCompile Include="implementation\scene\scene.cpp" />
     <ClCompile Include="implementation\visitor\draw_visitor\draw_visitor.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="implementation\objects\model\wireframe _model\wireframe _model.hpp" />
     <QtMoc Include="gui\qt\display.h" />
     <ClInclude Include="gui\qt\design.h" />
     <ClInclude Include="gui\qt\drawer\factory\qt_drawer_factory.hpp" />
@@ -117,9 +118,10 @@
     <ClInclude Include="implementation\objects\camera\camera.hpp" />
     <ClInclude Include="implementation\objects\composite\composite.hpp" />
     <ClInclude Include="implementation\objects\model\model.hpp" />
-    <ClInclude Include="implementation\objects\model\model_details\edge\edge.hpp" />
-    <ClInclude Include="implementation\objects\model\model_details\model_details.hpp" />
-    <ClInclude Include="implementation\objects\model\model_details\point\point.hpp" />
+    <ClInclude Include="implementation\objects\model\wireframe_model\model_details\edge\edge.hpp" />
+    <ClInclude Include="implementation\objects\model\wireframe_model\model_details\point\point.hpp" />
+    <ClInclude Include="implementation\objects\model\wireframe_model\model_details\wireframe_model_details.hpp" />
+    <ClInclude Include="implementation\objects\model\wireframe_model\wireframe_model.hpp" />
     <ClInclude Include="implementation\objects\object.hpp" />
     <ClInclude Include="implementation\scene\scene.hpp" />
     <ClInclude Include="implementation\visitor\draw_visitor\draw_visitor.hpp" />

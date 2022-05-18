@@ -3,7 +3,7 @@
 
 
 #include <memory>
-#include "implementation/objects/model/model_details/point/point.hpp"
+#include "implementation/objects/model/wireframe_model/model_details/point/point.hpp"
 #include "implementation/objects/camera/camera.hpp"
 #include "implementation/objects/composite/composite.hpp"
 #include "implementation/drawer/drawer.hpp"
@@ -16,7 +16,7 @@ public:
 
     void visit(const Camera &camera) override;
     void visit(const Composite &composite) override;
-    void visit(const Model &model) override;
+    void visit(const WireframeModel &model) override;
 
 private:
     std::shared_ptr<Drawer> drawer;

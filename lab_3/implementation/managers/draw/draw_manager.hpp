@@ -4,7 +4,7 @@
 
 #include "implementation/managers/manager.hpp"
 #include "implementation/managers/load/load_manager.hpp"
-#include "implementation/objects/model/model_details/point/point.hpp"
+#include "implementation/objects/model/wireframe_model/model_details/point/point.hpp"
 #include "implementation/objects/model/model.hpp"
 #include "implementation/objects/camera/camera.hpp"
 #include "implementation/visitor/visitor.hpp"
