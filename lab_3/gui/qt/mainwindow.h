@@ -11,6 +11,8 @@
 #include "implementation/commands/camera/camera_command.hpp"
 #include "implementation/commands/model/model_command.hpp"
 #include "implementation/commands/scene/scene_command.hpp"
+
+#include "implementation/drawer/solution/solution_drawer_factory.hpp"
 #include "implementation/drawer/drawer.hpp"
 #include "implementation/facade/facade.hpp"
 

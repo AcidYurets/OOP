@@ -1,7 +1,6 @@
 #include <QFileDialog>
 #include <qdebug>
 #include <implementation/commands/scene/render/render_scene.hpp>
-#include <implementation/exceptions/base_exception.hpp>
 #include <implementation/commands/model/load/load_model.hpp>
 #include <implementation/commands/model/remove/remove_model.hpp>
 #include <implementation/commands/camera/load/load_camera.hpp>
@@ -14,6 +13,8 @@
 #include <implementation/commands/model/rotate/rotate_model.hpp>
 #include <implementation/commands/camera/count/count_cameras.hpp>
 #include <implementation/commands/model/count/count_models.hpp>
+
+#include <implementation/exceptions/base_exception.hpp>
 
 #include "mainwindow.h"
 
@@ -44,7 +45,12 @@ void MainWindow::setupScene() {
 
     this->scene->setSceneRect(0, 0, ui->display->width(), ui->display->height());
 
-    auto factory = std::make_shared<QtDrawerFactory>(this->scene);
+    decltype(auto) solution = std::make_shared<SolutionDrawerFactory>();
+    solution->registration<QtDrawerFactory>("QtDrawer", this->scene);
+
+    //decltype(auto) factory = solution->createFactory("QtDrawer");
+
+    decltype(auto) factory = new QtDrawerFactory(this->scene);
     this->drawer = factory->createDrawer();
 
 }

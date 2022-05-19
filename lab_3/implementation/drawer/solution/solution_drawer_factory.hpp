@@ -4,6 +4,9 @@
 #include <string>
 #include "../drawer.hpp"
 
+
+class QGraphicsScene;
+
 class SolutionDrawerFactory
 {
 	using CallBackMap = std::map<std::string, std::shared_ptr<DrawerFactory>> ;
@@ -11,8 +14,8 @@ class SolutionDrawerFactory
 public:
 	SolutionDrawerFactory() = default;
 
-	template <typename Tprod>
-	bool registration(std::string id);
+	template <typename Tprod, typename ...Args>
+	bool registration(std::string id, Args ...args);
 	bool check(std::string id) { return callbacks.erase(id) == 1; }
 
 	std::shared_ptr<DrawerFactory> createFactory(std::string id);

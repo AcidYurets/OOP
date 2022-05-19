@@ -1,10 +1,11 @@
 #include "solution_drawer_factory.hpp"
 #include <implementation/exceptions/load_exceptions.hpp>
 
-template <typename Tprod>
-bool SolutionDrawerFactory::registration(std::string id)
+
+template <typename Tprod, typename ...Args>
+bool SolutionDrawerFactory::registration(std::string id, Args ...args)
 {
-	return callbacks.emplace(id, std::make_shared<Tprod>()).second;
+	return callbacks.emplace(id, std::make_shared<Tprod>(args...)).second;
 }
 
 std::shared_ptr<DrawerFactory> SolutionDrawerFactory::createFactory(std::string id)
