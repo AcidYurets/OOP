@@ -1,13 +1,13 @@
 #pragma once
 
-#include "../object_builder.hpp"
+#include "../model_builder.hpp"
 #include "../../../objects/object.hpp"
 
-class ModelBuilder : public ObjectBuilder {
+class FileModelBuilder : public ModelBuilder {
 public:
-    ModelBuilder() = default;
+    FileModelBuilder() = default;
 
-    virtual ~ModelBuilder() = default;
+    virtual ~FileModelBuilder() = default;
 
     virtual void assignFile(const std::string &src_name) = 0;
 

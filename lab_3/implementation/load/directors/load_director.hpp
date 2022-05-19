@@ -1,7 +1,3 @@
-    //
-
-//
-
 #ifndef __LAB_03_LOAD_DIRECTOR_HPP__
 #define __LAB_03_LOAD_DIRECTOR_HPP__
 
@@ -22,7 +18,7 @@ public:
     virtual std::shared_ptr<Object> load(const std::string &name) = 0;
 
 protected:
-    std::shared_ptr<ObjectLoader> loader;
+    std::shared_ptr<ObjectBuilder> builder;
 };
 
 #endif //__LAB_03_LOAD_DIRECTOR_HPP__

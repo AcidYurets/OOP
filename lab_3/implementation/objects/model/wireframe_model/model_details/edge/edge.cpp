@@ -1,7 +1,3 @@
-//
-
-//
-
 #include "edge.hpp"
 
 Edge::Edge(const size_t point1_id, const size_t point2_id) : point1_id(point1_id), point2_id(point2_id) {}

@@ -5,10 +5,11 @@
 
 class ModelDirector : public LoadDirector {
 public:
-    ModelDirector();
+    ModelDirector() = default;
+
     ~ModelDirector() = default;
 
-    std::shared_ptr<Object> load(const std::string &src_name) override;
+    virtual std::shared_ptr<Object> load(const std::string &src_name) = 0;
 };
 
 

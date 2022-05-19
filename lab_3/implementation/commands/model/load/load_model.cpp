@@ -4,13 +4,16 @@
 #include <implementation/managers/scene/scene_manager.hpp>
 #include "load_model.hpp"
 
-
 LoadModel::LoadModel(std::string filename) : filename(filename) {}
 
 void LoadModel::execute() {
     decltype(auto) load_manager = Singleton<LoadManager>::instance();
-    load_manager.setDirector(std::make_shared<ModelDirector>());
+    decltype(auto) scene_manager = Singleton<SceneManager>::instance();
 
-    auto model = load_manager.load(filename);
-    Singleton<SceneManager>::instance().getScene()->addObject(model);
+    decltype(auto) builder = std::make_shared<FileWireframeModelBuilder>();
+    decltype(auto) director = std::make_shared<WireframeModelDirector>(builder);
+    load_manager.setDirector(director);
+
+    decltype(auto) model = load_manager.load(filename);
+    scene_manager.getScene()->addObject(model);
 }

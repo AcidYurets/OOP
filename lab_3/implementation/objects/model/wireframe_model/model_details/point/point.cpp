@@ -1,7 +1,3 @@
-//
-
-//
-
 #include <cmath>
 #include <iostream>
 #include "point.hpp"

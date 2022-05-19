@@ -57,7 +57,7 @@ public:
     Point relativeTo(const Point &point);
 
 private:
-    double x, y, z;
+    double x = 0, y = 0, z = 0;
 };
 
 

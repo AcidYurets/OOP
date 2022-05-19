@@ -1,7 +1,3 @@
-//
-
-//
-
 #ifndef __LAB_03_LOAD_EXCEPTIONS_HPP__
 #define __LAB_03_LOAD_EXCEPTIONS_HPP__
 

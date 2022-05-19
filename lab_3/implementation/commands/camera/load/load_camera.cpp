@@ -10,8 +10,10 @@ void LoadCamera::execute() {
     decltype(auto) load_manager = Singleton<LoadManager>::instance();
     decltype(auto) scene_manager = Singleton<SceneManager>::instance();
 
-    load_manager.setDirector(std::make_shared<CameraDirector>());
+    decltype(auto) builder = std::make_shared<FileCameraBuilder>();
+    decltype(auto) director = std::make_shared<CameraDirector>(builder);
+    load_manager.setDirector(director);
 
-    auto camera = load_manager.load(filename);
+    decltype(auto) camera = load_manager.load(filename);
     scene_manager.getScene()->addObject(camera);
 }

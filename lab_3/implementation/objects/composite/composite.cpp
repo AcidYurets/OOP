@@ -1,7 +1,3 @@
-//
-
-//
-
 #include "composite.hpp"
 
 Composite::Composite(const std::shared_ptr<Object> &component) {

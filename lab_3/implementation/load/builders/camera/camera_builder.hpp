@@ -1,28 +1,21 @@
-//
+#pragma once
 
-//
+#include "../object_builder.hpp"
+#include "../../../objects/object.hpp"
 
-#ifndef __LAB_03_CAMERA_BUILDER_HPP__
-#define __LAB_03_CAMERA_BUILDER_HPP__
-
-
-#include <memory>
-#include "implementation/objects/camera/camera.hpp"
-#include "implementation/objects/model/wireframe_model/model_details/point/point.hpp"
-
-class CameraBuilder {
+class CameraBuilder : public ObjectBuilder {
 public:
-    CameraBuilder();
-    ~CameraBuilder() = default;
+    CameraBuilder() = default;
 
-    [[nodiscard]] bool isBuild() const;
-    void reset();
-    void buildPosition(double x, double y, double z);
+    virtual ~CameraBuilder() = default;
 
-    std::shared_ptr<Camera> get();
-private:
-    std::shared_ptr<Camera> camera;
+    virtual void assignFile(const std::string &src_name) = 0;
+
+    virtual void finishFileProcessing() = 0;
+
+    virtual void reset() = 0;
+
+    virtual std::shared_ptr<Object> get() = 0;
+
+    virtual void buildPosition() = 0;
 };
-
-
-#endif //__LAB_03_CAMERA_BUILDER_HPP__

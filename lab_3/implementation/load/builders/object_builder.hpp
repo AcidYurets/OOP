@@ -1,13 +1,13 @@
 #pragma once
 
-#include "../object_builder.hpp"
-#include "../../../objects/object.hpp"
+#include <string>
+#include <implementation/objects/object.hpp>
 
-class ModelBuilder : public ObjectBuilder {
+class ObjectBuilder {
 public:
-    ModelBuilder() = default;
+    ObjectBuilder() = default;
 
-    virtual ~ModelBuilder() = default;
+    virtual ~ObjectBuilder() = default;
 
     virtual void assignFile(const std::string &src_name) = 0;
 
@@ -22,4 +22,6 @@ public:
     virtual void buildEdges() = 0;
     
     virtual void buildCenter() = 0;
+
+    virtual void buildPosition() = 0;
 };

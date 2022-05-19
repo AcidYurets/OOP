@@ -1,7 +1,3 @@
-//
-
-//
-
 #ifndef __LAB_03_BASE_EXCEPTION_HPP__
 #define __LAB_03_BASE_EXCEPTION_HPP__
 
