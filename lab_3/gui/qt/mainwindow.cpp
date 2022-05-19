@@ -48,9 +48,9 @@ void MainWindow::setupScene() {
     decltype(auto) solution = std::make_shared<SolutionDrawerFactory>();
     solution->registration<QtDrawerFactory>("QtDrawer", this->scene);
 
-    //decltype(auto) factory = solution->createFactory("QtDrawer");
+    decltype(auto) factory = solution->createFactory("QtDrawer");
 
-    decltype(auto) factory = new QtDrawerFactory(this->scene);
+    //decltype(auto) factory = new QtDrawerFactory(this->scene);
     this->drawer = factory->createDrawer();
 
 }

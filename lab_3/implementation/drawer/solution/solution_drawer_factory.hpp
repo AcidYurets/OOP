@@ -15,7 +15,10 @@ public:
 	SolutionDrawerFactory() = default;
 
 	template <typename Tprod, typename ...Args>
-	bool registration(std::string id, Args ...args);
+	bool registration(std::string id, Args ...args)
+	{
+		return callbacks.emplace(id, std::make_shared<Tprod>(args...)).second;
+	}
 	bool check(std::string id) { return callbacks.erase(id) == 1; }
 
 	std::shared_ptr<DrawerFactory> createFactory(std::string id);

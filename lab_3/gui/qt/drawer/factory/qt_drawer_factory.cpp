@@ -1,7 +1,3 @@
-//
-
-//
-
 #include "../qt_drawer.hpp"
 #include "qt_drawer_factory.hpp"
 

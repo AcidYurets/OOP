@@ -1,5 +1,5 @@
 #include <implementation/managers/singleton.hpp>
-#include <implementation/objects/model/model_details/point/point.hpp>
+#include <implementation/objects/model/wireframe_model/model_details/point/point.hpp>
 #include <implementation/managers/scene/scene_manager.hpp>
 #include <implementation/managers/transform/transform_manager.hpp>
 #include "transform_model.hpp"
