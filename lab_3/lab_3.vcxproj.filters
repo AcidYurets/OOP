@@ -137,6 +137,9 @@
     <ClCompile Include="implementation\load\builders\model\file_model_builder\file_wireframe_model_builder\file_wireframe_model_builder.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="implementation\drawer\solution\solution_drawer_factory.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="implementation\commands\camera\add\add_camera.hpp">
@@ -317,6 +320,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="implementation\load\builders\model\file_model_builder\file_wireframe_model_builder\file_wireframe_model_builder.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="implementation\drawer\solution\solution_drawer_factory.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

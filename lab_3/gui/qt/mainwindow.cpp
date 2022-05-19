@@ -40,9 +40,7 @@ void MainWindow::setupScene() {
     this->scene = std::make_shared<QGraphicsScene>(this);
     ui->display->setScene(this->scene.get());
     ui->display->setAlignment(Qt::AlignTop | Qt::AlignLeft);
-    //!!
     ui->display->setInteractive(true);
-    //!!
 
     this->scene->setSceneRect(0, 0, ui->display->width(), ui->display->height());
 
