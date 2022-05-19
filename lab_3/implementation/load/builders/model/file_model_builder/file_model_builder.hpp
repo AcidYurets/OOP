@@ -1,7 +1,6 @@
 #pragma once
 
 #include "../model_builder.hpp"
-#include "../../../objects/object.hpp"
 
 class FileModelBuilder : public ModelBuilder {
 public:

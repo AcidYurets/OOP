@@ -29,17 +29,13 @@
     <ClCompile Include="implementation\commands\model\scale\scale_model.cpp" />
     <ClCompile Include="implementation\commands\model\transform\transform_model.cpp" />
     <ClCompile Include="implementation\commands\scene\render\render_scene.cpp" />
-    <ClCompile Include="implementation\config_manager\config_manager.cpp" />
-    <ClCompile Include="implementation\config_manager\creator\config_manager_creator.cpp" />
-    <ClCompile Include="implementation\config_manager\registration\registration_maker.cpp" />
-    <ClCompile Include="implementation\config_manager\solution\solution.cpp" />
     <ClCompile Include="implementation\facade\facade.cpp" />
-    <ClCompile Include="implementation\load\loaders\camera\camera_loader.cpp" />
-    <ClCompile Include="implementation\load\loaders\model\model_loader.cpp" />
+    <ClCompile Include="implementation\load\loaders\camera\file_camera_loader.cpp" />
+    <ClCompile Include="implementation\load\loaders\model\file_wireframe_model_loader.cpp" />
     <ClCompile Include="implementation\load\directors\camera\camera_director.cpp" />
     <ClCompile Include="implementation\load\directors\model\wireframe_model\wireframe_model_director.cpp" />
-    <ClCompile Include="implementation\load\builders\camera\file_camera_loader\file_camera_builder.cpp" />
-    <ClCompile Include="implementation\load\builders\model\file_model_loader\file_wireframe_model_builder\file_wireframe_model_builder.cpp" />
+    <ClCompile Include="implementation\load\builders\camera\file_camera_builder\file_camera_builder.cpp" />
+    <ClCompile Include="implementation\load\builders\model\file_model_builder\file_wireframe_model_builder\file_wireframe_model_builder.cpp" />
     <ClCompile Include="implementation\managers\draw\draw_manager.cpp" />
     <ClCompile Include="implementation\managers\load\load_manager.cpp" />
     <ClCompile Include="implementation\managers\scene\scene_manager.cpp" />
@@ -56,7 +52,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="implementation\load\directors\model\wireframe_model\wireframe_model_director.hpp" />
-    <ClInclude Include="implementation\load\builders\model\file_model_loader\file_wireframe_model_builder\file_wireframe_model_builder.hpp" />
+    <ClInclude Include="implementation\load\builders\model\file_model_builder\file_wireframe_model_builder\file_wireframe_model_builder.hpp" />
     <ClInclude Include="implementation\objects\model\wireframe _model\wireframe _model.hpp" />
     <QtMoc Include="gui\qt\display.h" />
     <ClInclude Include="gui\qt\design.h" />
@@ -83,10 +79,6 @@
     <ClInclude Include="implementation\commands\model\transform\transform_model.hpp" />
     <ClInclude Include="implementation\commands\scene\render\render_scene.hpp" />
     <ClInclude Include="implementation\commands\scene\scene_command.hpp" />
-    <ClInclude Include="implementation\config_manager\config_manager.hpp" />
-    <ClInclude Include="implementation\config_manager\creator\config_manager_creator.hpp" />
-    <ClInclude Include="implementation\config_manager\registration\registration_maker.hpp" />
-    <ClInclude Include="implementation\config_manager\solution\solution.hpp" />
     <ClInclude Include="implementation\drawer\drawer.hpp" />
     <ClInclude Include="implementation\exceptions\base_exception.hpp" />
     <ClInclude Include="implementation\exceptions\camera_exceptions.hpp" />
@@ -94,14 +86,14 @@
     <ClInclude Include="implementation\exceptions\model_exceptions.hpp" />
     <ClInclude Include="implementation\exceptions\ui_exceptions.hpp" />
     <ClInclude Include="implementation\facade\facade.hpp" />
-    <ClInclude Include="implementation\load\loaders\camera\camera_loader.hpp" />
-    <ClInclude Include="implementation\load\loaders\model\model_loader.hpp" />
+    <ClInclude Include="implementation\load\loaders\camera\file_camera_loader.hpp" />
+    <ClInclude Include="implementation\load\loaders\model\file_wireframe_model_loader.hpp" />
     <ClInclude Include="implementation\load\directors\camera\camera_director.hpp" />
     <ClInclude Include="implementation\load\directors\load_director.hpp" />
     <ClInclude Include="implementation\load\directors\model\model_director.hpp" />
     <ClInclude Include="implementation\load\builders\camera\camera_builder.hpp" />
-    <ClInclude Include="implementation\load\builders\camera\file_camera_loader\file_camera_builder.hpp" />
-    <ClInclude Include="implementation\load\builders\model\file_model_loader\file_model_builder.hpp" />
+    <ClInclude Include="implementation\load\builders\camera\file_camera_builder\file_camera_builder.hpp" />
+    <ClInclude Include="implementation\load\builders\model\file_model_builder\file_model_builder.hpp" />
     <ClInclude Include="implementation\load\builders\model\model_builder.hpp" />
     <ClInclude Include="implementation\load\builders\object_builder.hpp" />
     <ClInclude Include="implementation\managers\draw\draw_manager.hpp" />

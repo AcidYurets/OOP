@@ -1,4 +1,3 @@
-#include <implementation/load/solutions/camera/camera_load_solution.hpp>
 #include "camera_director.hpp"
 
 CameraDirector::CameraDirector(std::shared_ptr<ObjectBuilder> builder) {

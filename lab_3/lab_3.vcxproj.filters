@@ -68,31 +68,19 @@
     <ClCompile Include="implementation\commands\scene\render\render_scene.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="implementation\config_manager\config_manager.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="implementation\config_manager\creator\config_manager_creator.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="implementation\config_manager\registration\registration_maker.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="implementation\config_manager\solution\solution.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="implementation\facade\facade.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="implementation\load\loaders\camera\camera_loader.cpp">
+    <ClCompile Include="implementation\load\loaders\camera\file_camera_loader.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="implementation\load\loaders\model\model_loader.cpp">
+    <ClCompile Include="implementation\load\loaders\model\file_wireframe_model_loader.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="implementation\load\directors\camera\camera_director.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="implementation\load\builders\camera\file_camera_loader\file_camera_builder.cpp">
+    <ClCompile Include="implementation\load\builders\camera\file_camera_builder\file_camera_builder.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="implementation\managers\draw\draw_manager.cpp">
@@ -146,7 +134,7 @@
     <ClCompile Include="implementation\load\directors\model\wireframe_model\wireframe_model_director.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="implementation\load\builders\model\file_model_loader\file_wireframe_model_builder\file_wireframe_model_builder.cpp">
+    <ClCompile Include="implementation\load\builders\model\file_model_builder\file_wireframe_model_builder\file_wireframe_model_builder.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -208,18 +196,6 @@
     <ClInclude Include="implementation\commands\scene\scene_command.hpp">
       <Filter>Source Files</Filter>
     </ClInclude>
-    <ClInclude Include="implementation\config_manager\config_manager.hpp">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="implementation\config_manager\creator\config_manager_creator.hpp">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="implementation\config_manager\registration\registration_maker.hpp">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="implementation\config_manager\solution\solution.hpp">
-      <Filter>Source Files</Filter>
-    </ClInclude>
     <ClInclude Include="implementation\drawer\drawer.hpp">
       <Filter>Source Files</Filter>
     </ClInclude>
@@ -241,10 +217,10 @@
     <ClInclude Include="implementation\facade\facade.hpp">
       <Filter>Source Files</Filter>
     </ClInclude>
-    <ClInclude Include="implementation\load\loaders\camera\camera_loader.hpp">
+    <ClInclude Include="implementation\load\loaders\camera\file_camera_loader.hpp">
       <Filter>Source Files</Filter>
     </ClInclude>
-    <ClInclude Include="implementation\load\loaders\model\model_loader.hpp">
+    <ClInclude Include="implementation\load\loaders\model\file_wireframe_model_loader.hpp">
       <Filter>Source Files</Filter>
     </ClInclude>
     <ClInclude Include="implementation\load\directors\camera\camera_director.hpp">
@@ -259,10 +235,10 @@
     <ClInclude Include="implementation\load\builders\camera\camera_builder.hpp">
       <Filter>Source Files</Filter>
     </ClInclude>
-    <ClInclude Include="implementation\load\builders\camera\file_camera_loader\file_camera_builder.hpp">
+    <ClInclude Include="implementation\load\builders\camera\file_camera_builder\file_camera_builder.hpp">
       <Filter>Source Files</Filter>
     </ClInclude>
-    <ClInclude Include="implementation\load\builders\model\file_model_loader\file_model_builder.hpp">
+    <ClInclude Include="implementation\load\builders\model\file_model_builder\file_model_builder.hpp">
       <Filter>Source Files</Filter>
     </ClInclude>
     <ClInclude Include="implementation\load\builders\model\model_builder.hpp">
@@ -340,7 +316,7 @@
     <ClInclude Include="implementation\load\directors\model\wireframe_model\wireframe_model_director.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="implementation\load\builders\model\file_model_loader\file_wireframe_model_builder\file_wireframe_model_builder.hpp">
+    <ClInclude Include="implementation\load\builders\model\file_model_builder\file_wireframe_model_builder\file_wireframe_model_builder.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

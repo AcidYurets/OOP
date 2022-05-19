@@ -5,7 +5,7 @@
 #include <memory>
 #include <utility>
 
-#include "implementation/load/loaders/object_loader.hpp"
+#include "implementation/load/builders/object_builder.hpp"
 #include "implementation/objects/object.hpp"
 
 
