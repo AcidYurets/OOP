@@ -19,6 +19,8 @@ private:
     std::size_t model_id;
 
     double kx, ky, kz;
+    //
+    //
 };
 
 #endif //__LAB_03_SCALE_MODEL_HPP__

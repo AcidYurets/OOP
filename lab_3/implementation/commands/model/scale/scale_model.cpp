@@ -7,6 +7,15 @@
 ScaleModel::ScaleModel(std::size_t model_id, const double kx, const double ky, const double kz) : model_id(model_id),
                                                                                                   kx(kx),
                                                                                                   ky(ky), kz(kz) {}
+{
+    this->method = &TransformManager::transform;
+
+}
+
+init(Facade &f)
+{
+    this->manager = f.getTrans_mamager();
+}
 
 void ScaleModel::execute() {
     Point move(0, 0, 0);
@@ -18,7 +27,6 @@ void ScaleModel::execute() {
 
     auto models_iter = scene_manager.getScene()->begin();
     std::advance(models_iter, model_id);
-
     auto model = *models_iter;
 //    std::shared_ptr<Object> model = scene_manager->getScene()->getObjects().at(model_id);
     transform_manager.transform(model, move, scale, rotate);
