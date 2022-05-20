@@ -16,11 +16,11 @@ public:
     void execute() override;
 
 private:
-    std::size_t model_id;
+    model;
 
     double kx, ky, kz;
-    //
-    //
+    method
+    prt TransformManager manager;
 };
 
 #endif //__LAB_03_SCALE_MODEL_HPP__

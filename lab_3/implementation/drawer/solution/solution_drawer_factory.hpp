@@ -14,7 +14,6 @@ class SolutionDrawerFactory
 public:
 	SolutionDrawerFactory() = default;
 
-	// В метод передается id, затем параметры коструктора конкретной Фабрики
 	template <typename Tprod, typename ...Args>
 	bool registration(std::string id, Args ...args)
 	{
