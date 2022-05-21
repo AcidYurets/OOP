@@ -4,23 +4,28 @@
 
 #include <cstddef>
 #include "../model_command.hpp"
+#include <implementation/objects/model/wireframe_model/wireframe_model.hpp>
+#include <implementation/managers/transform/transform_manager.hpp>
+#include <implementation/managers/scene/scene_manager.hpp>
 
 class ScaleModel : public ModelCommand {
+    using Action = void(TransformManager::*)(const std::shared_ptr<Object> &obj, const Point &move_params, const Point &scale_params,
+                            const Point &rotate_params);
 public:
     ScaleModel() = delete;
 
-    ScaleModel(std::size_t model_id, double kx, double ky, double kz);
+    ScaleModel(WireframeModel model, double kx, double ky, double kz);
 
     ~ScaleModel() override = default;
 
     void execute() override;
 
 private:
-    model;
+    std::shared_ptr<WireframeModel> model;
 
     double kx, ky, kz;
-    method
-    prt TransformManager manager;
+    Action method;
+    std::shared_ptr<TransformManager> manager;
 };
 
 #endif //__LAB_03_SCALE_MODEL_HPP__

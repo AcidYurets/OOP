@@ -16,7 +16,7 @@ public:
 
     ~TransformManager() override = default;
 
-    static void transform(const std::shared_ptr<Object> &obj, const Point &move_params, const Point &scale_params,
+    void transform(const std::shared_ptr<Object> &obj, const Point &move_params, const Point &scale_params,
                           const Point &rotate_params);
 
 };

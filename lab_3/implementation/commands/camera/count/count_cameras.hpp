@@ -5,8 +5,10 @@
 #include <cstddef>
 
 #include <implementation/commands/camera/camera_command.hpp>
+#include <implementation/managers/scene/scene_manager.hpp>
 
 class CountCameras : public CameraCommand {
+    using Action = size_t(SceneManager::*)();
 public:
     CountCameras() = delete;
 
@@ -18,6 +20,8 @@ public:
 
 private:
     std::shared_ptr<std::size_t> &count;
+    Action method;
+    std::shared_ptr<SceneManager> manager;
 };
 
 
