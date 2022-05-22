@@ -2,10 +2,12 @@
 #define __LAB_03_ADD_MODEL_HPP__
 
 #include <memory>
-#include <implementation/objects/object.hpp>
 #include "../model_command.hpp"
+#include <implementation/objects/object.hpp>
+#include <implementation/managers/scene/scene_manager.hpp>
 
 class AddModel : public ModelCommand {
+    using Action = void(SceneManager::*)(const std::shared_ptr<Object> &);
 public:
     AddModel() = delete;
 
@@ -17,6 +19,8 @@ public:
 
 private:
     std::shared_ptr<Object> model;
+    Action method;
+    std::shared_ptr<SceneManager> manager;
 };
 
 

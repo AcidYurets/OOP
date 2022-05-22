@@ -30,6 +30,7 @@
     <ClCompile Include="implementation\commands\model\transform\transform_model.cpp" />
     <ClCompile Include="implementation\commands\scene\render\render_scene.cpp" />
     <ClCompile Include="implementation\facade\facade.cpp" />
+    <ClCompile Include="implementation\load\directors\solution\director_solution.cpp" />
     <ClCompile Include="implementation\load\loaders\camera\file_camera_loader.cpp" />
     <ClCompile Include="implementation\load\loaders\model\file_wireframe_model_loader.cpp" />
     <ClCompile Include="implementation\load\directors\camera\camera_director.cpp" />
@@ -52,6 +53,7 @@
     <ClCompile Include="implementation\drawer\solution\solution_drawer_factory.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="implementation\load\directors\solution\director_solution.hpp" />
     <ClInclude Include="implementation\load\directors\model\wireframe_model\wireframe_model_director.hpp" />
     <ClInclude Include="implementation\load\builders\model\file_model_builder\file_wireframe_model_builder\file_wireframe_model_builder.hpp" />
     <ClInclude Include="implementation\objects\model\wireframe _model\wireframe _model.hpp" />
@@ -102,7 +104,7 @@
     <ClInclude Include="implementation\managers\load\load_manager.hpp" />
     <ClInclude Include="implementation\managers\manager.hpp" />
     <ClInclude Include="implementation\managers\scene\scene_manager.hpp" />
-    <ClInclude Include="implementation\managers\singleton.hpp" />
+    <ClInclude Include="implementation\managers\manager_creator.hpp" />
     <ClInclude Include="implementation\managers\transform\transform_manager.hpp" />
     <ClInclude Include="implementation\objects\camera\camera.hpp" />
     <ClInclude Include="implementation\objects\composite\composite.hpp" />

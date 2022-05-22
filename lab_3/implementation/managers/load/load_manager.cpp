@@ -1,13 +1,11 @@
 #include <implementation/exceptions/load_exceptions.hpp>
+#include <implementation/load/directors/solution/director_solution.hpp>
 #include "load_manager.hpp"
 
-
-void LoadManager::setDirector(const std::shared_ptr<LoadDirector> &new_director) {
-    this->director = new_director;
-}
-
-std::shared_ptr<Object> LoadManager::load(const std::string &name) {
-    if (this->director == nullptr) throw NoDirectorError(__FILE__, __LINE__, "no directors");
+std::shared_ptr<Object> LoadManager::load(const std::string &name, size_t director_id) {
+    DirectorSolution solution;
+    solution.initByConfig();
+    this->director = solution.createDirector(director_id);
 
     return this->director->load(name);
 }

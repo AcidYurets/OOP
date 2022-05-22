@@ -1,7 +1,3 @@
-//
-
-//
-
 #include <implementation/exceptions/load_exceptions.hpp>
 #include "implementation/objects/camera/camera.hpp"
 #include "scene_manager.hpp"
@@ -26,4 +22,29 @@ void SceneManager::setScene(std::shared_ptr<Scene> new_scene) {
 
 void SceneManager::setMainCamera(const Iterator &it) {
     this->main_camera = std::dynamic_pointer_cast<Camera>(*it);
+}
+
+
+std::shared_ptr<Object> SceneManager::getObjectById(size_t id) {
+    auto obj_iter = this->scene->begin();
+    std::advance(obj_iter, id);
+    std::shared_ptr<Object> obj = *obj_iter;
+}
+
+void SceneManager::addObject(const std::shared_ptr<Object> &object) {
+    this->scene->addObject(object);
+}
+
+void SceneManager::removeObject(size_t id) {
+    auto it = this->scene->begin();
+    std::advance(it, id);
+    this->scene->removeObject(it);
+}
+
+[[nodiscard]] size_t SceneManager::getCamerasCount() const {
+    return this->scene->getCamerasCount();
+}
+
+[[nodiscard]] size_t SceneManager::getModelsCount() const {
+    return this->scene->getModelsCount();
 }

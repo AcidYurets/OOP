@@ -12,20 +12,22 @@ using Iterator = std::vector<std::shared_ptr<Object>>::iterator;
 class SceneManager : public Manager {
 public:
     SceneManager();
-
     SceneManager(const SceneManager &) = delete;
-
     SceneManager &operator=(const SceneManager &) = delete;
-
     ~SceneManager() override = default;
 
     [[nodiscard]] std::shared_ptr<Scene> getScene() const;
-
     [[nodiscard]] std::shared_ptr<Camera> getMainCamera() const;
 
     void setScene(std::shared_ptr<Scene> scene);
-
     void setMainCamera(const Iterator &it);
+
+    std::shared_ptr<Object> getObjectById(size_t id);
+    void addObject(const std::shared_ptr<Object> &object);
+    void removeObject(size_t id);
+
+    [[nodiscard]] size_t getCamerasCount() const;
+    [[nodiscard]] size_t getModelsCount() const;
 
 private:
     std::shared_ptr<Scene> scene;

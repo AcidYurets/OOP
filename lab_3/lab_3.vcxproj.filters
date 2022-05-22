@@ -140,6 +140,9 @@
     <ClCompile Include="implementation\drawer\solution\solution_drawer_factory.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="implementation\load\directors\solution\director_solution.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="implementation\commands\camera\add\add_camera.hpp">
@@ -298,7 +301,7 @@
     <ClInclude Include="gui\qt\[Last] design.h">
       <Filter>Form Files</Filter>
     </ClInclude>
-    <ClInclude Include="implementation\managers\singleton.hpp">
+    <ClInclude Include="implementation\managers\manager_creator.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="implementation\objects\model\wireframe _model\wireframe _model.hpp">
@@ -323,6 +326,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="implementation\drawer\solution\solution_drawer_factory.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="implementation\load\directors\solution\director_solution.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

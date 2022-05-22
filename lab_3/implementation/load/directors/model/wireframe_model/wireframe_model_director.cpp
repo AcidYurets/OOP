@@ -1,7 +1,7 @@
 #include "wireframe_model_director.hpp"
 
-WireframeModelDirector::WireframeModelDirector(std::shared_ptr<ObjectBuilder> builder) {
-    this->builder = builder;
+WireframeModelDirector::WireframeModelDirector() {
+    this->builder = std::make_shared<FileWireframeModelBuilder>();
 }
 
 std::shared_ptr<Object> WireframeModelDirector::load(const std::string &src_name) {

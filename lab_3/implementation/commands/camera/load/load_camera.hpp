@@ -2,16 +2,27 @@
 #define __LAB_03_LOAD_CAMERA_HPP__
 
 
-#include <implementation/commands/camera/camera_command.hpp>
 #include <string>
+#include "../camera_command.hpp"
+#include <implementation/objects/object.hpp>
+#include <implementation/managers/load/load_manager.hpp>
 
 class LoadCamera : public CameraCommand {
+    using Action = std::shared_ptr<Object> (LoadManager::*)(const std::string &name, size_t director_id);
 public:
-    explicit LoadCamera(std::string filename);
+    LoadCamera() = delete;
+
+    explicit LoadCamera(std::shared_ptr<Object> &camera, std::string filename);
+
+    ~LoadCamera() override = default;
+
     void execute() override;
 
 private:
+    std::shared_ptr<Object> &camera;
     std::string filename;
+    Action method;
+    std::shared_ptr<LoadManager> manager;
 };
 
 

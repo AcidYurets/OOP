@@ -8,7 +8,7 @@
 #include <implementation/managers/scene/scene_manager.hpp>
 
 class CountCameras : public CameraCommand {
-    using Action = size_t(SceneManager::*)();
+    using Action = size_t(SceneManager::*)() const;
 public:
     CountCameras() = delete;
 

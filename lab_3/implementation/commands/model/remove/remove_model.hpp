@@ -4,12 +4,14 @@
 
 #include <cstddef>
 #include "../model_command.hpp"
+#include <implementation/managers/scene/scene_manager.hpp>
 
 class RemoveModel : public ModelCommand {
+    using Action = void(SceneManager::*)(size_t);
 public:
     RemoveModel() = delete;
 
-    explicit RemoveModel(std::size_t model_id);
+    explicit RemoveModel(size_t model_id);
 
     ~RemoveModel() override = default;
 
@@ -17,6 +19,8 @@ public:
 
 private:
     std::size_t model_id;
+    Action method;
+    std::shared_ptr<SceneManager> manager;
 };
 
 

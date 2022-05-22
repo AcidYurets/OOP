@@ -1,8 +1,8 @@
-#include <implementation/managers/singleton.hpp>
+#include <implementation/managers/manager_creator.hpp>
 #include "count_cameras.hpp"
 
 CountCameras::CountCameras(std::shared_ptr<size_t> &count) : count(count) {
-    this->manager = Singleton<SceneManager>::instance();
+    this->manager = ManagerCreator<SceneManager>().getManager();
     this->method = &SceneManager::getCamerasCount;
 }
 

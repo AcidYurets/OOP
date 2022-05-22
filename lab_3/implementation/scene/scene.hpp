@@ -13,30 +13,21 @@
 class Scene {
 public:
     Scene();
-
     ~Scene() = default;
 
     void addObject(const std::shared_ptr<Object> &object);
-
     void removeObject(const Iterator &it);
-
     void accept(std::shared_ptr<Visitor> visitor);
 
 
     [[nodiscard]] size_t getCamerasCount() const;
-
     [[nodiscard]] size_t getModelsCount() const;
 
     Iterator begin();
-
     Iterator end();
-
     [[nodiscard]] ConstIterator begin() const;
-
     [[nodiscard]] ConstIterator end() const;
-
     [[nodiscard]] ConstIterator cbegin() const;
-
     [[nodiscard]] ConstIterator cend() const;
 
 private:

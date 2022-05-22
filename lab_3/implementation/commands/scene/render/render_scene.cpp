@@ -1,19 +1,13 @@
-#include <implementation/managers/singleton.hpp>
-#include <implementation/managers/draw/draw_manager.hpp>
-#include <implementation/managers/scene/scene_manager.hpp>
+#include <implementation/managers/manager_creator.hpp>
 #include <utility>
 #include "render_scene.hpp"
 
-RenderScene::RenderScene(std::shared_ptr<Drawer> drawer) : drawer(std::move(drawer)) {}
+RenderScene::RenderScene(std::shared_ptr<Scene> scene, std::shared_ptr<Drawer> drawer, std::shared_ptr<Camera> mainCamera) 
+                                    : scene(std::move(scene)), drawer(std::move(drawer)), mainCamera(std::move(mainCamera)) {
+    this->manager = ManagerCreator<DrawManager>().getManager();
+    this->method = &DrawManager::draw;
+}
 
 void RenderScene::execute() {
-    decltype(auto) scene_manager = Singleton<SceneManager>::instance();
-    decltype(auto) draw_manager = Singleton<DrawManager>::instance();
-
-    draw_manager.setCamera(scene_manager.getMainCamera());
-    draw_manager.setDrawer(this->drawer);
-
-    this->drawer->clearScene();
-
-    draw_manager.draw(scene_manager.getScene());
+    ((*manager).*method)(scene, drawer, mainCamera);
 }

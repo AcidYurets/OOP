@@ -17,10 +17,7 @@ public:
 
     ~LoadManager() override = default;
 
-    virtual std::shared_ptr<Object> load(const std::string &name);
-
-    void setDirector(const std::shared_ptr<LoadDirector> &director);
-
+    virtual std::shared_ptr<Object> load(const std::string &name, size_t director_id);
 
 private:
     std::shared_ptr<LoadDirector> director;

@@ -4,21 +4,27 @@
 
 #include <cstddef>
 #include "../model_command.hpp"
+#include <implementation/objects/object.hpp>
+#include <implementation/managers/transform/transform_manager.hpp>
 
 class TransformModel : public ModelCommand {
+    using Action = void(TransformManager::*)(const std::shared_ptr<Object> &obj, const Point &move_params, const Point &scale_params,
+                            const Point &rotate_params);
 public:
     TransformModel() = delete;
 
-    TransformModel(std::size_t model_id, const Point &move, const Point &scale, const Point &rotate);
+    TransformModel(std::shared_ptr<Object> model, const Point &move, const Point &scale, const Point &rotate);
 
     ~TransformModel() override = default;
 
     void execute() override;
 
 private:
-    std::size_t model_id;
+    std::shared_ptr<Object> model;
 
     Point move, scale, rotate;
+    Action method;
+    std::shared_ptr<TransformManager> manager;
 };
 
 #endif //__LAB_03_TRANSFORM_MODEL_HPP__
