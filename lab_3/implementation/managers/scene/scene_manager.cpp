@@ -29,6 +29,8 @@ std::shared_ptr<Object> SceneManager::getObjectById(size_t id) {
     auto obj_iter = this->scene->begin();
     std::advance(obj_iter, id);
     std::shared_ptr<Object> obj = *obj_iter;
+
+    return obj;
 }
 
 void SceneManager::addObject(const std::shared_ptr<Object> &object) {

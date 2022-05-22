@@ -21,6 +21,8 @@ public:
 private:
     std::shared_ptr<Object> &camera;
     std::string filename;
+    size_t director_id;
+
     Action method;
     std::shared_ptr<LoadManager> manager;
 };
