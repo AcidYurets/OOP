@@ -1,0 +1,26 @@
+#ifndef __LAB_03_GET_OBJECT_HPP__
+#define __LAB_03_GET_OBJECT_HPP__
+
+#include <cstddef>
+#include "../scene_command.hpp"
+#include <implementation/scene/scene.hpp>
+#include <implementation/managers/scene/scene_manager.hpp>
+
+class GetObject : public SceneCommand {
+    using Action = std::shared_ptr<Object>(SceneManager::*)(size_t id);
+public:
+    GetObject() = delete;
+
+    explicit GetObject(size_t id);
+
+    ~GetObject() override = default;
+
+    void execute() override;
+
+private:
+    std::size_t id;
+
+    Action method;
+    std::shared_ptr<SceneManager> manager;
+};
+#endif //__LAB_03_GET_OBJECT_HPP__

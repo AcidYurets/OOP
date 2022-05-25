@@ -28,6 +28,9 @@
     <ClCompile Include="implementation\commands\model\rotate\rotate_model.cpp" />
     <ClCompile Include="implementation\commands\model\scale\scale_model.cpp" />
     <ClCompile Include="implementation\commands\model\transform\transform_model.cpp" />
+    <ClCompile Include="implementation\commands\scene\get_main_camera\get_main_camera.cpp" />
+    <ClCompile Include="implementation\commands\scene\get_object\get_object.cpp" />
+    <ClCompile Include="implementation\commands\scene\get_scene\get_scene.cpp" />
     <ClCompile Include="implementation\commands\scene\render\render_scene.cpp" />
     <ClCompile Include="implementation\facade\facade.cpp" />
     <ClCompile Include="implementation\load\directors\solution\director_solution.cpp" />
@@ -53,6 +56,9 @@
     <ClCompile Include="implementation\drawer\solution\solution_drawer_factory.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="implementation\commands\scene\get_main_camera\get_main_camera.hpp" />
+    <ClInclude Include="implementation\commands\scene\get_object\get_object.hpp" />
+    <ClInclude Include="implementation\commands\scene\get_scene\get_scene.hpp" />
     <ClInclude Include="implementation\load\directors\solution\director_solution.hpp" />
     <ClInclude Include="implementation\load\directors\model\wireframe_model\wireframe_model_director.hpp" />
     <ClInclude Include="implementation\load\builders\model\file_model_builder\file_wireframe_model_builder\file_wireframe_model_builder.hpp" />

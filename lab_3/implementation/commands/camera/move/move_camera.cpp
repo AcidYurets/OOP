@@ -1,20 +1,13 @@
-#include <implementation/managers/singleton.hpp>
-#include <implementation/managers/scene/scene_manager.hpp>
-#include <implementation/managers/transform/transform_manager.hpp>
+#include <implementation/managers/manager_creator.hpp>
+#include <implementation/objects/model/wireframe_model/model_details/point/point.hpp>
 #include "move_camera.hpp"
 
-MoveCamera::MoveCamera(std::size_t camera_id, double shift_x, double shift_y) : camera_id(camera_id), shift_x(shift_x),
-                                                                                shift_y(shift_y) {}
+MoveCamera::MoveCamera(std::shared_ptr<Object> camera, double shift_x, double shift_y){
+    this->manager = ManagerCreator<TransformManager>().getManager();
+    this->method = &TransformManager::transform;
+}
 
 void MoveCamera::execute() {
-    Point shift(shift_x, shift_y, 0);
-
-    decltype(auto) scene_manager = Singleton<SceneManager>::instance();
-    decltype(auto) transform_manager = Singleton<TransformManager>::instance();
-
-    auto it = scene_manager.getScene()->begin();
-    std::advance(it, camera_id);
-
-    transform_manager.transform(*it, shift, shift, shift);
+    ((*manager).*method)(camera, Point(shift_x, shift_y, 0), Point(shift_x, shift_y, 0), Point(shift_x, shift_y, 0));
 }
 

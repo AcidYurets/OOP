@@ -11,3 +11,4 @@ ScaleModel::ScaleModel(std::shared_ptr<Object> model, const double kx, const dou
 void ScaleModel::execute() {
     ((*manager).*method)(model, Point(0, 0, 0), Point(kx, ky, kz), Point(0, 0, 0));
 }
+ 

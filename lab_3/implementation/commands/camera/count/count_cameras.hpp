@@ -17,7 +17,7 @@ public:
     ~CountCameras() override = default;
 
     void execute() override;
-
+ 
 private:
     std::shared_ptr<std::size_t> &count;
     Action method;

@@ -4,8 +4,10 @@
 
 #include <cstddef>
 #include "../camera_command.hpp"
+#include <implementation/managers/scene/scene_manager.hpp>
 
 class RemoveCamera : public CameraCommand {
+    using Action = void(SceneManager::*)(size_t);
 public:
     RemoveCamera() = delete;
 
@@ -17,6 +19,8 @@ public:
 
 private:
     std::size_t camera_id;
+    Action method;
+    std::shared_ptr<SceneManager> manager;
 };
 
 #endif //__LAB_03_REMOVE_CAMERA_HPP__

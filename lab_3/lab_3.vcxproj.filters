@@ -143,6 +143,15 @@
     <ClCompile Include="implementation\load\directors\solution\director_solution.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="implementation\commands\scene\get_main_camera\get_main_camera.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="implementation\commands\scene\get_object\get_object.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="implementation\commands\scene\get_scene\get_scene.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="implementation\commands\camera\add\add_camera.hpp">
@@ -329,6 +338,15 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="implementation\load\directors\solution\director_solution.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="implementation\commands\scene\get_main_camera\get_main_camera.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="implementation\commands\scene\get_object\get_object.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="implementation\commands\scene\get_scene\get_scene.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -20,8 +20,7 @@ public:
     [[nodiscard]] std::shared_ptr<Camera> getMainCamera() const;
 
     void setScene(std::shared_ptr<Scene> scene);
-    void setMainCamera(const Iterator &it);
-
+    void setMainCamera(size_t camera_id);
     std::shared_ptr<Object> getObjectById(size_t id);
     void addObject(const std::shared_ptr<Object> &object);
     void removeObject(size_t id);

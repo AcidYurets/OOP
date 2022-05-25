@@ -1,10 +1,13 @@
 #ifndef __LAB_03_ADD_CAMERA_HPP__
 #define __LAB_03_ADD_CAMERA_HPP__
 
-
+#include <memory>
+#include <implementation/objects/object.hpp>
+#include <implementation/managers/scene/scene_manager.hpp>
 #include "../camera_command.hpp"
 
 class AddCamera : public CameraCommand {
+    using Action = void(SceneManager::*)(const std::shared_ptr<Object> &);
 public:
     AddCamera() = delete;
 
@@ -15,7 +18,9 @@ public:
     void execute() override;
 
 private:
-    double x_pos, y_pos, z_pos;
+    std::shared_ptr<Object> camera;
+    Action method;
+    std::shared_ptr<SceneManager> manager;
 };
 
 

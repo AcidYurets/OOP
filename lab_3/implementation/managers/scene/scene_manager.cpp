@@ -20,7 +20,11 @@ void SceneManager::setScene(std::shared_ptr<Scene> new_scene) {
     this->scene = std::move(new_scene);
 }
 
-void SceneManager::setMainCamera(const Iterator &it) {
+void SceneManager::setMainCamera(size_t camera_id) {
+
+    auto it = getScene()->begin();
+    std::advance(it, camera_id);
+
     this->main_camera = std::dynamic_pointer_cast<Camera>(*it);
 }
 

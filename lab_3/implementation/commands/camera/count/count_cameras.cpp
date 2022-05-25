@@ -10,3 +10,4 @@ void CountCameras::execute() {
     *(this->count) = ((*manager).*method)();
 }
 
+ 

@@ -9,7 +9,7 @@
 
 class ScaleModel : public ModelCommand {
     using Action = void(TransformManager::*)(const std::shared_ptr<Object> &obj, const Point &move_params, const Point &scale_params,
-                            const Point &rotate_params);
+                            const  Point &rotate_params);
 public:
     ScaleModel() = delete;
 

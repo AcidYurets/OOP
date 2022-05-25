@@ -1,13 +1,13 @@
-#include <implementation/managers/singleton.hpp>
+#include <implementation/managers/manager_creator.hpp>
 #include <implementation/managers/scene/scene_manager.hpp>
 #include "remove_camera.hpp"
 
-RemoveCamera::RemoveCamera(std::size_t camera_id) : camera_id(camera_id) {}
+RemoveCamera::RemoveCamera(std::size_t camera_id) : camera_id(camera_id){
+    this->manager = ManagerCreator<SceneManager>().getManager();
+    this->method = &SceneManager::removeObject;
+}
 
 void RemoveCamera::execute() {
-    auto scene = Singleton<SceneManager>::instance().getScene();
-    auto it = scene->begin();
-
-    std::advance(it, camera_id);
-    scene->removeObject(it);
+    ((*manager).*method)(camera_id);
 }
+
