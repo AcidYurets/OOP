@@ -1,9 +1,12 @@
 #include <implementation/managers/manager_creator.hpp>
+#include <implementation/facade/facade.hpp>
 #include <utility>
 #include "get_main_camera.hpp"
 
-GetMainCamera::GetMainCamera(std::shared_ptr<Camera> &camera) : camera(camera) {
-    this->manager = ManagerCreator<SceneManager>().getManager();
+GetMainCamera::GetMainCamera(std::shared_ptr<Camera> &camera) : camera(camera) {}
+
+void GetMainCamera::init(Facade &facade) {
+    this->manager = facade.getSceneManager();
     this->method = &SceneManager::getMainCamera;
 }
 

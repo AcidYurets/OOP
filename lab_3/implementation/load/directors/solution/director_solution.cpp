@@ -4,8 +4,8 @@
 #include "../model/wireframe_model/wireframe_model_director.hpp"
 #include "../camera/camera_director.hpp"
 
-#define CONFIG_CAMERA_PATH "../../../../data/configuration/CameraDirector.cfg"
-#define CONFIG_MODEL_PATH "../../../../data/configuration/WireframeModelDirector.cfg"
+#define CONFIG_CAMERA_PATH "data/configuration/CameraDirector.cfg"
+#define CONFIG_MODEL_PATH "data/configuration/WireframeModelDirector.cfg"
 
 template <typename Tprod>
 bool DirectorSolution::registration(size_t id) {

@@ -1,11 +1,13 @@
 #include <implementation/managers/manager_creator.hpp>
 #include <implementation/objects/model/wireframe_model/model_details/point/point.hpp>
+#include <implementation/facade/facade.hpp>
 #include "move_model.hpp"
 
-
 MoveModel::MoveModel(std::shared_ptr<Object> model, double dx, double dy, double dz) 
-                                            : model(model), dx(dx), dy(dy), dz(dz) {
-    this->manager = ManagerCreator<TransformManager>().getManager();
+                                            : model(model), dx(dx), dy(dy), dz(dz) {}
+
+void MoveModel::init(Facade &facade) {
+    this->manager = facade.getTransformManager();
     this->method = &TransformManager::transform;      
 }
 

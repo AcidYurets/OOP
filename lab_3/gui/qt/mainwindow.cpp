@@ -262,7 +262,7 @@ void MainWindow::on_add_camera_btn_clicked() {
     auto obj_list = this->ui->objects_list;
     
     qDebug() << this->ui->objects_list->currentRow();
-    auto camera_set_cmd = std::make_shared<SetCamera>(this->ui->objects_list->currentRow());
+    auto camera_set_cmd = std::make_shared<SetCamera>(0);
     this->facade->execute(camera_set_cmd);
     this->ui->curr_camera_lbl->setText(obj_list->item(obj_list->count() - 1)->text());
 
@@ -506,7 +506,7 @@ void MainWindow::mouseRotateSlot(double dx, double dy, double dz) {
     auto get_model_cmd = make_shared<GetSceneObject>(model, this->getCurrModelID());
     this->facade->execute(get_model_cmd);
 
-    auto rotate_model_cmd = std::make_shared<RotateModel>(model, dx, dy, dz);
+    auto rotate_model_cmd = std::make_shared<RotateModel>(model, dx*0.3, dy*0.3, dz*0.3);
     try
     {
         this->facade->execute(rotate_model_cmd);

@@ -12,6 +12,18 @@ std::shared_ptr<LoadManager> Facade::getLoadManager() {
     return loadManager;
 }
 
+std::shared_ptr<DrawManager> Facade::getDrawManager() {
+    return drawManager;
+}
+
+std::shared_ptr<SceneManager> Facade::getSceneManager() {
+    return sceneManager;
+}
+
+std::shared_ptr<TransformManager> Facade::getTransformManager() {
+    return transformManager;
+}
+
 void Facade::execute(const std::shared_ptr<Command> &command) {
     command->init(*this);
     command->execute();

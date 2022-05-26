@@ -15,7 +15,7 @@ public:
 
     ~AddModel() override = default;
 
-    void init(Facade &facade) {}
+    void init(Facade &facade);
  
     void execute() override;
 

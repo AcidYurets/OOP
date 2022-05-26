@@ -1,9 +1,12 @@
 #include <implementation/managers/manager_creator.hpp>
 #include <implementation/objects/model/wireframe_model/model_details/point/point.hpp>
+#include <implementation/facade/facade.hpp>
 #include "move_camera.hpp"
 
-MoveCamera::MoveCamera(std::shared_ptr<Object> camera, double shift_x, double shift_y){
-    this->manager = ManagerCreator<TransformManager>().getManager();
+MoveCamera::MoveCamera(std::shared_ptr<Object> camera, double shift_x, double shift_y) {}
+
+void MoveCamera::init(Facade &facade) {
+    this->manager = facade.getTransformManager();
     this->method = &TransformManager::transform;
 }
 

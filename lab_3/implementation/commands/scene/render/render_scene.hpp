@@ -17,7 +17,7 @@ public:
 
     explicit RenderScene(std::shared_ptr<Scene> &scene, std::shared_ptr<Drawer> drawer, std::shared_ptr<Camera> mainCamera);
 
-    void init(Facade &facade) {}
+    void init(Facade &facade);
 
     void execute() override;
 
