@@ -7,10 +7,11 @@
 
 using namespace std;
 
-class BaseManagerCreator
+template <typename ConManager>
+class ManagerCreator
 {
 public:
-	shared_ptr<Manager> getManager() {
+	shared_ptr<ConManager> getManager() {
 		if (!manager)
 		{
 			manager = createManager();
@@ -18,20 +19,9 @@ public:
 
 		return manager;
 	}
-
 protected:
-	virtual shared_ptr<Manager> createManager() = 0;
-
-private:
-	shared_ptr<Manager> manager;
-};
-
-template <typename ConManager>
-class ManagerCreator : public BaseManagerCreator
-{
-protected:
-	virtual shared_ptr<Manager> createManager() override 
+	virtual shared_ptr<ConManager> createManager() override 
 	{
-		return shared_ptr<Manager>(make_shared<ConManager>());
+		return shared_ptr<ConManager>(make_shared<ConManager>());
 	}
 };

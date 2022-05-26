@@ -16,6 +16,8 @@ public:
 
     ~LoadModel() override = default;
 
+    void init(Facade &facade) override;
+
     void execute() override;
 
 private:
