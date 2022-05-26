@@ -13,12 +13,17 @@ public:
 
     AddCamera(double x_pos, double y_pos, double z_pos);
 
+    AddCamera(std::shared_ptr<Object> camera);
+
     ~AddCamera() override = default;
+
+    void init(Facade &facade) {}
 
     void execute() override;
 
 private:
     std::shared_ptr<Object> camera;
+
     Action method;
     std::shared_ptr<SceneManager> manager;
 };

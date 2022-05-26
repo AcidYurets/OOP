@@ -20,8 +20,10 @@ public:
 		return manager;
 	}
 protected:
-	virtual shared_ptr<ConManager> createManager() override 
+	virtual shared_ptr<ConManager> createManager()
 	{
 		return shared_ptr<ConManager>(make_shared<ConManager>());
 	}
+private:
+	shared_ptr<ConManager> manager = nullptr;
 };

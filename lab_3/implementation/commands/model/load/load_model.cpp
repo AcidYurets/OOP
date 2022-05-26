@@ -1,5 +1,6 @@
 #include <implementation/managers/manager_creator.hpp>
 #include <implementation/exceptions/load_exceptions.hpp>
+#include <implementation/facade/facade.hpp>
 #include "load_model.hpp"
 #include <fstream>
 

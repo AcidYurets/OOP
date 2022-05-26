@@ -9,15 +9,18 @@
 class GetScene : public SceneCommand {
     using Action = std::shared_ptr<Scene>(SceneManager::*)() const;
 public:
-    GetScene() = delete;
 
-    GetScene();
+    explicit GetScene(std::shared_ptr<Scene> &scene);
 
     ~GetScene() override = default;
+
+    void init(Facade &facade) {}
 
     void execute() override;
 
 private:
+    std::shared_ptr<Scene> &scene;
+
     Action method;
     std::shared_ptr<SceneManager> manager;
 };

@@ -17,6 +17,8 @@ public:
 
     ~MoveModel() override = default;
 
+    void init(Facade &facade) {}
+
     void execute() override;
 
 private:

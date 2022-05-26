@@ -1,7 +1,7 @@
 #ifndef __LAB_03_COMMAND_HPP__
 #define __LAB_03_COMMAND_HPP__
 
-#include <implementation/facade/facade.hpp>
+class Facade;
 
 class Command {
 public:

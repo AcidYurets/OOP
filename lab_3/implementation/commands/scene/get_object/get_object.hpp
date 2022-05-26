@@ -6,18 +6,21 @@
 #include <implementation/scene/scene.hpp>
 #include <implementation/managers/scene/scene_manager.hpp>
 
-class GetObject : public SceneCommand {
+class GetSceneObject : public SceneCommand {
     using Action = std::shared_ptr<Object>(SceneManager::*)(size_t id);
 public:
-    GetObject() = delete;
+    GetSceneObject() = delete;
 
-    explicit GetObject(size_t id);
+    explicit GetSceneObject(std::shared_ptr<Object> &object, size_t id);
 
-    ~GetObject() override = default;
+    ~GetSceneObject() override = default;
+
+    void init(Facade &facade) {}
 
     void execute() override;
 
 private:
+    std::shared_ptr<Object> &object;
     std::size_t id;
 
     Action method;

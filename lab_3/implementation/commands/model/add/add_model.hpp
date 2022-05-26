@@ -14,6 +14,8 @@ public:
     explicit AddModel(std::shared_ptr<Object> model);
 
     ~AddModel() override = default;
+
+    void init(Facade &facade) {}
  
     void execute() override;
 

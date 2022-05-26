@@ -1,4 +1,5 @@
 #include "facade.hpp"
+#include <implementation/managers/manager_creator.hpp>
 
 Facade::Facade() {
     this->loadManager = ManagerCreator<LoadManager>().getManager();

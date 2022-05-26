@@ -15,7 +15,9 @@ class RenderScene : public SceneCommand {
 public:
     RenderScene() = delete;
 
-    explicit RenderScene(std::shared_ptr<Scene> scene, std::shared_ptr<Drawer> drawer, std::shared_ptr<Camera> mainCamera);
+    explicit RenderScene(std::shared_ptr<Scene> &scene, std::shared_ptr<Drawer> drawer, std::shared_ptr<Camera> mainCamera);
+
+    void init(Facade &facade) {}
 
     void execute() override;
 
@@ -23,7 +25,7 @@ public:
 
 private:
     std::shared_ptr<Drawer> drawer;
-    std::shared_ptr<Scene> scene;
+    std::shared_ptr<Scene> &scene;
     std::shared_ptr<Camera> mainCamera;
     
     Action method;

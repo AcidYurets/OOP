@@ -9,15 +9,16 @@
 class GetMainCamera : public SceneCommand {
     using Action = std::shared_ptr<Camera>(SceneManager::*)() const;
 public:
-    GetMainCamera() = delete;
-
-    explicit GetMainCamera();
+    explicit GetMainCamera(std::shared_ptr<Camera> &camera);
 
     ~GetMainCamera() override = default;
+
+    void init(Facade &facade) {}
 
     void execute() override;
 
 private:
+    std::shared_ptr<Camera> &camera;
 
     Action method;
     std::shared_ptr<SceneManager> manager;
