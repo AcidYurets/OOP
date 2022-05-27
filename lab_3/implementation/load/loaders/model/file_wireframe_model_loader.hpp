@@ -5,8 +5,9 @@
 #include <fstream>
 #include <implementation/objects/model/wireframe_model/model_details/point/point.hpp>
 #include <implementation/objects/model/wireframe_model/model_details/edge/edge.hpp>
+#include "implementation/load/loaders/file_base_loader.hpp"
 
-class FileWireframeModelLoader {
+class FileWireframeModelLoader : public FileBaseLoader {
 public:
     FileWireframeModelLoader() = default;
 

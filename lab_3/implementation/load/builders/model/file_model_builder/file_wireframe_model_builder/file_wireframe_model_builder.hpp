@@ -10,23 +10,18 @@ public:
 
     ~FileWireframeModelBuilder() = default;
 
-    void assignFile(const std::string &src_name);
-
-    void finishFileProcessing();
-
     void reset();
 
     std::shared_ptr<Object> get();
 
-    void buildPoints();
+    void buildPoint(Point);
 
-    void buildEdges();
+    void buildEdge(Edge);
     
-    void buildCenter();
+    void buildCenter(Point);
 
-    virtual void buildPosition() {}
+    virtual void buildPosition(Point) {}
 
 private:
     std::shared_ptr<WireframeModelDetails> model_details;
-    std::shared_ptr<FileWireframeModelLoader> loader;
 };

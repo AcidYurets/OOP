@@ -1,7 +1,6 @@
 #include <implementation/exceptions/load_exceptions.hpp>
 #include "implementation/objects/camera/camera.hpp"
 #include "scene_manager.hpp"
-#include <qdebug>
 
 SceneManager::SceneManager() : scene(std::make_shared<Scene>()) {}
 
@@ -24,10 +23,6 @@ void SceneManager::setScene(std::shared_ptr<Scene> new_scene) {
 void SceneManager::setMainCamera(size_t camera_id) {
 
     auto it = getScene()->begin();
-    //!!
-    qDebug() << camera_id;
-    qDebug() << getScene()->getCamerasCount();
-    //!!
     std::advance(it, camera_id);
     this->main_camera = std::dynamic_pointer_cast<Camera>(*it);
 }
