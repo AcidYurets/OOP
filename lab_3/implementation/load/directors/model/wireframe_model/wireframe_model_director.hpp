@@ -10,6 +10,10 @@ public:
     ~WireframeModelDirector() = default;
 
     std::shared_ptr<Object> load(const std::string &src_name) override;
+private:
+    void loadPoints();
+    void loadEdges();
+    void loadCenter();
 };
 
 

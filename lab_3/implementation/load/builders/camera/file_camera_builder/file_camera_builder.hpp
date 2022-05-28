@@ -12,23 +12,18 @@ public:
 
     ~FileCameraBuilder() = default;
 
-    void assignFile(const std::string &src_name);
-
-    void finishFileProcessing();
-
     void reset();
 
     std::shared_ptr<Object> get();
 
-    void buildPosition();
+    void buildPosition(Point);
 
-    virtual void buildPoints() {}
+    virtual void buildPoint(Point) {}
 
-    virtual void buildEdges() {}
+    virtual void buildEdge(Edge) {}
     
-    virtual void buildCenter() {}
+    virtual void buildCenter(Point) {}
 
 private:
     std::shared_ptr<Camera> camera;
-    std::shared_ptr<FileCameraLoader> loader;
 };

@@ -62,6 +62,7 @@
     <ClInclude Include="implementation\load\directors\solution\director_solution.hpp" />
     <ClInclude Include="implementation\load\directors\model\wireframe_model\wireframe_model_director.hpp" />
     <ClInclude Include="implementation\load\builders\model\file_model_builder\file_wireframe_model_builder\file_wireframe_model_builder.hpp" />
+    <ClInclude Include="implementation\load\loaders\file_base_loader.hpp" />
     <ClInclude Include="implementation\objects\model\wireframe _model\wireframe _model.hpp" />
     <ClInclude Include="implementation\drawer\solution\solution_drawer_factory.hpp" />
     <QtMoc Include="gui\qt\display.h" />
@@ -148,12 +149,12 @@
     <Import Project="$(QtMsBuild)\qt_defaults.props" />
   </ImportGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'" Label="QtSettings">
-    <QtInstall>6.2.3_msvc2019_64</QtInstall>
+    <QtInstall>6.2.3_mingw_64</QtInstall>
     <QtModules>core;gui;widgets</QtModules>
     <QtBuildConfig>debug</QtBuildConfig>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'" Label="QtSettings">
-    <QtInstall>6.2.3_msvc2019_64</QtInstall>
+    <QtInstall>6.2.3_mingw_64</QtInstall>
     <QtModules>core;gui;widgets</QtModules>
     <QtBuildConfig>release</QtBuildConfig>
   </PropertyGroup>

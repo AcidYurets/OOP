@@ -5,6 +5,7 @@
 #include <memory>
 #include <utility>
 
+#include "implementation/load/loaders/file_base_loader.hpp"
 #include "implementation/load/builders/object_builder.hpp"
 #include "implementation/objects/object.hpp"
 
@@ -19,6 +20,7 @@ public:
 
 protected:
     std::shared_ptr<ObjectBuilder> builder;
+    std::shared_ptr<FileBaseLoader> loader;
 };
 
 #endif //__LAB_03_LOAD_DIRECTOR_HPP__

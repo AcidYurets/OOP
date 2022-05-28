@@ -349,6 +349,9 @@
     <ClInclude Include="implementation\commands\scene\get_scene\get_scene.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="implementation\load\loaders\file_base_loader.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="gui\qt\mainwindow.h">

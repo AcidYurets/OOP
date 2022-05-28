@@ -412,7 +412,8 @@ void MainWindow::on_right_btn_clicked() {
     if (!this->checkCamAndModel()) return;
 
     shared_ptr<Object> camera = make_shared<Camera>();
-    auto get_camera_cmd = make_shared<GetSceneObject>(camera, this->getCurrModelID());
+    qDebug() << this->getCurrCameraID();
+    auto get_camera_cmd = make_shared<GetSceneObject>(camera, this->getCurrCameraID());
     this->facade->execute(get_camera_cmd);
 
     auto camera_move_cmd = std::make_shared<MoveCamera>(camera, CAM_SHIFT, 0);
@@ -430,7 +431,7 @@ void MainWindow::on_up_btn_clicked() {
     if (!this->checkCamAndModel()) return;
 
     shared_ptr<Object> camera = make_shared<Camera>();
-    auto get_camera_cmd = make_shared<GetSceneObject>(camera, this->getCurrModelID());
+    auto get_camera_cmd = make_shared<GetSceneObject>(camera, this->getCurrCameraID());
     this->facade->execute(get_camera_cmd);
 
     auto camera_move_cmd = std::make_shared<MoveCamera>(camera, 0, -CAM_SHIFT);
@@ -448,7 +449,7 @@ void MainWindow::on_down_btn_clicked() {
     if (!this->checkCamAndModel()) return;
 
     shared_ptr<Object> camera = make_shared<Camera>();
-    auto get_camera_cmd = make_shared<GetSceneObject>(camera, this->getCurrModelID());
+    auto get_camera_cmd = make_shared<GetSceneObject>(camera, this->getCurrCameraID());
     this->facade->execute(get_camera_cmd);
 
     auto camera_move_cmd = std::make_shared<MoveCamera>(camera, 0, CAM_SHIFT);
@@ -466,7 +467,7 @@ void MainWindow::on_left_btn_clicked() {
     if (!this->checkCamAndModel()) return;
 
     shared_ptr<Object> camera = make_shared<Camera>();
-    auto get_camera_cmd = make_shared<GetSceneObject>(camera, this->getCurrModelID());
+    auto get_camera_cmd = make_shared<GetSceneObject>(camera, this->getCurrCameraID());
     this->facade->execute(get_camera_cmd);
 
     auto camera_move_cmd = std::make_shared<MoveCamera>(camera, -CAM_SHIFT, 0);

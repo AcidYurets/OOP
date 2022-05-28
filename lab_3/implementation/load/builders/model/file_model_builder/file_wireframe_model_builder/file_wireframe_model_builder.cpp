@@ -3,15 +3,7 @@
 #include <fstream>
 #include <implementation/exceptions/load_exceptions.hpp>
 
-FileWireframeModelBuilder::FileWireframeModelBuilder() : loader(std::make_shared<FileWireframeModelLoader>()) {}
-
-void FileWireframeModelBuilder::assignFile(const std::string &src_name) {
-    this->loader->openFile(src_name);
-}
-
-void FileWireframeModelBuilder::finishFileProcessing() {
-    this->loader->closeFile();
-}
+FileWireframeModelBuilder::FileWireframeModelBuilder() {}
 
 void FileWireframeModelBuilder::reset() {
     this->model_details = std::make_shared<WireframeModelDetails>();
@@ -22,25 +14,14 @@ std::shared_ptr<Object> FileWireframeModelBuilder::get() {
     return model;
 }
 
-void FileWireframeModelBuilder::buildPoints() {
-    size_t points_count = this->loader->loadCount();
-
-    for (size_t i = 0; i < points_count; i++) {
-        Point p = this->loader->loadPoint();
-        this->model_details->addPoint(p);
-    }
+void FileWireframeModelBuilder::buildPoint(Point p) {
+    this->model_details->addPoint(p);
 }
 
-void FileWireframeModelBuilder::buildEdges() {
-    size_t points_count = this->loader->loadCount();
-
-    for (size_t i = 0; i < points_count; i++) {
-        Edge e = this->loader->loadEdge();
+void FileWireframeModelBuilder::buildEdge(Edge e) {
         this->model_details->addEdge(e);
-    }
 }
 
-void FileWireframeModelBuilder::buildCenter() {
-    Point c = this->loader->loadPoint();
+void FileWireframeModelBuilder::buildCenter(Point c) {
     this->model_details->setCenter(c);
 }
