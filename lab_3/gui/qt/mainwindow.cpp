@@ -483,20 +483,32 @@ void MainWindow::on_left_btn_clicked() {
 void MainWindow::mouseMoveSlot(double dx, double dy, double dz) {
     if (!this->checkCamAndModel()) return;
 
-    shared_ptr<Object> model = make_shared<WireframeModel>();
-    auto get_model_cmd = make_shared<GetSceneObject>(model, this->getCurrModelID());
-    this->facade->execute(get_model_cmd);
+    auto scene = std::make_shared<Scene>();
+    auto get_scene_cmd = std::make_shared<GetScene>(scene);
+    this->facade->execute(get_scene_cmd);
 
-    auto move_model_cmd = make_shared<MoveModel>(model, dx, dy, dz);
-    try
+    auto it = scene->begin();
+    for (; it != scene->end(); it++)
     {
-        this->facade->execute(move_model_cmd);
-        this->updateScene();
+        shared_ptr<Object> model = *it;
+
+        if (model->is_visible() == false)
+        {
+            continue;
+        }
+
+        auto move_model_cmd = make_shared<MoveModel>(model, dx, dy, dz);
+        try
+        {
+            this->facade->execute(move_model_cmd);
+            this->updateScene();
+        }
+        catch (const BaseException& ex)
+        {
+            QMessageBox::warning(this, "Error", QString(ex.what()));
+        }
     }
-    catch (const BaseException& ex)
-    {
-        QMessageBox::warning(this, "Error", QString(ex.what()));
-    }
+
 }
 
 void MainWindow::mouseRotateSlot(double dx, double dy, double dz) {
