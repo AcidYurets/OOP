@@ -25,13 +25,10 @@ private:
 
 public:
     Display(QWidget* parent = nullptr) : QGraphicsView(parent) {
-        qDebug() << this->parentWidget()->parentWidget();
     };
 
     void mousePressEvent(QMouseEvent* mouse) {
-        qDebug() << "Mouse pressed";
         cursor = mouse->pos();
-        qDebug() << "Cursor is" << cursor;
 
         if (mouse->button() == Qt::LeftButton)
             mouseLeftButtonPressed = true;
@@ -43,7 +40,6 @@ public:
     }
 
     void mouseReleaseEvent(QMouseEvent* mouse) {
-        qDebug() << "Mouse released";
         mouseLeftButtonPressed = false;
 
         mouseRightButtonPressed = false;
@@ -52,14 +48,12 @@ public:
     }
 
     void mouseMoveEvent(QMouseEvent* mouse) {
-        qDebug() << "Cursor was " << cursor;
 
         double dx = mouse->x() - cursor.x();
         double dy = mouse->y() - cursor.y();
 
         cursor = mouse->pos();
 
-        qDebug() << "Cursor is " << cursor;
 
         if (mouseLeftButtonPressed) {
             emit moveSignal(dx, dy, 0);
