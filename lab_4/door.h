@@ -21,10 +21,10 @@ public:
     virtual ~Door() = default;
 
 signals:
-    void openedSignal(Door* door);
-    void openingSignal(Door* door);
-    void closingSignal(Door* door);
-    void closedSignal(Door* door);
+    void openedSignal();
+    void openingSignal();
+    void closingSignal();
+    void closedSignal();
 
 public slots:
     void opening();

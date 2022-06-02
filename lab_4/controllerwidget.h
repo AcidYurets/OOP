@@ -3,7 +3,7 @@
 
 #include <QWidget>
 #include <QPushButton>
-#include <QRadioButton>
+#include <QLCDNumber>
 #include "common.h"
 #include "controller.h"
 #include "controllerbuttonwidget.h"
@@ -22,7 +22,7 @@ public:
     ~ControllerWidget();
 
 public slots:
-    void cabinVisited(Cabin *cabin, int floor);
+    void floorVisited(int floor);
 
 private:
     void addFloorButton(int floor);
@@ -30,7 +30,7 @@ private:
     Ui::Controller *ui;
     Controller* controller;
 
-    std::vector<QRadioButton*> floorBulbs;
+    QLCDNumber *floorLCD;
     std::vector<ControllerButton*> buttons;
     std::vector<ControllerButtonWidget*> buttonWidgets;
 };

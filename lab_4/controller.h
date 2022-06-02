@@ -16,12 +16,12 @@ class Controller : public QObject
 public:
     enum class State
     {
+        NOT_ACTIVE,
+        DOORS_OPENING,
         WAITING_PASSENGERS,
+        DOORS_CLOSING,
         DETERMINE_NEXT_FLOOR,
-        START_MOVING,
-        CLOSING_DOORS,
-        WAITING_FOR_ARRIVE,
-        ARRIVED
+        ELEVATOR_IN_MOVE,
     };
 
     Controller(Cabin* cabin, Door* door);
@@ -32,28 +32,30 @@ public:
 
 signals:
     void releaseButton(int floor);
-    void startMovingSignal(int targetFloor);
+
+    void startOpeningDoors(int targetFloor);
     void doorsOpeningSignal();
     void doorsClosingSignal();
+
     void cabinMoveSignal(int targetFloor);
-    void cabinMove();
     void cabinStopSignal();
-    void cabinStoppedSignal();
+
+    void controllerNotActiveSignal();
 
 public slots:
-    void buttonPressedDispatcher(ControllerButton* button); // DETERMINE_NEXT_FLOOR
-    void startMovingDispatcher(int targetFloor);            // START_MOVING
-    void cabinMovingDispatcher();                           // WAITING_FOR_ARRIVE
-    void cabinStoppedDispatcher(Cabin* cabin);              // ARRIVE
-    void doorOpenedDispatcher(Door* door);                  // WAITING_PASSENGERS
-    void waitingTimeout();                                  // CLOSING_DOORS
+    void controllerIsNotActive();                   // NOT_ACTIVE
+    void cabinIsMoving();                         // ELEVATOR_IN_MOVE
+    void cabinStopped(Cabin* cabin);              // OPENING_DOORS
+    void doorOpened();                            // WAITING_PASSENGERS
+    void waitingTimeout();                        // CLOSING_DOORS
+    void buttonPressed(ControllerButton* button); // DETERMINE_NEXT_FLOOR
 
 private:
     bool hasRequests() const;
     int getNextTargetFloor() const;
     int getNextTargetFloor(int currFloor, Direction dir) const;
 
-    State state = State::WAITING_PASSENGERS;
+    State state = State::NOT_ACTIVE;
     bool floorRequested[FLOORS_COUNT] = { false };
 
     Cabin* cabin;

@@ -6,13 +6,14 @@ ControllerWidget::ControllerWidget(Controller *controller)
 {
     ui->setupUi(this);
 
-    ui->floorsLayout->addSpacerItem(new QSpacerItem(200, 0));
     for (int i = FLOORS_COUNT; i > 0; i--)
         addFloorButton(i);
-    ui->floorsLayout->insertSpacerItem(0, new QSpacerItem(200, 0));
 
-    connect(controller->getCabin(), &Cabin::movingSignal, this, &ControllerWidget::cabinVisited);
-    floorBulbs[0]->setChecked(true);
+    floorLCD = ui->lcdNumber;
+    floorLCD->setSegmentStyle(QLCDNumber::Flat);
+    floorLCD->display(1);
+
+    connect(controller->getCabin(), &Cabin::movingSignal, this, &ControllerWidget::floorVisited);
 }
 
 ControllerWidget::~ControllerWidget()
@@ -20,21 +21,13 @@ ControllerWidget::~ControllerWidget()
     delete ui;
 }
 
-void ControllerWidget::cabinVisited(Cabin* cabin, int floor)
+void ControllerWidget::floorVisited(int floor)
 {
-    for (auto& bulb : floorBulbs)
-        bulb->setChecked(false);
-    floorBulbs[floor - 1]->setChecked(true);
+    floorLCD->display(floor);
 }
 
 void ControllerWidget::addFloorButton(int floor)
 {
-    QRadioButton *floorBulb = new QRadioButton();
-    floorBulb->setText(QString::number(floor));
-    floorBulb->setDisabled(true);
-    floorBulbs.insert(floorBulbs.begin(), floorBulb);
-    ui->floorsLayout->insertWidget(0, floorBulb);
-
     ControllerButton* button = new ControllerButton(floor);
     ControllerButtonWidget* buttonWidget = new ControllerButtonWidget(button);
 

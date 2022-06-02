@@ -1,4 +1,4 @@
-#include <QDebug>
+#include <qdebug>
 #include "controller.h"
 
 constexpr auto wait_timeout = 2000;
@@ -7,25 +7,26 @@ constexpr auto wait_timeout = 2000;
 Controller::Controller(Cabin *cabin, Door *door)
     : cabin(cabin), door(door)
 {
-    connect(cabin, &Cabin::movingSignal, this, &Controller::cabinMovingDispatcher);
-    connect(cabin, &Cabin::stoppedSignal, this, &Controller::cabinStoppedDispatcher);
-    connect(door, &Door::closedSignal, this, &Controller::cabinMovingDispatcher);
-    connect(door, &Door::openedSignal, this, &Controller::doorOpenedDispatcher);
-
-    connect(this, &Controller::startMovingSignal, door, &Door::opening);
-    connect(this, &Controller::cabinMoveSignal, cabin, &Cabin::startMove);
-    connect(this, &Controller::cabinMove, cabin, &Cabin::move);
-    connect(this, &Controller::cabinStopSignal, cabin, &Cabin::stop);
+    connect(this, &Controller::startOpeningDoors, door, &Door::opening);
 
     connect(this, &Controller::doorsOpeningSignal, door, &Door::opening);
     connect(this, &Controller::doorsClosingSignal, door, &Door::closing);
+    connect(door, &Door::openedSignal, this, &Controller::doorOpened);
+    connect(door, &Door::closedSignal, this, &Controller::cabinIsMoving);
+    
+    
+    connect(this, &Controller::cabinMoveSignal, cabin, &Cabin::startMove);
+    connect(this, &Controller::cabinStopSignal, cabin, &Cabin::stop);
+    connect(cabin, &Cabin::movingSignal, this, &Controller::cabinIsMoving);
+    connect(cabin, &Cabin::stoppedSignal, this, &Controller::cabinStopped);
 
+    connect(this, &Controller::controllerNotActiveSignal, this, &Controller::controllerIsNotActive);
     connect(&timer, &QTimer::timeout, this, &Controller::waitingTimeout);
 }
 
 void Controller::connectButton(ControllerButton *button)
 {
-    connect(button, &ControllerButton::pressedSignal, this, &Controller::buttonPressedDispatcher);
+    connect(button, &ControllerButton::pressedSignal, this, &Controller::buttonPressed);
     connect(this, &Controller::releaseButton, [button](int floor)
     {
         if (floor == button->getFloorNumber())
@@ -38,50 +39,32 @@ Cabin *Controller::getCabin()
     return cabin;
 }
 
-void Controller::buttonPressedDispatcher(ControllerButton *button)
+void Controller::buttonPressed(ControllerButton *button)
 {
-    bool started = hasRequests();
+    bool active = hasRequests();
     state = State::DETERMINE_NEXT_FLOOR;
     int floor = button->getFloorNumber();
 
     floorRequested[floor - 1] = true;
-    if (!started || floor == cabin->getCurrFloor())
+    if (!active /*|| floor == cabin->getCurrFloor()*/)
     {
-        emit startMovingSignal(getNextTargetFloor());
-    }
-}
-
-void Controller::startMovingDispatcher(int targetFloor)
-{
-    if (state == State::DETERMINE_NEXT_FLOOR)
-    {
-        state = State::START_MOVING;
         emit doorsOpeningSignal();
     }
 }
 
-void Controller::cabinMovingDispatcher()
+void Controller::cabinStopped(Cabin *cabin)
 {
-    state = State::WAITING_FOR_ARRIVE;
-    if (floorRequested[cabin->getCurrFloor() - 1])
-        emit cabinStopSignal();
-    else if (getNextTargetFloor() != 0)
-        emit cabinMoveSignal(getNextTargetFloor());
-}
-
-void Controller::cabinStoppedDispatcher(Cabin *cabin)
-{
-    if (state == State::WAITING_FOR_ARRIVE || state == State::DETERMINE_NEXT_FLOOR)
+    if (state == State::ELEVATOR_IN_MOVE || state == State::DETERMINE_NEXT_FLOOR || state == State::DOORS_CLOSING)
     {
-        state = State::ARRIVED;
+        state = State::DOORS_OPENING;
         qDebug() << "cabin stopped at floor " << cabin->getCurrFloor();
         emit doorsOpeningSignal();
     }
 }
 
-void Controller::doorOpenedDispatcher(Door *door)
+void Controller::doorOpened()
 {
-    if (state == State::CLOSING_DOORS || state == State::ARRIVED || state == State::DETERMINE_NEXT_FLOOR)
+    if (state == State::DOORS_OPENING || state == State::DETERMINE_NEXT_FLOOR)
     {
         state = State::WAITING_PASSENGERS;
         qDebug() << "waiting passengers...";
@@ -98,11 +81,32 @@ void Controller::waitingTimeout()
 {
     if (state == State::WAITING_PASSENGERS || state == State::DETERMINE_NEXT_FLOOR)
     {
-        state = State::CLOSING_DOORS;
+        state = State::DOORS_CLOSING;
         qDebug() << "end waiting";
         timer.stop();
         emit doorsClosingSignal();
     }
+}
+
+void Controller::cabinIsMoving()
+{
+    if (state == State::ELEVATOR_IN_MOVE || state == State::DETERMINE_NEXT_FLOOR || state == State::DOORS_CLOSING)
+    {
+        state = State::ELEVATOR_IN_MOVE;
+
+        if (floorRequested[cabin->getCurrFloor() - 1]) // Приехали куда надо
+            emit cabinStopSignal();
+        else if (getNextTargetFloor() != 0)            // Едем к цели         
+            emit cabinMoveSignal(getNextTargetFloor());
+        else                                           // Ехать некуда
+            emit controllerNotActiveSignal();
+    }
+}
+
+void Controller::controllerIsNotActive()
+{
+    state = State::NOT_ACTIVE;
+    qDebug() << "elevator not active!";
 }
 
 bool Controller::hasRequests() const

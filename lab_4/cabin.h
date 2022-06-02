@@ -25,7 +25,7 @@ public:
     Direction getDirection() const;
 
 signals:
-    void movingSignal(Cabin* cabin, int floor);
+    void movingSignal(int floor);
     void startMovingSignal(Cabin* cabin, int floor);
     void stoppedSignal(Cabin* cabin, int floor);
 

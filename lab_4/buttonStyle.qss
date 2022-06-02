@@ -1,0 +1,18 @@
+QPushButton {
+    background-color: rgb(192, 192, 192);
+    border-style: outset;
+    border-width: 3px;
+    border-color: black;
+    border-radius: 5px;
+    max-width:  32px;
+    max-height: 32px;
+    min-width:  32px;
+    min-height: 32px;
+}
+
+QPushButton:disabled {
+    border-width: 4px;
+    border-color: red;
+    border-width: 3px;
+    color: black;
+}

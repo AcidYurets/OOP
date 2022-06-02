@@ -8,7 +8,7 @@ void Door::opening()
     {
         qDebug() << "door is opening...";
         state = State::OPENING;
-        emit openingSignal(this);
+        emit openingSignal();
     }
 }
 
@@ -18,7 +18,7 @@ void Door::closing()
     {
         qDebug() << "door is closing...";
         state = State::CLOSING;
-        emit closingSignal(this);
+        emit closingSignal();
     }
 }
 
@@ -28,7 +28,7 @@ void Door::open()
     {
         qDebug() << "door opened.";
         state = State::OPENED;
-        emit openedSignal(this);
+        emit openedSignal();
     }
 }
 
@@ -38,6 +38,6 @@ void Door::close()
     {
         qDebug() << "door closed.";
         state = State::CLOSED;
-        emit closedSignal(this);
+        emit closedSignal();
     }
 }

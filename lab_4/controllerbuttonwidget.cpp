@@ -1,18 +1,13 @@
 #include "controllerbuttonwidget.h"
+#include "qfile"
 
 ControllerButtonWidget::ControllerButtonWidget(ControllerButton* button)
     : button(button)
 {
-    setStyleSheet(
-        "background-color: rgb(190, 160, 200);"
-        "border-style: solid;"
-        "border-width: 1px;"
-        "border-radius: 16px;"
-        "border-color: black;"
-        "max-width:  32px;"
-        "max-height: 32px;"
-        "min-width:  32px;"
-        "min-height: 32px;");
+    QFile file("./buttonStyle.qss");
+    file.open(QFile::ReadOnly);
+    QString styleSheet = QLatin1String(file.readAll());
+    setStyleSheet(styleSheet);
 
     auto f = font();
     f.setPointSize(16);

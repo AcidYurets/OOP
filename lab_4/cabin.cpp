@@ -52,15 +52,15 @@ void Cabin::move()
     if (currFloor < targetFloor)
     {
         direction = Direction::UP;
-        emit movingSignal(this, ++currFloor);
+        emit movingSignal(++currFloor);
     }
     else if (targetFloor < currFloor)
     {
         direction = Direction::DOWN;
-        emit movingSignal(this, --currFloor);
+        emit movingSignal(--currFloor);
     }
     else
-        emit movingSignal(this, currFloor);
+        emit movingSignal(currFloor);
 }
 
 void Cabin::stop()

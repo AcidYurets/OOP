@@ -7,8 +7,6 @@
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent),
       ui(new Ui::MainWindow)
-      // cabinWidget(new CabinWidget(new Cabin(new Door()))),
-      // controllerWidget(new ControllerWidget(new Controller()))
 {
     ui->setupUi(this);
 
@@ -20,24 +18,12 @@ MainWindow::MainWindow(QWidget *parent)
     ui->centralwidget->layout()->addWidget(cabinWidget);
 
     ControllerWidget* controllerWidget = new ControllerWidget(controller);
+    controllerWidget->setMinimumSize(262, 450);
+    controllerWidget->setMaximumSize(262, 450);
     ui->centralwidget->layout()->addWidget(controllerWidget);
 
-    // connect(ui->pushButton, &QPushButton::pressed, this, &MainWindow::pressButton);
-    //
-    // ControllerButton* buttons[5];
-    //
-    // for (size_t i = 0; i < sizeof(buttons) / sizeof(*buttons); i++)
-    // {
-    //     buttons[i] = new ControllerButton(i + 1);
-    //     controller->addButton(buttons[i]);
-    // }
-    //
-    // buttons[2]->pressButton();
-
-    // ui->centralwidget->layout()->addWidget(cabinWidget);
-    // ui->centralwidget->layout()->addWidget(controllerWidget);
-
-    // elevator = new Elevator(&**controllerWidget, &**cabinWidget);
+    ui->centralwidget->setMinimumSize(600, 450);
+    ui->centralwidget->setMaximumSize(600, 450);
 }
 
 MainWindow::~MainWindow()

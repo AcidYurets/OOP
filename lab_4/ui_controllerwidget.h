@@ -11,7 +11,9 @@
 
 #include <QtCore/QVariant>
 #include <QtWidgets/QApplication>
+#include <QtWidgets/QGridLayout>
 #include <QtWidgets/QHBoxLayout>
+#include <QtWidgets/QLCDNumber>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QSpacerItem>
 #include <QtWidgets/QVBoxLayout>
@@ -22,56 +24,29 @@ QT_BEGIN_NAMESPACE
 class Ui_Controller
 {
 public:
-    QVBoxLayout *verticalLayout;
-    QHBoxLayout *floorsLayout;
-    QLabel *label;
+    QGridLayout *gridLayout;
     QHBoxLayout *horizontalLayout;
     QSpacerItem *horizontalSpacer_2;
     QVBoxLayout *buttonsLayout;
     QSpacerItem *horizontalSpacer;
     QSpacerItem *verticalSpacer;
+    QLabel *label;
+    QLCDNumber *lcdNumber;
+    QLabel *label_2;
 
     void setupUi(QWidget *Controller)
     {
         if (Controller->objectName().isEmpty())
             Controller->setObjectName(QString::fromUtf8("Controller"));
-        Controller->resize(279, 411);
+        Controller->resize(262, 466);
         QPalette palette;
-        QBrush brush(QColor(255, 255, 255, 255));
-        brush.setStyle(Qt::SolidPattern);
-        palette.setBrush(QPalette::Active, QPalette::Base, brush);
-        QBrush brush1(QColor(223, 223, 223, 255));
-        brush1.setStyle(Qt::SolidPattern);
-        palette.setBrush(QPalette::Active, QPalette::Window, brush1);
-        palette.setBrush(QPalette::Inactive, QPalette::Base, brush);
-        palette.setBrush(QPalette::Inactive, QPalette::Window, brush1);
-        palette.setBrush(QPalette::Disabled, QPalette::Base, brush1);
-        palette.setBrush(QPalette::Disabled, QPalette::Window, brush1);
         Controller->setPalette(palette);
-        verticalLayout = new QVBoxLayout(Controller);
-        verticalLayout->setSpacing(0);
-        verticalLayout->setObjectName(QString::fromUtf8("verticalLayout"));
-        verticalLayout->setContentsMargins(4, 4, 4, 4);
-        floorsLayout = new QHBoxLayout();
-        floorsLayout->setObjectName(QString::fromUtf8("floorsLayout"));
-
-        verticalLayout->addLayout(floorsLayout);
-
-        label = new QLabel(Controller);
-        label->setObjectName(QString::fromUtf8("label"));
-        QFont font;
-        font.setFamilies({QString::fromUtf8("Yu Gothic UI Light")});
-        font.setPointSize(14);
-        label->setFont(font);
-        label->setTextFormat(Qt::PlainText);
-        label->setScaledContents(false);
-        label->setAlignment(Qt::AlignCenter);
-
-        verticalLayout->addWidget(label);
-
+        gridLayout = new QGridLayout(Controller);
+        gridLayout->setObjectName(QString::fromUtf8("gridLayout"));
+        gridLayout->setContentsMargins(4, 4, 4, 4);
         horizontalLayout = new QHBoxLayout();
         horizontalLayout->setObjectName(QString::fromUtf8("horizontalLayout"));
-        horizontalLayout->setContentsMargins(-1, 48, -1, -1);
+        horizontalLayout->setContentsMargins(-1, 0, -1, -1);
         horizontalSpacer_2 = new QSpacerItem(40, 20, QSizePolicy::MinimumExpanding, QSizePolicy::Minimum);
 
         horizontalLayout->addItem(horizontalSpacer_2);
@@ -87,13 +62,39 @@ public:
         horizontalLayout->addItem(horizontalSpacer);
 
 
-        verticalLayout->addLayout(horizontalLayout);
+        gridLayout->addLayout(horizontalLayout, 2, 0, 1, 2);
 
         verticalSpacer = new QSpacerItem(20, 200, QSizePolicy::Minimum, QSizePolicy::Expanding);
 
-        verticalLayout->addItem(verticalSpacer);
+        gridLayout->addItem(verticalSpacer, 3, 0, 1, 2);
 
-        verticalLayout->setStretch(2, 1);
+        label = new QLabel(Controller);
+        label->setObjectName(QString::fromUtf8("label"));
+        QFont font;
+        font.setFamilies({QString::fromUtf8("Yu Gothic UI Light")});
+        font.setPointSize(14);
+        label->setFont(font);
+        label->setTextFormat(Qt::PlainText);
+        label->setScaledContents(false);
+        label->setAlignment(Qt::AlignCenter);
+
+        gridLayout->addWidget(label, 1, 0, 1, 2);
+
+        lcdNumber = new QLCDNumber(Controller);
+        lcdNumber->setObjectName(QString::fromUtf8("lcdNumber"));
+        lcdNumber->setMinimumSize(QSize(0, 50));
+
+        gridLayout->addWidget(lcdNumber, 0, 1, 1, 1);
+
+        label_2 = new QLabel(Controller);
+        label_2->setObjectName(QString::fromUtf8("label_2"));
+        QFont font1;
+        font1.setFamilies({QString::fromUtf8("Yu Gothic UI Light")});
+        font1.setPointSize(20);
+        label_2->setFont(font1);
+
+        gridLayout->addWidget(label_2, 0, 0, 1, 1);
+
 
         retranslateUi(Controller);
 
@@ -104,6 +105,7 @@ public:
     {
         Controller->setWindowTitle(QCoreApplication::translate("Controller", "Form", nullptr));
         label->setText(QCoreApplication::translate("Controller", "\320\237\320\260\320\275\320\265\320\273\321\214 \321\203\320\277\321\200\320\260\320\262\320\273\320\265\320\275\320\270\321\217", nullptr));
+        label_2->setText(QCoreApplication::translate("Controller", "\320\255\321\202\320\260\320\266:", nullptr));
     } // retranslateUi
 
 };
