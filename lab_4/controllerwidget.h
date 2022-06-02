@@ -7,6 +7,7 @@
 #include "common.h"
 #include "controller.h"
 #include "controllerbuttonwidget.h"
+#include "ui_controllerwidget.h"
 
 
 namespace Ui {
@@ -25,7 +26,7 @@ public slots:
     void floorVisited(int floor);
 
 private:
-    void addFloorButton(int floor);
+    void addButton(int floor, QVBoxLayout* buttonsLayout);
 
     Ui::Controller *ui;
     Controller* controller;

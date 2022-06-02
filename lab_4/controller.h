@@ -27,6 +27,7 @@ public:
     virtual ~Controller() = default;
 
     void connectButton(ControllerButton* button);
+    void connectOpenButton(ControllerOpenButton* button);
     Cabin* getCabin();
 
 signals:

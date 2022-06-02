@@ -23,4 +23,16 @@ private:
     ControllerButton* button;
 };
 
+class ControllerOpenButtonWidget : ControllerButtonWidget
+{
+    Q_OBJECT
+
+public:
+    explicit ControllerOpenButtonWidget(ControllerOpenButton* openButton);
+    virtual ~ControllerOpenButtonWidget() = default;
+
+private:
+    ControllerOpenButton* openButton;
+};
+
 #endif // CONTROLLERBUTTONWIDGET_H

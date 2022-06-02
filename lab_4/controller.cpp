@@ -34,6 +34,11 @@ void Controller::connectButton(ControllerButton *button)
     });
 }
 
+void Controller::connectOpenButton(ControllerButton* openButton)
+{
+    connect(openButton, &ControllerButton::pressedSignal, this, &Controller::buttonPressed);
+}
+
 Cabin *Controller::getCabin()
 {
     return cabin;

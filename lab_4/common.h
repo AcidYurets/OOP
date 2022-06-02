@@ -8,6 +8,6 @@ enum class Direction
     DOWN
 };
 
-constexpr int FLOORS_COUNT = 6;
+constexpr int FLOORS_COUNT = 9;
 
 #endif // COMMON_H

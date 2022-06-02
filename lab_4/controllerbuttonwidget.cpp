@@ -18,6 +18,23 @@ ControllerButtonWidget::ControllerButtonWidget(ControllerButton* button)
     connect(button, &ControllerButton::releasedSignal, this, &ControllerButtonWidget::buttonReleased);
 }
 
+ControllerOpenButtonWidget::ControllerOpenButtonWidget(ControllerOpenButton* openButton)
+    : openButton(openButton)
+{
+    QFile file("./buttonStyle.qss");
+    file.open(QFile::ReadOnly);
+    QString styleSheet = QLatin1String(file.readAll());
+    setStyleSheet(styleSheet);
+
+    auto f = font();
+    f.setPointSize(16);
+    setFont(f);
+    setText("<>");
+
+    connect(this, &QPushButton::pressed, this, &ControllerButtonWidget::buttonPressed);
+    //connect(openButton, &ControllerButton::releasedSignal, this, &ControllerButtonWidget::buttonReleased);
+}
+
 ControllerButton *ControllerButtonWidget::getControllerButton()
 {
     return button;

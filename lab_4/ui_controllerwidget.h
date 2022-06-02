@@ -28,6 +28,8 @@ public:
     QHBoxLayout *horizontalLayout;
     QSpacerItem *horizontalSpacer_2;
     QVBoxLayout *buttonsLayout;
+    QSpacerItem *horizontalSpacer_3;
+    QVBoxLayout *buttonsLayout_2;
     QSpacerItem *horizontalSpacer;
     QSpacerItem *verticalSpacer;
     QLabel *label;
@@ -52,10 +54,20 @@ public:
         horizontalLayout->addItem(horizontalSpacer_2);
 
         buttonsLayout = new QVBoxLayout();
-        buttonsLayout->setSpacing(20);
+        buttonsLayout->setSpacing(25);
         buttonsLayout->setObjectName(QString::fromUtf8("buttonsLayout"));
 
         horizontalLayout->addLayout(buttonsLayout);
+
+        horizontalSpacer_3 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        horizontalLayout->addItem(horizontalSpacer_3);
+
+        buttonsLayout_2 = new QVBoxLayout();
+        buttonsLayout_2->setSpacing(25);
+        buttonsLayout_2->setObjectName(QString::fromUtf8("buttonsLayout_2"));
+
+        horizontalLayout->addLayout(buttonsLayout_2);
 
         horizontalSpacer = new QSpacerItem(40, 20, QSizePolicy::MinimumExpanding, QSizePolicy::Minimum);
 
