@@ -70,6 +70,6 @@ void Cabin::stop()
         state = State::STOPPED;
         qDebug() << "stopped moving.";
         timer.stop();
-        emit stoppedSignal(this, currFloor);
+        emit stoppedSignal(currFloor);
     }
 }

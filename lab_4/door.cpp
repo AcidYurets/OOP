@@ -4,7 +4,7 @@
 
 void Door::opening()
 {
-    if (state == State::CLOSED || state == State::CLOSING)
+    if (state == State::CLOSED || state == State::CLOSING || state == State::OPENED)
     {
         qDebug() << "door is opening...";
         state = State::OPENING;

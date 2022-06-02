@@ -16,3 +16,10 @@ QPushButton:disabled {
     border-width: 3px;
     color: black;
 }
+
+QPushButton:pressed {
+    border-width: 4px;
+    border-color: red;
+    border-width: 3px;
+    color: black;
+}

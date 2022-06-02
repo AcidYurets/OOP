@@ -7,7 +7,7 @@ constexpr auto wait_timeout = 2000;
 Controller::Controller(Cabin *cabin, Door *door)
     : cabin(cabin), door(door)
 {
-    connect(this, &Controller::startOpeningDoors, door, &Door::opening);
+    connect(this, &Controller::startOpeningDoors, this, &Controller::cabinStopped);
 
     connect(this, &Controller::doorsOpeningSignal, door, &Door::opening);
     connect(this, &Controller::doorsClosingSignal, door, &Door::closing);
@@ -41,30 +41,33 @@ Cabin *Controller::getCabin()
 
 void Controller::buttonPressed(ControllerButton *button)
 {
-    bool active = hasRequests();
-    state = State::DETERMINE_NEXT_FLOOR;
+    qDebug() << "PUSHED!!! // state = " << (int)state;
     int floor = button->getFloorNumber();
-
     floorRequested[floor - 1] = true;
-    if (!active /*|| floor == cabin->getCurrFloor()*/)
+
+    if (state == State::NOT_ACTIVE) // Если лифт не активен
+        emit startOpeningDoors(floor);
+    else if ((state == State::DOORS_CLOSING || state == State::WAITING_PASSENGERS)
+        && (floor == cabin->getCurrFloor())) // Если нажали кнопку этажа, на котором лифт и так находится
     {
-        emit doorsOpeningSignal();
+        emit startOpeningDoors(floor);
     }
+        
 }
 
-void Controller::cabinStopped(Cabin *cabin)
+void Controller::cabinStopped(int floor)
 {
-    if (state == State::ELEVATOR_IN_MOVE || state == State::DETERMINE_NEXT_FLOOR || state == State::DOORS_CLOSING)
+    if (state == State::ELEVATOR_IN_MOVE || state == State::DOORS_CLOSING || state == State::WAITING_PASSENGERS || state == State::NOT_ACTIVE)
     {
         state = State::DOORS_OPENING;
-        qDebug() << "cabin stopped at floor " << cabin->getCurrFloor();
+        qDebug() << "cabin stopped at floor " << floor;
         emit doorsOpeningSignal();
     }
 }
 
 void Controller::doorOpened()
 {
-    if (state == State::DOORS_OPENING || state == State::DETERMINE_NEXT_FLOOR)
+    if (state == State::DOORS_OPENING)
     {
         state = State::WAITING_PASSENGERS;
         qDebug() << "waiting passengers...";
@@ -79,7 +82,7 @@ void Controller::doorOpened()
 
 void Controller::waitingTimeout()
 {
-    if (state == State::WAITING_PASSENGERS || state == State::DETERMINE_NEXT_FLOOR)
+    if (state == State::WAITING_PASSENGERS)
     {
         state = State::DOORS_CLOSING;
         qDebug() << "end waiting";
@@ -90,7 +93,7 @@ void Controller::waitingTimeout()
 
 void Controller::cabinIsMoving()
 {
-    if (state == State::ELEVATOR_IN_MOVE || state == State::DETERMINE_NEXT_FLOOR || state == State::DOORS_CLOSING)
+    if (state == State::ELEVATOR_IN_MOVE || state == State::DOORS_CLOSING)
     {
         state = State::ELEVATOR_IN_MOVE;
 

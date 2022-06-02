@@ -1,6 +1,6 @@
 <mxfile host="65bd71144e">
     <diagram id="FFJJ7vYpV9TbGx-IhugV" name="Страница 1">
-        <mxGraphModel dx="1548" dy="628" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+        <mxGraphModel dx="1698" dy="758" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
@@ -365,7 +365,7 @@
                 <mxCell id="2" value="1.&amp;nbsp; Лифт в неактивном состоянии" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
                     <mxGeometry x="-110" y="930" width="150" height="40" as="geometry"/>
                 </mxCell>
-                <mxCell id="5" value="4.&amp;nbsp; Лифт в движении" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                <mxCell id="5" value="5.&amp;nbsp; Лифт в движении" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
                     <mxGeometry x="-190" y="1030" width="150" height="40" as="geometry"/>
                 </mxCell>
                 <mxCell id="13" value="" style="edgeStyle=elbowEdgeStyle;elbow=vertical;endArrow=classic;html=1;curved=1;" edge="1" parent="1" source="1RubFFUEzhwFRpHru7SJ-29" target="5">
@@ -396,7 +396,7 @@
                         <mxPoint x="22" y="53" as="offset"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="63" value="K3" style="edgeStyle=orthogonalEdgeStyle;orthogonalLoop=1;jettySize=auto;html=1;curved=1;entryX=1;entryY=0.75;entryDx=0;entryDy=0;" edge="1" parent="1" source="1RubFFUEzhwFRpHru7SJ-29" target="HDxr8kiUH-6mZuYNT8Sr-1">
+                <mxCell id="63" value="K5" style="edgeStyle=orthogonalEdgeStyle;orthogonalLoop=1;jettySize=auto;html=1;curved=1;entryX=1;entryY=0.75;entryDx=0;entryDy=0;" edge="1" parent="1" source="1RubFFUEzhwFRpHru7SJ-29" target="HDxr8kiUH-6mZuYNT8Sr-1">
                     <mxGeometry x="-0.7447" relative="1" as="geometry">
                         <Array as="points">
                             <mxPoint x="300" y="1180"/>
@@ -428,7 +428,7 @@
                 <mxCell id="67" value="4.&amp;nbsp; Лифт в движении" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
                     <mxGeometry x="-165.03" y="1550" width="150" height="40" as="geometry"/>
                 </mxCell>
-                <mxCell id="68" value="5. Определение следующего этажа" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                <mxCell id="68" value="6. Определение следующего этажа" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
                     <mxGeometry x="64.94000000000001" y="1555" width="150" height="30" as="geometry"/>
                 </mxCell>
                 <mxCell id="69" value="К1" style="edgeStyle=orthogonalEdgeStyle;orthogonalLoop=1;jettySize=auto;html=1;curved=1;" edge="1" parent="1" source="71" target="68">
@@ -495,7 +495,7 @@
                 <mxCell id="79" value="1.&amp;nbsp; Лифт в неактивном состоянии" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
                     <mxGeometry x="-105.03" y="1412.5" width="150" height="40" as="geometry"/>
                 </mxCell>
-                <mxCell id="80" value="4.&amp;nbsp; Лифт в движении" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                <mxCell id="80" value="5.&amp;nbsp; Лифт в движении" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
                     <mxGeometry x="-165.03" y="1550" width="150" height="40" as="geometry"/>
                 </mxCell>
                 <mxCell id="81" value="" style="edgeStyle=elbowEdgeStyle;elbow=vertical;endArrow=classic;html=1;curved=1;entryX=0.25;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="79" target="68">
@@ -590,7 +590,7 @@
                         <mxPoint as="offset"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="94" value="K3" style="edgeStyle=orthogonalEdgeStyle;orthogonalLoop=1;jettySize=auto;html=1;curved=1;entryX=1;entryY=0.75;entryDx=0;entryDy=0;" edge="1" parent="1" source="73" target="76">
+                <mxCell id="94" value="K5" style="edgeStyle=orthogonalEdgeStyle;orthogonalLoop=1;jettySize=auto;html=1;curved=1;entryX=1;entryY=0.75;entryDx=0;entryDy=0;" edge="1" parent="1" source="73" target="76">
                     <mxGeometry x="-0.7447" relative="1" as="geometry">
                         <Array as="points">
                             <mxPoint x="324.97" y="1700"/>
@@ -598,6 +598,36 @@
                         <mxPoint as="offset"/>
                         <mxPoint x="209.97" y="1700" as="sourcePoint"/>
                         <mxPoint x="284.97" y="1457.5" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="100" value="" style="edgeStyle=segmentEdgeStyle;endArrow=classic;html=1;curved=1;" edge="1" parent="1" source="2" target="HDxr8kiUH-6mZuYNT8Sr-1">
+                    <mxGeometry width="50" height="50" relative="1" as="geometry">
+                        <mxPoint x="20" y="1110" as="sourcePoint"/>
+                        <mxPoint x="70" y="1060" as="targetPoint"/>
+                        <Array as="points">
+                            <mxPoint x="-20" y="1050"/>
+                            <mxPoint x="100" y="1050"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="101" value="К5" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="100">
+                    <mxGeometry x="0.5524" y="-10" relative="1" as="geometry">
+                        <mxPoint as="offset"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="102" value="" style="edgeStyle=segmentEdgeStyle;endArrow=classic;html=1;curved=1;" edge="1" parent="1" source="1RubFFUEzhwFRpHru7SJ-27" target="HDxr8kiUH-6mZuYNT8Sr-1">
+                    <mxGeometry width="50" height="50" relative="1" as="geometry">
+                        <mxPoint x="-10" y="980" as="sourcePoint"/>
+                        <mxPoint x="110" y="1160" as="targetPoint"/>
+                        <Array as="points">
+                            <mxPoint x="150" y="1060"/>
+                            <mxPoint x="150" y="1060"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="103" value="К5" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="102">
+                    <mxGeometry x="0.5524" y="-10" relative="1" as="geometry">
+                        <mxPoint as="offset"/>
                     </mxGeometry>
                 </mxCell>
             </root>

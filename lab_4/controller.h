@@ -20,8 +20,7 @@ public:
         DOORS_OPENING,
         WAITING_PASSENGERS,
         DOORS_CLOSING,
-        DETERMINE_NEXT_FLOOR,
-        ELEVATOR_IN_MOVE,
+        ELEVATOR_IN_MOVE
     };
 
     Controller(Cabin* cabin, Door* door);
@@ -33,7 +32,7 @@ public:
 signals:
     void releaseButton(int floor);
 
-    void startOpeningDoors(int targetFloor);
+    void startOpeningDoors(int floor);
     void doorsOpeningSignal();
     void doorsClosingSignal();
 
@@ -43,12 +42,13 @@ signals:
     void controllerNotActiveSignal();
 
 public slots:
-    void controllerIsNotActive();                   // NOT_ACTIVE
+    void controllerIsNotActive();                 // NOT_ACTIVE
     void cabinIsMoving();                         // ELEVATOR_IN_MOVE
-    void cabinStopped(Cabin* cabin);              // OPENING_DOORS
+    void cabinStopped(int floor);                 // OPENING_DOORS
     void doorOpened();                            // WAITING_PASSENGERS
     void waitingTimeout();                        // CLOSING_DOORS
-    void buttonPressed(ControllerButton* button); // DETERMINE_NEXT_FLOOR
+
+    void buttonPressed(ControllerButton* button);
 
 private:
     bool hasRequests() const;
