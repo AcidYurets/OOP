@@ -1,6 +1,5 @@
 #include "mainwindow.h"
 #include <QApplication>
-#include "QFile"
 
 // #define TEST
 
@@ -37,11 +36,6 @@ int main(int argc, char *argv[])
 #else
     QApplication a(argc, argv);
     MainWindow w;
-    QFile file("./buttonStyle.qss");
-    file.open(QFile::ReadOnly);
-    QString styleSheet = QLatin1String(file.readAll());
-    a.setStyleSheet(styleSheet);
-
     w.show();
     return a.exec();
 #endif

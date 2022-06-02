@@ -34,9 +34,9 @@ void Controller::connectButton(ControllerButton *button)
     });
 }
 
-void Controller::connectOpenButton(QPushButton* button)
+void Controller::connectOpenButton(ControllerButton* openButton)
 {
-    connect(button, &QPushButton::pressed, this, &Controller::openButtonPressed);
+    connect(openButton, &ControllerButton::pressedSignal, this, &Controller::buttonPressed);
 }
 
 Cabin *Controller::getCabin()
@@ -46,29 +46,26 @@ Cabin *Controller::getCabin()
 
 void Controller::buttonPressed(ControllerButton *button)
 {
+    qDebug() << "PUSHED!!! // state = " << (int)state;
     int floor = button->getFloorNumber();
     floorRequested[floor - 1] = true;
 
     if (state == State::NOT_ACTIVE) // Если лифт не активен
-        emit startOpeningDoors();
+        emit startOpeningDoors(floor);
     else if ((state == State::DOORS_CLOSING || state == State::WAITING_PASSENGERS)
         && (floor == cabin->getCurrFloor())) // Если нажали кнопку этажа, на котором лифт и так находится
-        emit startOpeningDoors();   
+    {
+        emit startOpeningDoors(floor);
+    }
+        
 }
 
-void Controller::openButtonPressed()
-{
-    qDebug() << "STATE: " << (int)state;
-    if (state == State::DOORS_CLOSING || state == State::WAITING_PASSENGERS || state == State::NOT_ACTIVE) 
-        emit startOpeningDoors();
-}
-
-void Controller::cabinStopped()
+void Controller::cabinStopped(int floor)
 {
     if (state == State::ELEVATOR_IN_MOVE || state == State::DOORS_CLOSING || state == State::WAITING_PASSENGERS || state == State::NOT_ACTIVE)
     {
         state = State::DOORS_OPENING;
-        qDebug() << "cabin stopped";
+        qDebug() << "cabin stopped at floor " << floor;
         emit doorsOpeningSignal();
     }
 }

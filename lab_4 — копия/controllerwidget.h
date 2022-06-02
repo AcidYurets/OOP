@@ -27,13 +27,11 @@ public slots:
 
 private:
     void addButton(int floor, QVBoxLayout* buttonsLayout);
-    void addOpenButton(QVBoxLayout* buttonsLayout);
 
     Ui::Controller *ui;
     Controller* controller;
 
     QLCDNumber *floorLCD;
-    QPushButton *openButton;
     std::vector<ControllerButton*> buttons;
     std::vector<ControllerButtonWidget*> buttonWidgets;
 };

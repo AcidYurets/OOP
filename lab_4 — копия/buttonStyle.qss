@@ -1,6 +1,4 @@
 QPushButton {
-    font: "Calibri";
-    font-size: 20px;
     background-color: rgb(192, 192, 192);
     border-style: outset;
     border-width: 3px;

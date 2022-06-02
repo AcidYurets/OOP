@@ -3,7 +3,6 @@
 
 #include <QObject>
 #include <QTimer>
-#include <QPushButton>
 #include "common.h"
 #include "cabin.h"
 #include "door.h"
@@ -28,13 +27,13 @@ public:
     virtual ~Controller() = default;
 
     void connectButton(ControllerButton* button);
-    void connectOpenButton(QPushButton* button);
+    void connectOpenButton(ControllerOpenButton* button);
     Cabin* getCabin();
 
 signals:
     void releaseButton(int floor);
 
-    void startOpeningDoors();
+    void startOpeningDoors(int floor);
     void doorsOpeningSignal();
     void doorsClosingSignal();
 
@@ -46,12 +45,11 @@ signals:
 public slots:
     void controllerIsNotActive();                 // NOT_ACTIVE
     void cabinIsMoving();                         // ELEVATOR_IN_MOVE
-    void cabinStopped();                          // OPENING_DOORS
+    void cabinStopped(int floor);                 // OPENING_DOORS
     void doorOpened();                            // WAITING_PASSENGERS
     void waitingTimeout();                        // CLOSING_DOORS
 
     void buttonPressed(ControllerButton* button);
-    void openButtonPressed();
 
 private:
     bool hasRequests() const;
