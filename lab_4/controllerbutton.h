@@ -33,4 +33,18 @@ private:
     State state = State::RELEASED;
 };
 
+class ControllerOpenButton : public ControllerButton
+{
+    Q_OBJECT
+
+public:
+    enum class State
+    {
+        PRESSED,
+        RELEASED
+    };
+
+    explicit ControllerOpenButton() = default;
+    virtual ~ControllerOpenButton() = default;
+};
 #endif // CONTROLLERBUTTON_H
