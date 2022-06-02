@@ -1,4 +1,3 @@
-#include "qtypeinfo.h"
 #include "controllerwidget.h"
 
 ControllerWidget::ControllerWidget(Controller* controller)
@@ -31,7 +30,7 @@ void ControllerWidget::floorVisited(int floor)
     floorLCD->display(floor);
 }
 
-void ControllerWidget::addFloorButton(int floor)
+void ControllerWidget::addButton(int floor, QVBoxLayout* buttonsLayout)
 {
     ControllerButton* button = new ControllerButton(floor);
     ControllerButtonWidget* buttonWidget = new ControllerButtonWidget(button);
@@ -39,6 +38,16 @@ void ControllerWidget::addFloorButton(int floor)
     buttons.insert(buttons.begin(), button);
     buttonWidgets.insert(buttonWidgets.begin(), buttonWidget);
 
-    ui->buttonsLayout->addWidget(buttonWidget);
+    buttonsLayout->addWidget(buttonWidget);
     controller->connectButton(button);
+}
+
+
+void ControllerWidget::addOpenButton(QVBoxLayout* buttonsLayout)
+{
+    QPushButton* button = new QPushButton("<>");
+    openButton = button;
+
+    buttonsLayout->addWidget(button);
+    controller->connectOpenButton(button);
 }
