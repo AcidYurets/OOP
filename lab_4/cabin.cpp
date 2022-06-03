@@ -59,8 +59,6 @@ void Cabin::move()
         direction = Direction::DOWN;
         emit movingSignal(--currFloor);
     }
-    else
-        emit movingSignal(currFloor);
 }
 
 void Cabin::stop()

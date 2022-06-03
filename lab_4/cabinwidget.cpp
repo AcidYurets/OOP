@@ -22,7 +22,7 @@ void CabinWidget::doorOpenTick()
     int w = ui->spacer->sizeHint().width();
     int h = ui->spacer->sizeHint().height();
 
-    w += 1;
+    w += 2;
 
     if (w >= width() - 50)
     {
@@ -42,7 +42,7 @@ void CabinWidget::doorCloseTick()
     int w = ui->spacer->sizeHint().width();
     int h = ui->spacer->sizeHint().height();
 
-    w -= 1;
+    w -= 2;
 
     if (w <= 0)
     {

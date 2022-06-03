@@ -1,5 +1,5 @@
-#include <qdebug>
-#include "controller.h"
+#include "controller.h" 
+#include <QDebug> 
 
 constexpr auto wait_timeout = 2000;
 
@@ -44,25 +44,6 @@ Cabin *Controller::getCabin()
     return cabin;
 }
 
-void Controller::buttonPressed(ControllerButton *button)
-{
-    int floor = button->getFloorNumber();
-    floorRequested[floor - 1] = true;
-
-    if (state == State::NOT_ACTIVE) // Если лифт не активен
-        emit startOpeningDoors();
-    else if ((state == State::DOORS_CLOSING || state == State::WAITING_PASSENGERS)
-        && (floor == cabin->getCurrFloor())) // Если нажали кнопку этажа, на котором лифт и так находится
-        emit startOpeningDoors();   
-}
-
-void Controller::openButtonPressed()
-{
-    qDebug() << "STATE: " << (int)state;
-    if (state == State::DOORS_CLOSING || state == State::WAITING_PASSENGERS || state == State::NOT_ACTIVE) 
-        emit startOpeningDoors();
-}
-
 void Controller::cabinStopped()
 {
     if (state == State::ELEVATOR_IN_MOVE || state == State::DOORS_CLOSING || state == State::WAITING_PASSENGERS || state == State::NOT_ACTIVE)
@@ -105,11 +86,11 @@ void Controller::cabinIsMoving()
     {
         state = State::ELEVATOR_IN_MOVE;
 
-        if (floorRequested[cabin->getCurrFloor() - 1]) // Приехали куда надо
+        if (floorRequested[cabin->getCurrFloor() - 1]) // РџСЂРёРµС…Р°Р»Рё РєСѓРґР° РЅР°РґРѕ
             emit cabinStopSignal();
-        else if (getNextTargetFloor() != 0)            // Едем к цели         
+        else if (getNextTargetFloor() != 0)            // Р•РґРµРј Рє С†РµР»Рё         
             emit cabinMoveSignal(getNextTargetFloor());
-        else                                           // Ехать некуда
+        else                                           // Р•С…Р°С‚СЊ РЅРµРєСѓРґР°
             emit controllerNotActiveSignal();
     }
 }
@@ -119,6 +100,27 @@ void Controller::controllerIsNotActive()
     state = State::NOT_ACTIVE;
     qDebug() << "elevator not active!";
 }
+
+
+void Controller::buttonPressed(ControllerButton* button)
+{
+    int floor = button->getFloorNumber();
+    floorRequested[floor - 1] = true;
+
+    if (state == State::NOT_ACTIVE) // Р•СЃР»Рё Р»РёС„С‚ РЅРµ Р°РєС‚РёРІРµРЅ
+        emit startOpeningDoors();
+    else if ((state == State::DOORS_CLOSING || state == State::WAITING_PASSENGERS)
+        && (floor == cabin->getCurrFloor())) // Р•СЃР»Рё РЅР°Р¶Р°Р»Рё РєРЅРѕРїРєСѓ СЌС‚Р°Р¶Р°, РЅР° РєРѕС‚РѕСЂРѕРј Р»РёС„С‚ Рё С‚Р°Рє РЅР°С…РѕРґРёС‚СЃСЏ
+        emit startOpeningDoors();
+}
+
+void Controller::openButtonPressed()
+{
+    // qDebug() << "STATE: " << (int)state;
+    if (state == State::DOORS_CLOSING || state == State::WAITING_PASSENGERS || state == State::NOT_ACTIVE)
+        emit startOpeningDoors();
+}
+
 
 bool Controller::hasRequests() const
 {

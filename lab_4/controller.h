@@ -30,6 +30,7 @@ public:
     void connectButton(ControllerButton* button);
     void connectOpenButton(QPushButton* button);
     Cabin* getCabin();
+    int getNextTargetFloor() const;
 
 signals:
     void releaseButton(int floor);
@@ -55,7 +56,7 @@ public slots:
 
 private:
     bool hasRequests() const;
-    int getNextTargetFloor() const;
+    
     int getNextTargetFloor(int currFloor, Direction dir) const;
 
     State state = State::NOT_ACTIVE;
