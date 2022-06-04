@@ -61,7 +61,6 @@ void Controller::doorOpened()
         state = State::WAITING_PASSENGERS;
         qDebug() << "waiting passengers...";
 
-        int currFloor = cabin->getCurrFloor();
         floorRequested[currFloor - 1] = false;
 
         emit releaseButton(currFloor);
@@ -86,10 +85,10 @@ void Controller::cabinIsMoving()
     {
         state = State::ELEVATOR_IN_MOVE;
 
-        if (floorRequested[cabin->getCurrFloor() - 1]) // Приехали куда надо
-            emit cabinStopSignal();
+        if (floorRequested[currFloor - 1]) // Приехали куда надо
+            emit cabinStopSignal(currFloor);
         else if (getNextTargetFloor() != 0)            // Едем к цели         
-            emit cabinMoveSignal(getNextTargetFloor());
+            emit cabinMoveSignal(getNextTargetFloor(), currFloor);
         else                                           // Ехать некуда
             emit controllerNotActiveSignal();
     }
@@ -110,7 +109,7 @@ void Controller::buttonPressed(ControllerButton* button)
     if (state == State::NOT_ACTIVE) // Если лифт не активен
         emit startOpeningDoors();
     else if ((state == State::DOORS_CLOSING || state == State::WAITING_PASSENGERS)
-        && (floor == cabin->getCurrFloor())) // Если нажали кнопку этажа, на котором лифт и так находится
+        && (floor == currFloor)) // Если нажали кнопку этажа, на котором лифт и так находится
         emit startOpeningDoors();
 }
 
@@ -133,7 +132,6 @@ bool Controller::hasRequests() const
 
 int Controller::getNextTargetFloor() const
 {
-    int currFloor = cabin->getCurrFloor();
     Direction dir = cabin->getDirection();
 
     return getNextTargetFloor(currFloor, dir);

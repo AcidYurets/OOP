@@ -26,20 +26,17 @@ public:
 
 signals:
     void movingSignal(int floor);
-    void startMovingSignal(int targetFloor, int &currFloor);
+    void startMovingSignal(Cabin* cabin, int floor);
     void stoppedSignal(int floor);
 
-    void timerTimeoutSignal();
-
 public slots:
-    void startMove(int targetFloor, int &currFloor);
-    void move(int targetFloor, int &currFloor);
-    void stop(int currFloor);
+    void startMove(int targetFloor);
+    void move();
+    void stop();
 
-    void timerTimeout();
 private:
-    //int currFloor = 1;
-    //int targetFloor = 1;
+    int currFloor = 1;
+    int targetFloor = 1;
     Direction direction = Direction::NONE;
     State state = State::STOPPED;
     QTimer timer;

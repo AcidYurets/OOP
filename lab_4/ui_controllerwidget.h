@@ -118,7 +118,7 @@ public:
         QMetaObject::connectSlotsByName(Controller);
     } // setupUi
 
-    void retranslateUi(QWidget *Controller) 
+    void retranslateUi(QWidget *Controller)
     {
         Controller->setWindowTitle(QCoreApplication::translate("Controller", "Form", nullptr));
         label_2->setText(QCoreApplication::translate("Controller", "\320\255\321\202\320\260\320\266:", nullptr));

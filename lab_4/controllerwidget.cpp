@@ -36,20 +36,20 @@ ControllerWidget::~ControllerWidget()
 void ControllerWidget::floorVisited(int floor)
 {
     int target = controller->getNextTargetFloor();
-    if (floor == target)
+    /*if (floor == target)
 
     {
         setStyleSheet("QLCDNumber {"
             "border-style: solid;"
             "border-width: 2px;"
-            "border-color: rgb(0, 230, 0);"
+            "border-color: rgb(0, 100, 0);"
             "border-radius: 5px;"
             "background-color: rgb(0, 0, 204);"
-            "color: rgb(0, 230, 0);"
+            "color: rgb(0, 100, 0);"
             "}");
     }
     else
-    {
+    {*/
         setStyleSheet("QLCDNumber {"
             "border-style: solid;"
             "border-width: 2px;"
@@ -58,7 +58,7 @@ void ControllerWidget::floorVisited(int floor)
             "background-color: rgb(0, 0, 204);"
             "color: rgb(182, 182, 182);"
             "}");
-    }
+    //}
     floorLCD->display(floor);
 }
 

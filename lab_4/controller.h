@@ -39,8 +39,8 @@ signals:
     void doorsOpeningSignal();
     void doorsClosingSignal();
 
-    void cabinMoveSignal(int targetFloor);
-    void cabinStopSignal();
+    void cabinMoveSignal(int targetFloor, int &currFloor);
+    void cabinStopSignal(int currFloor);
 
     void controllerNotActiveSignal();
 
@@ -62,6 +62,8 @@ private:
     State state = State::NOT_ACTIVE;
     bool floorRequested[FLOORS_COUNT] = { false };
 
+    int currFloor = 1;
+    int targetFloor = 1;
     Cabin* cabin;
     Door* door;
     QTimer timer;
