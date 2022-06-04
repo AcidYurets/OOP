@@ -14,10 +14,11 @@ public:
         CLOSED,
         CLOSING,
         OPENED,
-        OPENING
+        OPENING,
+        FORCED_OPENING
     };
 
-    Door() = default;
+    Door();
     virtual ~Door() = default;
 
 signals:
@@ -26,11 +27,16 @@ signals:
     void closingSignal();
     void closedSignal();
 
+    void startForcedOpening();
+    void doorsAlreadyOpend();
+
 public slots:
     void opening();
     void closing();
     void open();
     void close();
+
+    void forcedOpening();
 
 public:
     State state = State::CLOSED;

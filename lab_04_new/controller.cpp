@@ -10,14 +10,15 @@ Controller::Controller(Cabin *cabin, Door *door)
     connect(this, &Controller::startOpeningDoors, this, &Controller::cabinStopped);
 
     connect(this, &Controller::doorsOpeningSignal, door, &Door::opening);
+    connect(this, &Controller::doorsForcedOpeningSignal, door, &Door::forcedOpening);
     connect(this, &Controller::doorsClosingSignal, door, &Door::closing);
     connect(door, &Door::openedSignal, this, &Controller::doorOpened);
-    connect(door, &Door::closedSignal, this, &Controller::cabinIsMoving);
-    
+    connect(door, &Door::closedSignal, this, &Controller::decide);
+    connect(this, &Controller::elevatorMoveSignal, this, &Controller::cabinIsMoving);
     
     connect(this, &Controller::cabinMoveSignal, cabin, &Cabin::startMove);
     connect(this, &Controller::cabinStopSignal, cabin, &Cabin::stop);
-    connect(cabin, &Cabin::movingSignal, this, &Controller::cabinIsMoving);
+    connect(cabin, &Cabin::movingSignal, this, &Controller::decide);
     connect(cabin, &Cabin::stoppedSignal, this, &Controller::cabinStopped);
 
     connect(this, &Controller::controllerNotActiveSignal, this, &Controller::controllerIsNotActive);
@@ -46,13 +47,14 @@ Cabin *Controller::getCabin()
 
 void Controller::cabinStopped()
 {
-    if (state == State::ELEVATOR_IN_MOVE || state == State::DOORS_CLOSING || state == State::WAITING_PASSENGERS || state == State::NOT_ACTIVE)
+    if (state == State::DECIDING_STATE || state == State::DOORS_CLOSING 
+        || state == State::WAITING_PASSENGERS || state == State::NOT_ACTIVE)
     {
         state = State::DOORS_OPENING;
         qDebug() << "cabin stopped";
-        emit doorsOpeningSignal();
+        emit doorsForcedOpeningSignal();
     }
-}
+}   
 
 void Controller::doorOpened()
 {
@@ -80,25 +82,39 @@ void Controller::waitingTimeout()
     }
 }
 
-void Controller::cabinIsMoving()
+void Controller::decide()
 {
     if (state == State::ELEVATOR_IN_MOVE || state == State::DOORS_CLOSING)
     {
-        state = State::ELEVATOR_IN_MOVE;
+        state = State::DECIDING_STATE;
 
         if (floorRequested[cabin->getCurrFloor() - 1]) // Приехали куда надо
             emit cabinStopSignal();
         else if (getNextTargetFloor() != 0)            // Едем к цели         
-            emit cabinMoveSignal(getNextTargetFloor());
+            emit elevatorMoveSignal();
         else                                           // Ехать некуда
             emit controllerNotActiveSignal();
     }
 }
 
+void Controller::cabinIsMoving()
+{
+    if (state == State::DECIDING_STATE)
+    {
+        state = State::ELEVATOR_IN_MOVE;
+
+    emit cabinMoveSignal(getNextTargetFloor());
+    }
+}
+
 void Controller::controllerIsNotActive()
 {
-    state = State::NOT_ACTIVE;
-    qDebug() << "elevator not active!";
+    if (state == State::DECIDING_STATE)
+    {
+        state = State::NOT_ACTIVE;
+        qDebug() << "elevator not active!";
+    }
+    
 }
 
 

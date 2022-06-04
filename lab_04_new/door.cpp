@@ -2,9 +2,15 @@
 #include "door.h"
 
 
+Door::Door()
+{
+    connect(this, &Door::startForcedOpening, this, &Door::opening);
+    connect(this, &Door::doorsAlreadyOpend, this, &Door::open);
+}
+
 void Door::opening()
 {
-    if (state == State::CLOSED || state == State::CLOSING || state == State::OPENED)
+    if (state == State::CLOSED || state == State::CLOSING || state == State::FORCED_OPENING)
     {
         qDebug() << "door is opening...";
         state = State::OPENING;
@@ -24,7 +30,7 @@ void Door::closing()
 
 void Door::open()
 {
-    if (state == State::OPENING)
+    if (state == State::OPENING || state == State::FORCED_OPENING)
     {
         qDebug() << "door opened.";
         state = State::OPENED;
@@ -39,5 +45,19 @@ void Door::close()
         qDebug() << "door closed.";
         state = State::CLOSED;
         emit closedSignal();
+    }
+}
+
+void Door::forcedOpening()
+{
+    State lastState = state;
+    if (state != State::OPENING)
+    {
+        qDebug() << "forced doors opening!";
+        state = State::FORCED_OPENING;
+        if (lastState == State::CLOSED || lastState == State::CLOSING)
+            emit startForcedOpening();
+        else if (lastState == State::OPENED)
+            emit doorsAlreadyOpend();
     }
 }

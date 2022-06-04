@@ -21,7 +21,8 @@ public:
         DOORS_OPENING,
         WAITING_PASSENGERS,
         DOORS_CLOSING,
-        ELEVATOR_IN_MOVE
+        ELEVATOR_IN_MOVE,
+        DECIDING_STATE
     };
 
     Controller(Cabin* cabin, Door* door);
@@ -38,14 +39,17 @@ signals:
     void startOpeningDoors();
     void doorsOpeningSignal();
     void doorsClosingSignal();
+    void doorsForcedOpeningSignal();
 
     void cabinMoveSignal(int targetFloor);
     void cabinStopSignal();
 
+    void elevatorMoveSignal();
     void controllerNotActiveSignal();
 
 public slots:
     void controllerIsNotActive();                 // NOT_ACTIVE
+    void decide();                                // DECIDING_STATE
     void cabinIsMoving();                         // ELEVATOR_IN_MOVE
     void cabinStopped();                          // OPENING_DOORS
     void doorOpened();                            // WAITING_PASSENGERS
