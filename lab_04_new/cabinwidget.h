@@ -26,12 +26,10 @@ public:
     virtual ~CabinWidget();
 
 public slots:
-    void doorOpenTick();
-    void doorCloseTick();
+    void changeDoorsOpeningState(int openingValue);
 
 private:
-    void playDoorsOpenAnimation();
-    void playDoorsCloseAnimation();
+    
 
     Ui::Elevator *ui;
     Cabin* cabin;

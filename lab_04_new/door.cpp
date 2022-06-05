@@ -1,11 +1,16 @@
 #include <QDebug>
 #include "door.h"
 
+constexpr auto tick_value = 10;
+constexpr auto max_open_value = 260 - 50;
 
 Door::Door()
 {
     connect(this, &Door::startForcedOpening, this, &Door::opening);
     connect(this, &Door::doorsAlreadyOpend, this, &Door::open);
+
+    connect(this, &Door::openingAnimationEnd, this, &Door::open);
+    connect(this, &Door::closingAnimationEnd, this, &Door::close);
 }
 
 void Door::opening()
@@ -14,8 +19,26 @@ void Door::opening()
     {
         qDebug() << "door is opening...";
         state = State::OPENING;
-        emit openingSignal();
+
+        timer.stop();
+        timer.disconnect();
+        connect(&timer, &QTimer::timeout, this, &Door::openingProcess);
+        timer.start(tick_value);
     }
+}
+
+void Door::openingProcess()
+{
+    openingValue += 2;
+    if (openingValue >= max_open_value)
+    {
+        openingValue = max_open_value;
+        timer.stop();
+        timer.disconnect();
+        emit openingAnimationEnd();
+    }
+    else
+        emit doorsAnimationSignal(openingValue);
 }
 
 void Door::closing()
@@ -24,8 +47,26 @@ void Door::closing()
     {
         qDebug() << "door is closing...";
         state = State::CLOSING;
-        emit closingSignal();
+        
+        timer.stop();
+        timer.disconnect();
+        connect(&timer, &QTimer::timeout, this, &Door::closingProcess);
+        timer.start(tick_value);
     }
+}
+
+void Door::closingProcess()
+{
+    openingValue -= 2;
+    if (openingValue <= 0)
+    {
+        openingValue = 0;
+        timer.stop();
+        timer.disconnect();
+        emit closingAnimationEnd();
+    }
+    else
+        emit doorsAnimationSignal(openingValue);
 }
 
 void Door::open()
