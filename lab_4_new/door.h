@@ -15,8 +15,7 @@ public:
         CLOSED,
         CLOSING,
         OPENED,
-        OPENING,
-        FORCED_OPENING
+        OPENING
     };
 
     Door();
@@ -27,7 +26,6 @@ signals:
     void doorsAnimationSignal(int openingValue);
     void closedSignal();
 
-    void startForcedOpening();
     void doorsAlreadyOpend();
 
     void openingAnimationEnd();
@@ -38,7 +36,6 @@ public slots:
     void closing();
     void open();
     void close();
-    void forcedOpening();
 
     void openingProcess();
     void closingProcess();

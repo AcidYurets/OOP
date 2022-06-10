@@ -10,9 +10,9 @@ Controller::Controller(Cabin *cabin, Door *door)
     connect(this, &Controller::startOpeningDoors, this, &Controller::cabinStopped);
 
     connect(this, &Controller::doorsOpeningSignal, door, &Door::opening);
-    connect(this, &Controller::doorsForcedOpeningSignal, door, &Door::forcedOpening);
     connect(this, &Controller::doorsClosingSignal, door, &Door::closing);
     connect(door, &Door::openedSignal, this, &Controller::doorOpened);
+    connect(this, &Controller::restartWaitingTimer, this, &Controller::doorOpened);
     connect(door, &Door::closedSignal, this, &Controller::decide);
     connect(this, &Controller::elevatorMoveSignal, this, &Controller::cabinIsMoving);
     
@@ -52,13 +52,13 @@ void Controller::cabinStopped()
     {
         state = State::DOORS_OPENING;
         qDebug() << "cabin stopped";
-        emit doorsForcedOpeningSignal();
+        emit doorsOpeningSignal();
     }
 }   
 
 void Controller::doorOpened()
 {
-    if (state == State::DOORS_OPENING)
+    if (state == State::DOORS_OPENING || state == State::WAITING_PASSENGERS)
     {
         state = State::WAITING_PASSENGERS;
         qDebug() << "waiting passengers...";
@@ -133,8 +133,10 @@ void Controller::buttonPressed(ControllerButton* button)
 void Controller::openButtonPressed()
 {
     // qDebug() << "STATE: " << (int)state;
-    if (state == State::DOORS_CLOSING || state == State::WAITING_PASSENGERS || state == State::NOT_ACTIVE)
+    if (state == State::DOORS_CLOSING || state == State::NOT_ACTIVE)
         emit startOpeningDoors();
+    if (state == State::WAITING_PASSENGERS)
+        emit restartWaitingTimer();
 }
 
 

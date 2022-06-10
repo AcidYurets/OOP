@@ -6,7 +6,6 @@ constexpr auto max_open_value = 260 - 50;
 
 Door::Door()
 {
-    connect(this, &Door::startForcedOpening, this, &Door::opening);
     connect(this, &Door::doorsAlreadyOpend, this, &Door::open);
 
     connect(this, &Door::openingAnimationEnd, this, &Door::open);
@@ -15,7 +14,7 @@ Door::Door()
 
 void Door::opening()
 {
-    if (state == State::CLOSED || state == State::CLOSING || state == State::FORCED_OPENING)
+    if (state == State::CLOSED || state == State::CLOSING)
     {
         qDebug() << "door is opening...";
         state = State::OPENING;
@@ -71,7 +70,7 @@ void Door::closingProcess()
 
 void Door::open()
 {
-    if (state == State::OPENING || state == State::FORCED_OPENING)
+    if (state == State::OPENING)
     {
         qDebug() << "door opened.";
         state = State::OPENED;
@@ -89,16 +88,3 @@ void Door::close()
     }
 }
 
-void Door::forcedOpening()
-{
-    State lastState = state;
-    if (state != State::OPENING)
-    {
-        qDebug() << "forced doors opening!";
-        state = State::FORCED_OPENING;
-        if (lastState == State::CLOSED || lastState == State::CLOSING)
-            emit startForcedOpening();
-        else if (lastState == State::OPENED)
-            emit doorsAlreadyOpend();
-    }
-}

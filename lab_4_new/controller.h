@@ -37,9 +37,9 @@ signals:
     void releaseButton(int floor);
 
     void startOpeningDoors();
+    void restartWaitingTimer();
     void doorsOpeningSignal();
     void doorsClosingSignal();
-    void doorsForcedOpeningSignal();
 
     void cabinMoveSignal(int targetFloor);
     void cabinStopSignal();
